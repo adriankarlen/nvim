@@ -1,3 +1,8 @@
+local git_diff_color_map = {
+  added = "#9ccfd8",
+  changed = "#ebbcba",
+  removed = "#eb6f92",
+}
 return {
   "b0o/incline.nvim",
   config = function()
@@ -19,7 +24,7 @@ return {
           end
           for name, icon in pairs(icons) do
             if tonumber(signs[name]) and signs[name] > 0 then
-              table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name })
+              table.insert(labels, { icon .. " " .. signs[name] .. " ", guifg = git_diff_color_map[name] })
             end
           end
           if #labels > 0 then
@@ -35,7 +40,7 @@ return {
           for severity, icon in pairs(icons) do
             local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
             if n > 0 then
-              table.insert(label, { icon .. " " .. n .. " ", group = "DiagnosticSign" .. severity })
+              table.insert(label, { icon .. n .. " ", group = "DiagnosticSign" .. severity })
             end
           end
           if #label > 0 then
