@@ -103,13 +103,13 @@ return {
         end,
         desc = "telescope old files",
       },
-      -- {
-      --   "<leader>fb",
-      --   function()
-      --     require("telescope.builtin").buffers()
-      --   end,
-      --   desc = "telescope buffers",
-      -- },
+      {
+        "<leader>fb",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "telescope buffers",
+      },
       {
         "<leader>bu",
         "<cmd>Telescope undo<cr>",
