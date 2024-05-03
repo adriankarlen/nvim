@@ -1,8 +1,6 @@
 <h2 align="center">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/logo-dark.png">
-        <img src="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/logo-light.png">
-    </picture>
+    <img src="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/avatar-rose.png" width="200" alt="Logo"/>
+    <br/>
     <img src="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/transparent.png" height="30" width="0px"/>
     nvim conf
     <img src="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/transparent.png" height="30" width="0px"/>
