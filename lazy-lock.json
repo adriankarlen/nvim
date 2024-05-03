@@ -5,7 +5,6 @@
   "actions-preview.nvim": { "branch": "master", "commit": "5072b1b1065a6b22bdd46b5c21780a91d6a08071" },
   "alpha-nvim": { "branch": "main", "commit": "41283fb402713fc8b327e60907f74e46166f4cfd" },
   "better-escape.nvim": { "branch": "master", "commit": "7e86edafb8c7e73699e0320f225464a298b96d12" },
-  "buffer_manager.nvim": { "branch": "main", "commit": "9cd0e34522d96d08817828f1e9fd3379f27efb73" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "compiler.nvim": { "branch": "main", "commit": "cb14acd32ba9ea09d01bbe3493aefdc59b68965c" },
