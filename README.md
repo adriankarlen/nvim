@@ -5,9 +5,6 @@
     nvim conf
     <img src="https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/transparent.png" height="30" width="0px"/>
 </h2>
-
-&nbsp;
-
 ## 📷 
 
 ![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/dashboard.png) 
