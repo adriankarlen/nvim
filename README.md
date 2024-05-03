@@ -9,7 +9,5 @@
 ## 📷 
 
 ![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/dashboard.png) 
-<details>
-    <summary>Preview</summary>
-    <img src="https://raw.githubusercontent.com/adriankarlen/vscode-relapce/main/assets/preview.webp"/>
-</details>
+![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/code-1.png) 
+![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/code-2.png) 
