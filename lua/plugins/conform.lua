@@ -20,9 +20,12 @@ return {
         javascript = { "prettierd" },
         javascriptreact = { "prettierd" },
         css = { "prettierd" },
+        scss = { "prettierd" },
         less = { "prettierd" },
         html = { "prettierd" },
         json = { "prettierd" },
+        jsonc = { "prettierd" },
+        markdown = { "prettierd"},
         yaml = { "prettierd" },
 
         c_sharp = { "csharpier" },
