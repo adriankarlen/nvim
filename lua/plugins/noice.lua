@@ -2,12 +2,6 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   opts = {
-    routes = {
-      {
-        view = "mini",
-        filter = { event = "msg_showmode" },
-      },
-    },
     cmdline = {
       format = {
         search_down = {
@@ -18,12 +12,8 @@ return {
         },
       },
     },
-    messages = {
-      view = "mini",
-    },
   },
   dependencies = {
     "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
   },
 }
