@@ -18,7 +18,7 @@ return {
       },
     },
     keys = {
-      "<Leader>z",
+      { "<Leader>zz", "<cmd>ZenMode<cr>", desc = "zen mode" },
     },
   },
 }
