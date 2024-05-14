@@ -5,11 +5,12 @@ return {
     local corn = require "corn"
     corn.setup {
       icons = {
-        error = ">",
-        warn = ">",
-        info = ">",
-        hint = ">",
+        error = "",
+        warn = "",
+        info = "",
+        hint = "",
       },
+      blacklisted_modes = { "i" },
       -- toggle virtual_text diags when corn is toggled
       on_toggle = function(is_hidden)
         if is_hidden then
@@ -20,7 +21,7 @@ return {
       end,
     }
     -- start disabled atm.
-    corn.toggle(false)
+    -- corn.toggle(false)
   end,
   keys = {
     {

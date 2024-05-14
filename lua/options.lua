@@ -54,9 +54,7 @@ vim.diagnostic.config {
     [vim.diagnostic.severity.INFO] = "",
     [vim.diagnostic.severity.HINT] = "",
   },
-  virtual_text = {
-    prefix = ">",
-  },
+  virtual_text = false,
 }
 
 local severities = { "Error", "Warn", "Info", "Hint" }
