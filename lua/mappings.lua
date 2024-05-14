@@ -70,14 +70,14 @@ map.set("x", "p", 'p:let @+=@0<cr>:let @"=@0<cr>', { desc = "paste without copyi
 
 -- simpler movement on nordic keyboards
 map.set("n", ";", ":", { desc = "replace semicolon with colon" })
-map.set("n", "ä", "\\", { desc = "replace ä with backslash" })
+map.set("n", "å", "\\", { desc = "replace ä with backslash" })
 map.set({ "n", "v" }, "*", '"', { desc = "replace * with double quote" })
-map.set("n", "å", "[", { desc = "replace å with left bracket" })
-map.set("n", "¨", "]", { desc = "replace ¨ with right bracket" })
-map.set({ "n", "v" }, "Å", "{", { desc = "replace Ö with left curly brace" })
-map.set({ "n", "v" }, "^", "}", { desc = "replace Ä with right curly brace" })
-map.set({ "c", "n" }, "&", "^", { desc = "replace & with caret" })
-map.set({ "c", "n" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
+map.set("n", "ö", "[", { desc = "replace å with left bracket" })
+map.set("n", "ä", "]", { desc = "replace ¨ with right bracket" })
+map.set({ "n", "v" }, "Ö", "{", { desc = "replace Ö with left curly brace" })
+map.set({ "n", "v" }, "Ä", "}", { desc = "replace Ä with right curly brace" })
+map.set({ "c", "n", "v" }, "&", "^", { desc = "replace & with caret" })
+map.set({ "c", "n", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
 map.set("n", "§", "`", { desc = "replace § with backtick" })
 
 -- capitalize word in insert mode
