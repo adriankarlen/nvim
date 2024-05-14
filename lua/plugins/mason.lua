@@ -25,6 +25,7 @@ return {
 
         -- rust stuff
         "rust-analyzer",
+        "json-lsp"
       },
       ui = {
         icons = {
@@ -44,7 +45,6 @@ return {
           cancel_installation = "<C-c>",
         },
       },
-
       max_concurrent_installers = 10,
     },
     config = function(_, opts)
