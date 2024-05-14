@@ -6,6 +6,9 @@ return {
     "debugloop/telescope-undo.nvim",
   },
   {
+    "Myzel394/jsonfly.nvim",
+  },
+  {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.6",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -73,6 +76,7 @@ return {
       }
       require("telescope").load_extension "ui-select"
       require("telescope").load_extension "undo"
+      require("telescope").load_extension "jsonfly"
     end,
     keys = {
       {
@@ -114,7 +118,13 @@ return {
         "<leader>bu",
         "<cmd>Telescope undo<cr>",
         desc = "telescope undo",
-      }
+      },
+      {
+        "<leader>fj",
+        "<cmd>Telescope jsonfly<cr>",
+        desc = "Open json(fly)",
+        ft = { "json" },
+      },
     },
   },
 }
