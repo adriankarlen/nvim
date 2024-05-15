@@ -15,6 +15,7 @@ return {
         "deno",
         "prettierd",
         "eslint-lsp",
+        "json-lsp",
 
         -- xml stuff
         "xmlformat",
@@ -25,13 +26,12 @@ return {
 
         -- rust stuff
         "rust-analyzer",
-        "json-lsp"
       },
       ui = {
         icons = {
           package_pending = " ",
           package_installed = "󰄳 ",
-          package_uninstalled = " 󰚌",
+          package_uninstalled = "󰚌 ",
         },
 
         keymaps = {
