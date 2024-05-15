@@ -9,5 +9,4 @@
 ## 📷 
 
 ![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/dashboard.png) 
-![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/code-1.png) 
-![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/code-2.png) 
+![image](https://raw.githubusercontent.com/adriankarlen/nvim/main/misc/code.png) 
