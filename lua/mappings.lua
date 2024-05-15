@@ -81,15 +81,4 @@ map.set({ "c", "n", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
 map.set("n", "§", "`", { desc = "replace § with backtick" })
 
 -- capitalize word in insert mode
-map.set("i", "GG", "<esc>bgUiwea", { desc = "make word uppercase"})
-
--- comment
-map.set("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
-end, { desc = "toggle comment on current line" })
-map.set(
-  "v",
-  "<leader>/",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "toggle comment on selected lines" }
-)
+map.set("i", "GG", "<esc>bgUiwea", { desc = "make word uppercase" })
