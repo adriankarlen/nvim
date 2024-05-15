@@ -19,7 +19,24 @@ return {
     }
   end,
   keys = {
-    { "<leader><leader>", "<cmd>ToggleTerm<cr>", mode = "n", desc = "toggle terminal" },
-    { "<leader><leader>", "<C-\\><C-n><C-w>l", mode = "t", desc = "hide terminal" },
+    {
+      "<leader><leader>",
+      function()
+        if vim.bo.filetype ~= "lazygit" then
+          vim.cmd "ToggleTerm"
+        end
+      end,
+      desc = "toggle terminal",
+    },
+    {
+      "<leader><leader>",
+      function()
+        if vim.bo.filetype ~= "lazygit" then
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n><C-w>l", true, true, true), "n", {})
+        end
+      end,
+      mode = "t",
+      desc = "hide terminal",
+    },
   },
 }
