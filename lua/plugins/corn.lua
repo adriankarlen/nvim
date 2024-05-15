@@ -20,8 +20,6 @@ return {
         vim.diagnostic.config { virtual_text = { prefix = ">" } }
       end,
     }
-    -- start disabled atm.
-    -- corn.toggle(false)
   end,
   keys = {
     {

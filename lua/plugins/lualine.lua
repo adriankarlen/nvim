@@ -73,13 +73,10 @@ return {
           },
           disabled_filetypes = {
             statusline = {
-              "aerial",
-              "dashboard",
               "help",
               "lazy",
               "mason",
               "notify",
-              "toggleterm",
               "alpha",
             },
           },
