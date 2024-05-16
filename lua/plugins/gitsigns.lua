@@ -3,11 +3,7 @@ return {
     event = "BufReadPre",
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup {
-        signs = {
-          delete = { text = "" },
-        },
-      }
+      require("gitsigns").setup()
     end,
     keys = {
       { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "preview hunk" },
