@@ -1,40 +1,42 @@
 return {
   "stevearc/conform.nvim",
-  -- Code formatter
+  cond = not vim.g.vscode,
+  lazy = true,
+  event = { "BufWritePre" },
   config = function()
     require("conform").setup {
+      quiet = true,
       lsp_fallback = true,
-
-      formatters = {
-        xmlformat = {
-          cmd = { "xmlformat" },
-          args = { "--selfclose", "-" },
-        },
-      },
-
       formatters_by_ft = {
         lua = { "stylua" },
-
-        typescript = { "prettierd" },
-        typescriptreact = { "prettierd" },
-        javascript = { "prettierd" },
-        javascriptreact = { "prettierd" },
+        javascript = { "prettierd", "eslint_d" },
+        typescript = { "prettierd", "eslint_d" },
+        javascriptreact = { "prettierd", "eslint_d" },
+        typescriptreact = { "prettierd", "eslint_d" },
+        svelte = { "prettierd" },
         css = { "prettierd" },
         scss = { "prettierd" },
         less = { "prettierd" },
         html = { "prettierd" },
         json = { "prettierd" },
         jsonc = { "prettierd" },
-        markdown = { "prettierd"},
         yaml = { "prettierd" },
-
+        markdown = { "prettierd" },
+        graphql = { "prettierd" },
         c_sharp = { "csharpier" },
         xml = { "xmlformat" },
         svg = { "xmlformat" },
+        rust = { "rustfmt" },
+      },
+      formatters = {
+        xmlformat = {
+          cmd = { "xmlformat" },
+          args = { "--selfclose", "-" },
+        },
+        injected = { options = { ignore_errors = false } },
       },
     }
   end,
-  event = "VeryLazy",
   keys = {
     { "<leader>fm", "<cmd>lua require('conform').format()<CR>", desc = "Format file", silent = true },
   },
