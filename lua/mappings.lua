@@ -3,12 +3,6 @@ local map = vim.keymap
 map.set("i", "<C-b>", "<esc>^i", { desc = "go to beginning of line" })
 map.set("i", "<C-e>", "<end>", { desc = "go to end of line" })
 
--- navigate within insert mode using ctrl
-map.set("i", "<C-h>", "<C-w>h", { desc = "move left in insert mode" })
-map.set("i", "<C-j>", "<C-w>j", { desc = "move down in insert mode" })
-map.set("i", "<C-l>", "<C-w>l", { desc = "move right in insert mode" })
-map.set("i", "<C-k>", "<C-w>k", { desc = "move up in insert mode" })
-
 map.set("n", "<esc>", "<cmd> noh <cr>", { silent = true, desc = "clear search highlight" })
 
 -- switch between windows
