@@ -1,32 +1,18 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    opts = {
-      ensure_installed = {
-        -- lua stuff
-        "lua-language-server",
-        "stylua",
+  "williamboman/mason.nvim",
+  cond = not vim.g.vscode,
+  opts = {},
+  dependencies = {
+    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  config = function()
+    local mason = require "mason"
+    local mason_lspconfig = require "mason-lspconfig"
+    local mason_tool_installer = require "mason-tool-installer"
 
-        -- web dev stuff
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "deno",
-        "prettierd",
-        "eslint-lsp",
-        "json-lsp",
-
-        -- xml stuff
-        "xmlformat",
-
-        -- c# stuff
-        "omnisharp",
-        "csharpier",
-
-        -- rust stuff
-        "rust-analyzer",
-      },
+    mason.setup {
+      max_concurrent_installers = 10,
       ui = {
         icons = {
           package_pending = " ",
@@ -45,17 +31,34 @@ return {
           cancel_installation = "<C-c>",
         },
       },
-      max_concurrent_installers = 10,
-    },
-    config = function(_, opts)
-      require("mason").setup(opts)
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    opts = {
-      auto_install = true,
-    },
-  },
+    }
+
+    mason_lspconfig.setup {
+      ensure_installed = {
+        "tsserver",
+        "denols",
+        "html",
+        "cssls",
+        "svelte",
+        "lua_ls",
+        "emmet_ls",
+        "jsonls",
+        "taplo",
+        "yamlls",
+        "omnisharp",
+        "powershell_es",
+      },
+    }
+
+    mason_tool_installer.setup {
+      ensure_installed = {
+        "prettierd", -- prettier formatter
+        "stylua", -- lua formatter
+        "eslint_d", -- js linter
+        "jsonlint", -- json formatter
+        "csharpier", -- c# formatter
+        "xmlformatter", -- xml formatter
+      },
+    }
+  end,
 }
