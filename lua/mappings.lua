@@ -44,8 +44,9 @@ map.set(
 )
 
 -- buffer management
-map.set("n", "<leader>bn", "<cmd> enew <cr>", { desc = "create new buffer" })
+map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "create new buffer" })
 map.set("n", "<leader>x", "<cmd> bd <cr>", { desc = "delete current buffer" })
+map.set("n", "<leader>X", "<cmd> %bd|e# <cr>", { desc = "delete all buffers except current one" })
 -- switch between buffers
 map.set("n", "<Tab>", "<cmd> bn <cr>", { desc = "switch to next buffer" })
 map.set("n", "<S-Tab>", "<cmd> bp <cr>", { desc = "switch to previous buffer" })
