@@ -25,7 +25,15 @@ return {
         require("actions-preview").code_actions()
       end,
       mode = { "v", "n" },
-      desc = "code actions",
+      desc = "code actions for line",
+    },
+    {
+      "<leader>cA",
+      function()
+        require("actions-preview").code_actions { context = { only = { "source" } } }
+      end,
+      mode = { "v", "n" },
+      desc = "code actions for buffer",
     },
   },
 }
