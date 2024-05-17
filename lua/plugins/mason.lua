@@ -36,7 +36,7 @@ return {
     mason_lspconfig.setup {
       ensure_installed = {
         "tsserver",
-        "denols",
+        "eslint",
         "html",
         "cssls",
         "svelte",
@@ -54,7 +54,6 @@ return {
       ensure_installed = {
         "prettierd", -- prettier formatter
         "stylua", -- lua formatter
-        "eslint_d", -- js linter
         "jsonlint", -- json formatter
         "csharpier", -- c# formatter
         "xmlformatter", -- xml formatter
