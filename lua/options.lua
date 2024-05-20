@@ -81,7 +81,7 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or "
 
 -- shell configuration
 if is_windows then
-  o.noshellslash = true
+  o.shellslash = true
   opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
   opt.shellcmdflag =
     "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
