@@ -1,12 +1,15 @@
-local git_diff_color_map = {
-  added = "#9ccfd8",
-  changed = "#ebbcba",
-  removed = "#eb6f92",
-}
 return {
   "b0o/incline.nvim",
   config = function()
-    require("incline").setup {
+    local incline = require "incline"
+    local palette = require "rose-pine.palette"
+    local git_diff_color_map = {
+      added = palette.foam,
+      changed = palette.rose,
+      removed = palette.love,
+    }
+
+    incline.setup {
       render = function(props)
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         if filename == "" then
@@ -51,7 +54,7 @@ return {
         local function get_file_name()
           local label = {}
           table.insert(label, { (ft_icon or "") .. " ", guifg = ft_color, guibg = "none" })
-          table.insert(label, { vim.bo[props.buf].modified and " " or "", guifg = "#f6c177" })
+          table.insert(label, { vim.bo[props.buf].modified and " " or "", guifg = palette.gold })
           table.insert(label, { filename, gui = "bold" })
           if not props.focused then
             label["group"] = "BufferInactive"
