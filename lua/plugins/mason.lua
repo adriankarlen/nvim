@@ -40,6 +40,8 @@ return {
         "html",
         "cssls",
         "svelte",
+        "denols",
+        "tailwindcss",
         "lua_ls",
         "emmet_ls",
         "jsonls",

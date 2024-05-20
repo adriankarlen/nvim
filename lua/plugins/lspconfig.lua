@@ -1,4 +1,4 @@
-local servers = { "tsserver", "html", "cssls", "svelte", "lua_ls", "emmet_ls", "jsonls", "taplo", "yamlls" }
+local servers = { "html", "cssls", "svelte", "lua_ls", "emmet_ls", "jsonls", "taplo", "yamlls" }
 return {
   "neovim/nvim-lspconfig",
   lazy = false,
@@ -12,6 +12,18 @@ return {
         capabilities = capabilities,
       }
     end
+
+    lspconfig.tsserver.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = lspconfig.util.root_pattern "package.json",
+    }
+
+    lspconfig.denols.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = lspconfig.util.root_pattern "deno.json",
+    }
 
     lspconfig.omnisharp.setup {
       on_attach = on_attach,
