@@ -1,16 +1,8 @@
 return {
   {
-    "letieu/harpoon-lualine",
-    dependencies = {
-      {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-      },
-    },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     config = function()
       local lualine = require "lualine"
       local palette = require "rose-pine.palette"
@@ -128,6 +120,21 @@ return {
       }
 
       ins_left {
+        function()
+          local statusline = require "arrow.statusline"
+          return statusline.text_for_statusline_with_icons()
+        end,
+        _separator = " ",
+      }
+      -- Insert mid section. You can make any number of sections in neovim :)
+      -- for lualine it's any number greater then 2
+      ins_left {
+        function()
+          return "%="
+        end,
+      }
+
+      ins_left {
         -- Conform current formatter
         function()
           local msg = "No Active Formatter"
@@ -171,21 +178,6 @@ return {
         separator,
       }
 
-      -- Insert mid section. You can make any number of sections in neovim :)
-      -- for lualine it's any number greater then 2
-      ins_left {
-        function()
-          return "%="
-        end,
-      }
-
-      ins_left {
-        "harpoon2",
-        icon = "󰀱",
-        _separator = " ",
-        no_harpoon = "Harpoon not loaded",
-      }
-
       -- Add components to right sections
       ins_right {
         "o:encoding", -- option component same as &encoding in viml
@@ -202,7 +194,7 @@ return {
       ins_right {
         "branch",
         icon = "",
-     }
+      }
 
       ins_right {
         function()
