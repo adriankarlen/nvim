@@ -42,17 +42,16 @@ return {
 
     local function fetchGitStatus(cwd, callback)
       local stdout = (vim.uv or vim.loop).new_pipe(false)
-      local handle, pid
-      handle, pid = (vim.uv or vim.loop).spawn(
+      _, _ = (vim.uv or vim.loop).spawn(
         "git",
         {
           args = { "status", "--ignored", "--porcelain" },
           cwd = cwd,
           stdio = { nil, stdout, nil },
         },
-        vim.schedule_wrap(function(code, signal)
+        vim.schedule_wrap(function(code, _)
           if code == 0 then
-            stdout:read_start(function(err, content)
+            stdout:read_start(function(_, content)
               if content then
                 callback(content)
                 vim.g.content = content
@@ -174,6 +173,25 @@ return {
       return vim.api.nvim_create_augroup("MiniFiles_" .. name, { clear = true })
     end
 
+    local show_dotfiles = false
+    local filter_show = function(_)
+      return true
+    end
+
+    local filter_hide = function(fs_entry)
+      return not vim.startswith(fs_entry.name, ".")
+    end
+
+    local apply_filter = function(filter)
+      MiniFiles.refresh { content = { filter = filter } }
+    end
+
+    local toggle_dotfiles = function()
+      show_dotfiles = not show_dotfiles
+      local filter = show_dotfiles and filter_show or filter_hide
+      apply_filter(filter)
+    end
+
     autocmd("User", {
       group = augroup "start",
       pattern = "MiniFilesExplorerOpen",
@@ -181,6 +199,8 @@ return {
       callback = function()
         local bufnr = vim.api.nvim_get_current_buf()
         updateGitStatus(bufnr)
+        local filter = show_dotfiles and filter_show or filter_hide
+        apply_filter(filter)
       end,
     })
 
@@ -201,6 +221,15 @@ return {
         if gitStatusCache[cwd] then
           updateMiniWithGit(bufnr, gitStatusCache[cwd].statusMap)
         end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesBufferCreate",
+      callback = function(args)
+        local buf_id = args.data.buf_id
+        -- Tweak left-hand side of mapping to your liking
+        vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
       end,
     })
   end,
