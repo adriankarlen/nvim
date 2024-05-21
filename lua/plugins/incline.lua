@@ -4,9 +4,9 @@ return {
     local incline = require "incline"
     local palette = require "rose-pine.palette"
     local git_diff_color_map = {
-      added = palette.foam,
-      changed = palette.rose,
       removed = palette.love,
+      changed = palette.rose,
+      added = palette.foam,
     }
 
     incline.setup {
