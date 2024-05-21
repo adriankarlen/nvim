@@ -1,5 +1,6 @@
 return {
   {
+
     "rose-pine/neovim",
     lazy = false,
     name = "rose-pine",
@@ -15,6 +16,9 @@ return {
           TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
           FloatBorder = { fg = "highlight_high", bg = "none" },
           NormalFloat = { fg = "text", bg = "none" },
+          MiniTablineModifiedCurrent = { fg = "gold", bg = "gold", blend = 15 },
+          MiniTablineModifiedVisible = { fg = "gold", bg = "gold", blend = 15 },
+          MiniTablineModifiedHidden = { fg = "subtle", bg = "gold", blend = 15 },
         },
       }
       vim.cmd "colorscheme rose-pine"
