@@ -72,6 +72,11 @@ return {
             n = { ["q"] = require("telescope.actions").close },
           },
         },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+          },
+        },
       }
       require("telescope").load_extension "ui-select"
       require("telescope").load_extension "undo"
