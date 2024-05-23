@@ -4,12 +4,16 @@ return {
     dependencies = {
       { "windwp/nvim-ts-autotag" },
     },
-    opts = {
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-      autopairs = { enable = true },
-      autotag = { enable = true },
-    },
+    build = ":TSUpdate",
+    config = function()
+      local config = require "nvim-treesitter.configs"
+      config.setup {
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+        autopairs = { enable = true },
+        autotag = { enable = true },
+      }
+    end,
   },
 }
