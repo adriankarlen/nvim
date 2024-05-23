@@ -33,8 +33,6 @@ return {
     config = function(_, opts)
       local chat = require "CopilotChat"
       local select = require "CopilotChat.select"
-      -- Use unnamed register for the selection
-      opts.selection = select.unnamed
 
       -- Override the git prompts message
       opts.prompts.Commit = {
