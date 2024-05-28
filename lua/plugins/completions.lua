@@ -36,7 +36,15 @@ return {
       local cmp = require "cmp"
       require("luasnip.loaders.from_vscode").lazy_load()
 
+      local disabled_filetypes = {
+        "minifiles",
+        "TelescopePrompt",
+      }
+
       cmp.setup {
+        enabled = function()
+          return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
+        end,
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
