@@ -1,4 +1,4 @@
-local servers = { "html", "cssls", "svelte", "lua_ls", "emmet_ls", "jsonls", "taplo", "yamlls" }
+local servers = { "eslint", "html", "cssls", "svelte", "lua_ls", "emmet_ls", "jsonls", "taplo", "yamlls" }
 return {
   "neovim/nvim-lspconfig",
   lazy = false,

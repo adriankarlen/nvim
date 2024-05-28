@@ -54,7 +54,7 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
-        "prettierd", -- prettier formatter
+        "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "jsonlint", -- json formatter
         "csharpier", -- c# formatter
