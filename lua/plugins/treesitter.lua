@@ -14,6 +14,9 @@ return {
         autopairs = { enable = true },
         autotag = { enable = true },
       }
+
+      local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+      ft_to_parser.mdx = "markdown"
     end,
   },
 }

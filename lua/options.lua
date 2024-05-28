@@ -91,6 +91,13 @@ if is_windows then
   opt.shellxquote = ""
 end
 
+-- add filetype handlings
+vim.filetype.add({
+  extension = {
+    mdx = "mdx",
+  },
+})
+
 -------------------------------------- autocmds ------------------------------------------
 local autocmd = vim.api.nvim_create_autocmd
 
