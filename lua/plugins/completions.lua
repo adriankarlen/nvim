@@ -22,6 +22,16 @@ return {
     },
   },
   {
+    "Jezda1337/nvim-html-css",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("html-css"):setup()
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
@@ -70,6 +80,14 @@ return {
           { name = "buffer", group_index = 2 },
           { name = "nvim_lua", group_index = 2 },
           { name = "path", group_index = 2 },
+          {
+            name = "html-css",
+            group_index = 2,
+            option = {
+              enable_on = { "html", "jsx", "tsx", "mdx" },
+              file_extensions = { "css", "less", "scss" },
+            },
+          },
         },
       }
     end,
