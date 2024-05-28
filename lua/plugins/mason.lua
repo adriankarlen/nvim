@@ -49,6 +49,7 @@ return {
         "yamlls",
         "omnisharp",
         "powershell_es",
+        "marksman",
       },
     }
 
