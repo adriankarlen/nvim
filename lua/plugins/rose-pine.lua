@@ -16,7 +16,7 @@ return {
           TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
           FloatBorder = { fg = "highlight_high", bg = "none" },
           NormalFloat = { fg = "text", bg = "none" },
-          MiniTablineModifiedCurrent = { fg = "gold", bg = "gold", blend = 15 },
+          MiniTablineModifiedCurrent = { fg = "gold", bg = "gold", blend = 15, bold = true },
           MiniTablineModifiedVisible = { fg = "gold", bg = "gold", blend = 15 },
           MiniTablineModifiedHidden = { fg = "subtle", bg = "gold", blend = 15 },
         },
