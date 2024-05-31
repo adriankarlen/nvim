@@ -4,6 +4,7 @@ return {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup()
     end,
     keys = {
       { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "preview hunk" },
