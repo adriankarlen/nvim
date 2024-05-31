@@ -239,7 +239,7 @@ return {
       function()
         local _ = require("mini.files").close() or require("mini.files").open()
       end,
-      { desc = "File explorer", noremap = true, silent = true },
+      { desc = "file explorer", noremap = true, silent = true },
     },
     {
       "-",

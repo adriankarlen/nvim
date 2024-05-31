@@ -1,5 +1,8 @@
 return {
   "folke/noice.nvim",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
   event = "VeryLazy",
   opts = {
     cmdline = {
@@ -13,7 +16,7 @@ return {
       },
     },
   },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
+  keys = {
+    { "<leader>fn", "<cmd>NoiceTelescope<cr>", desc = "telescope - noice" },
   },
 }

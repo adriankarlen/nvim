@@ -38,6 +38,6 @@ return {
     }
   end,
   keys = {
-    { "<leader>fm", "<cmd>lua require('conform').format()<CR>", desc = "Format file", silent = true },
+    { "<leader>fm", "<cmd>lua require('conform').format()<CR>", desc = "format file", silent = true },
   },
 }

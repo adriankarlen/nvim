@@ -89,45 +89,45 @@ return {
         function()
           require("telescope.builtin").find_files()
         end,
-        desc = "telescope find files",
+        desc = "telescope - find files",
       },
       {
         "<leader>fa",
         function()
           require("telescope.builtin").find_files { hidden = true, follow = true, no_ignore = true }
         end,
-        desc = "telescope find all files",
+        desc = "telescope - find all files",
       },
       {
         "<leader>fw",
         function()
           require("telescope.builtin").live_grep()
         end,
-        desc = "telescope live grep",
+        desc = "telescope - live grep",
       },
       {
         "<leader>fo",
         function()
           require("telescope.builtin").oldfiles()
         end,
-        desc = "telescope old files",
+        desc = "telescope - old files",
       },
       {
         "<leader>fb",
         function()
           require("telescope.builtin").buffers()
         end,
-        desc = "telescope buffers",
+        desc = "telescope - buffers",
       },
       {
         "<leader>bu",
         "<cmd>Telescope undo<cr>",
-        desc = "telescope undo",
+        desc = "telescope - undo",
       },
       {
         "<leader>fj",
-        "<cmd>Telescope jsonfly<cr>",
-        desc = "Open json(fly)",
+        "<cmd>telescope - jsonfly<cr>",
+        desc = "telescope - json(fly)",
         ft = { "json" },
       },
     },

@@ -6,6 +6,6 @@ return {
   -- HACK: Add setup function
   event = "BufRead",
   keys = {
-    { "<leader>fc", "<cmd>TodoTelescope<cr>", "telescope todo comments" },
+    { "<leader>fc", "<cmd>TodoTelescope<cr>", "telescope - todo comments" },
   },
 }

@@ -109,7 +109,7 @@ return {
           require("CopilotChat.integrations.telescope").pick(actions.help_actions())
         end,
         mode = { "n", "v" },
-        desc = "CopilotChat - Show help actions",
+        desc = "copilot chat - show help actions",
       },
       -- Show prompts actions with telescope
       {
@@ -119,20 +119,20 @@ return {
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
         mode = { "n", "v" },
-        desc = "CopilotChat - Show prompts actions",
+        desc = "copilot chat - show prompts actions",
       },
       -- Code related commands
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-      { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
-      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
-      { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "copilot chat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "copilot chat - generate tests" },
+      { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "copilot chat - review code" },
+      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "copilot chat - refactor code" },
+      { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "copilot chat - better Naming" },
       -- Open chat in inline mode
       {
         "<leader>ccc",
         ":CopilotChatInline<cr>",
         mode = { "n", "v" },
-        desc = "CopilotChat - Inline chat",
+        desc = "copilot chat - inline chat",
       },
       -- Custom input for CopilotChat
       {
@@ -143,18 +143,18 @@ return {
             vim.cmd("CopilotChat " .. input)
           end
         end,
-        desc = "CopilotChat - Ask input",
+        desc = "copilot chat - ask input",
       },
       -- Generate commit message based on the git diff
       {
         "<leader>ccm",
         "<cmd>CopilotChatCommit<cr>",
-        desc = "CopilotChat - Generate commit message for all changes",
+        desc = "copilot chat - generate commit message for all changes",
       },
       {
         "<leader>ccM",
         "<cmd>CopilotChatCommitStaged<cr>",
-        desc = "CopilotChat - Generate commit message for staged changes",
+        desc = "copilot chat - generate commit message for staged changes",
       },
       -- Quick chat with Copilot
       {
@@ -165,7 +165,7 @@ return {
             vim.cmd("CopilotChatBuffer " .. input)
           end
         end,
-        desc = "CopilotChat - Quick chat",
+        desc = "copilot chat - quick chat",
       },
     },
   },
