@@ -180,6 +180,12 @@ return {
 
       -- Add components to right sections
       ins_right {
+        require("noice").api.statusline.mode.get,
+        cond = require("noice").api.statusline.mode.has,
+        color = { fg = palette.gold },
+      }
+
+      ins_right {
         "o:encoding", -- option component same as &encoding in viml
         fmt = string.upper, -- I'm not sure why it's upper case either ;)
         cond = conditions.hide_in_width,
