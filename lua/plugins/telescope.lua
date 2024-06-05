@@ -130,6 +130,11 @@ return {
         desc = "telescope - json(fly)",
         ft = { "json" },
       },
+      {
+        "<leader>fn",
+        "<cmd>Telescope noice<cr>",
+        desc = "telescope - noice",
+      },
     },
   },
 }
