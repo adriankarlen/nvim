@@ -7,6 +7,7 @@ return {
     require("toggleterm").setup {
       highlights = highlights,
       direction = "float",
+      shade_terminals = false,
       float_opts = {
         width = function()
           return math.ceil(vim.o.columns * 0.5)
@@ -14,7 +15,7 @@ return {
         height = function()
           return math.ceil(vim.o.lines * 0.5)
         end,
-        winblend = 3,
+        winblend = 0,
       },
     }
   end,
