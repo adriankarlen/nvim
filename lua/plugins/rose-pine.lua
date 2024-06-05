@@ -1,24 +1,27 @@
 return {
   {
-
     "rose-pine/neovim",
     lazy = false,
     name = "rose-pine",
     config = function()
       require("rose-pine").setup {
+        styles = {
+          transparency = true,
+        },
         highlight_groups = {
           MatchParen = { fg = "love", bg = "love", blend = 25 },
-          TelescopeBorder = { fg = "highlight_high", bg = "none" },
+          TelescopeBorder = { fg = "highlight_med", bg = "none" },
           TelescopeNormal = { bg = "none" },
-          TelescopePromptNormal = { bg = "base" },
+          TelescopePromptNormal = { bg = "none" },
           TelescopeResultsNormal = { fg = "subtle", bg = "none" },
-          TelescopeSelection = { fg = "text", bg = "base" },
+          TelescopeSelection = { fg = "text", bg = "none" },
           TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
-          FloatBorder = { fg = "highlight_high", bg = "none" },
+          FloatBorder = { fg = "highlight_med", bg = "none" },
           NormalFloat = { fg = "text", bg = "none" },
           MiniTablineModifiedCurrent = { fg = "gold", bg = "gold", blend = 15, bold = true },
           MiniTablineModifiedVisible = { fg = "gold", bg = "gold", blend = 15 },
           MiniTablineModifiedHidden = { fg = "subtle", bg = "gold", blend = 15 },
+          Normal = { fg = "text", bg = "none" },
         },
       }
       vim.cmd "colorscheme rose-pine"
