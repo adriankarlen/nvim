@@ -46,7 +46,7 @@ map.set(
 -- buffer management
 map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "create new buffer" })
 map.set("n", "<leader>x", "<cmd> bd <cr>", { desc = "delete current buffer" })
-map.set("n", "<leader>X", "<cmd> %bd|e# <cr>", { desc = "delete all buffers except current one" })
+map.set("n", "<leader>X", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 -- switch between buffers
 map.set("n", "<Tab>", "<cmd> bn <cr>", { desc = "switch to next buffer" })
 map.set("n", "<S-Tab>", "<cmd> bp <cr>", { desc = "switch to previous buffer" })
@@ -72,8 +72,9 @@ map.set("n", "ä", "]", { desc = "replace ¨ with right bracket" })
 map.set({ "n", "v" }, "*", '"', { desc = "replace * with double quote" })
 map.set({ "n", "v" }, "Ö", "{", { desc = "replace Ö with left curly brace" })
 map.set({ "n", "v" }, "Ä", "}", { desc = "replace Ä with right curly brace" })
-map.set({ "c", "n", "v" }, "&", "^", { desc = "replace & with caret" })
-map.set({ "c", "n", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
+map.set({ "n", "s", "v" }, "&", "^", { desc = "replace & with caret" })
+map.set({ "n", "s", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
+
 
 -- capitalize word in insert mode
 map.set("i", "GG", "<esc>bgUiwea", { desc = "make word uppercase" })
