@@ -186,15 +186,15 @@ return {
       }
 
       ins_right {
-        "o:encoding", -- option component same as &encoding in viml
-        fmt = string.upper, -- I'm not sure why it's upper case either ;)
+        "o:encoding",
+        fmt = string.upper,
         cond = conditions.hide_in_width,
       }
 
       ins_right {
         "fileformat",
         fmt = string.upper,
-        icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+        icons_enabled = false,
       }
 
       ins_right {
@@ -209,7 +209,6 @@ return {
         padding = { left = 0 },
       }
 
-      -- Now don't forget to initialize lualine
       lualine.setup(config)
     end,
   },
