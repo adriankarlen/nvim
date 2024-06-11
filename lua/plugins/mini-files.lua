@@ -237,13 +237,6 @@ return {
     {
       "<leader>e",
       function()
-        local _ = require("mini.files").close() or require("mini.files").open()
-      end,
-      { desc = "file explorer", noremap = true, silent = true },
-    },
-    {
-      "-",
-      function()
         local current_file = vim.fn.expand "%"
         local _ = require("mini.files").close() or require("mini.files").open(current_file, false)
         vim.schedule(function()
