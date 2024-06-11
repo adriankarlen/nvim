@@ -8,6 +8,7 @@ return {
     },
     config = function()
       local dap = require "dap"
+      dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
       dap.adapters.coreclr = {
         type = "executable",
         command = "netcoredbg",
@@ -33,13 +34,65 @@ return {
     end,
     event = "VeryLazy",
     keys = {
-      { "<F5>", [[<cmd>lua require("dap").continue()<CR>]], noremap = true, silent = true, desc = "dap - continue" },
-      { "<F10>", [[<cmd>lua require("dap").step_over()<CR>]], noremap = true, silent = true, desc = "dap - step over" },
-      { "<F11>", [[<cmd>lua require("dap").step_into()<CR>]], noremap = true, silent = true, desc = "dap - step into" },
-      { "<F12>", [[<cmd>lua require("dap").step_out()<CR>]], noremap = true, silent = true, desc = "dap - step out" },
       {
-        "<leader>b",
-        [[<cmd>lua require("dap").toggle_breakpoint()<CR>]],
+        "<leader>dc",
+        function()
+          require("dap").continue()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - continue",
+      },
+      {
+        "<leader>do",
+        function()
+          require("dap").step_over()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - step over",
+      },
+      {
+        "<leader>di",
+        function()
+          require("dap").step_into()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - step into",
+      },
+      {
+        "<leader>du",
+        function()
+          require("dap").step_out()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - step out",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("dap").restart()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - restart",
+      },
+      {
+        "<leader>dt",
+        function()
+          require("dap").terminate()
+        end,
+        noremap = true,
+        silent = true,
+        desc = "dap - terminate",
+      },
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
         noremap = true,
         silent = true,
         desc = "dap - toggle breakpoint",
@@ -57,42 +110,15 @@ return {
 
       dapui.setup {
         icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
-        mappings = {
-          -- Use a table to apply multiple mappings
-          expand = { "<CR>", "<2-LeftMouse>" },
-          open = "o",
-          remove = "d",
-          edit = "e",
-          repl = "r",
-          toggle = "t",
-        },
-        -- Use this to override mappings for specific elements
-        element_mappings = {
-          -- Example:
-          -- stacks = {
-          --   open = "<CR>",
-          --   expand = "o",
-          -- }
-        },
-        -- Expand lines larger than the window
-        expand_lines = vim.fn.has "nvim-0.7" == 1,
-        -- Layouts define sections of the screen to place windows.
-        -- The position can be "left", "right", "top" or "bottom".
-        -- The size specifies the height/width depending on position. It can be an Int
-        -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
-        -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
-        -- Elements are the elements shown in the layout (in order).
-        -- Layouts are opened in order so that earlier layouts take priority in window sizing.
         layouts = {
           {
             elements = {
-              -- Elements can be strings or table with id and size keys.
               { id = "scopes", size = 0.25 },
               "breakpoints",
               "stacks",
               "watches",
             },
-            size = 40, -- 40 columns
+            size = 40,
             position = "left",
           },
           {
@@ -100,18 +126,16 @@ return {
               "repl",
               "console",
             },
-            size = 0.25, -- 25% of total lines
+            size = 0.25,
             position = "bottom",
           },
         },
         controls = {
-          -- Requires Neovim nightly (or 0.8 when released)
           enabled = true,
-          -- Display controls in this element
           element = "repl",
           icons = {
-            pause = "",
-            play = "",
+            pause = "",
+            play = "",
             step_into = "",
             step_over = "",
             step_out = "",
@@ -121,17 +145,17 @@ return {
           },
         },
         floating = {
-          max_height = nil, -- These can be integers or a float between 0 and 1.
-          max_width = nil, -- Floats will be treated as percentage of your screen.
-          border = "single", -- Border style. Can be "single", "double" or "rounded"
+          max_height = nil,
+          max_width = nil,
+          border = "single",
           mappings = {
             close = { "q", "<Esc>" },
           },
         },
         windows = { indent = 1 },
         render = {
-          max_type_length = nil, -- Can be integer or nil.
-          max_value_lines = 100, -- Can be integer or nil.
+          max_type_length = nil,
+          max_value_lines = 100,
         },
       }
 

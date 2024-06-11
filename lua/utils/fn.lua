@@ -1,6 +1,10 @@
 local M = {}
 local fn = vim.fn
 
+M.get_curr_dir = function()
+  return fn.getcwd():match "([^/]+)/?$"
+end
+
 M.get_cs_debug_dll = function()
   -- Get the project path from the user
   local project_path = fn.input("Project: ", fn.getcwd(), "file")

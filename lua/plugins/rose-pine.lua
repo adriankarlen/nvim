@@ -3,6 +3,7 @@ return {
     "rose-pine/neovim",
     lazy = false,
     name = "rose-pine",
+
     config = function()
       require("rose-pine").setup {
         styles = {
@@ -21,7 +22,18 @@ return {
           MiniTablineModifiedCurrent = { fg = "gold", bg = "gold", blend = 15, bold = true },
           MiniTablineModifiedVisible = { fg = "gold", bg = "gold", blend = 15 },
           MiniTablineModifiedHidden = { fg = "subtle", bg = "gold", blend = 15 },
-          Normal = { fg = "text", bg = "none" },
+          DapUIPlayPause = { fg = "pine" },
+          DapUIStop = { fg = "love" },
+          DapUIStepInto = { fg = "foam" },
+          DapUIStepOver = { link = "DapUiStepInto" },
+          DapUIStepOut = { link = "DapUiStepInto" },
+          DapUIStepBack = { link = "DapUiStepInto" },
+          DapUIRestart = { link = "DapUIPlayPause" },
+          DapUIStepIntoNC = { fg = "muted", bg = "none" },
+          DapUIStepOverNC = { link = "DapUiStepIntoNC" },
+          DapUIStepOutNC = { link = "DapUiStepIntoNC" },
+          DapUIStepBackNC = { link = "DapUiStepIntoNC" },
+          DapUIStopNC = { link = "DapUiStepIntoNC" },
         },
       }
       vim.cmd "colorscheme rose-pine"

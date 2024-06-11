@@ -70,6 +70,12 @@ return {
               "mason",
               "notify",
               "alpha",
+              "dapui_scopes",
+              "dapui_breakpoints",
+              "dapui_stacks",
+              "dapui_watches",
+              "dapui_console",
+              "dap-repl",
             },
           },
         },
@@ -183,6 +189,11 @@ return {
         require("noice").api.statusline.mode.get,
         cond = require("noice").api.statusline.mode.has,
         color = { fg = palette.gold },
+      }
+
+      ins_right {
+        "filetype",
+        icons_enabled = false,
       }
 
       ins_right {
