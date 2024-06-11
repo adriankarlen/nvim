@@ -6,6 +6,7 @@ return {
       virtual_symbol = "",
       enable_tailwind = true,
       enable_named_colors = false,
+      exclude_filetypes = { "lazy"}
     }
   end,
 }
