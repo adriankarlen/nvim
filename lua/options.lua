@@ -91,11 +91,11 @@ if is_windows then
 end
 
 -- add filetype handlings
-vim.filetype.add({
+vim.filetype.add {
   extension = {
     mdx = "mdx",
   },
-})
+}
 
 -------------------------------------- autocmds ------------------------------------------
 local autocmd = vim.api.nvim_create_autocmd
