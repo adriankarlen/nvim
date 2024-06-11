@@ -22,6 +22,7 @@ return {
     local alpha_th = require "alpha.themes.theta"
     local alpha_db = require "alpha.themes.dashboard"
     alpha_th.header.val = logo
+    alpha_th.header.opts.hl = "AlphaHeader"
     alpha_th.buttons.val = {
       {
         type = "text",
