@@ -10,6 +10,7 @@ return {
         -- Character that will replace the [x] in checked checkboxes
         checked = " ",
       },
+      file_types = { "markdown" },
     }
   end,
 }
