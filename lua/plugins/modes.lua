@@ -1,5 +1,5 @@
 return {
-  "adriankarlen/modes.nvim",
+  "mvllow/modes.nvim",
   event = "BufReadPre",
   config = function()
     local palette = require "rose-pine.palette"
