@@ -41,6 +41,10 @@ opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
 
+-- show tab and trailing characters
+opt.list = true
+opt.listchars = { tab = "┊ ", trail = "·" }
+
 -- diagnostic configurations
 vim.diagnostic.config {
   signs = {
