@@ -5,12 +5,13 @@ return {
     require("render-markdown").setup {
       headings = { "○ ", "○ ", "○ ", "○ ", "○ ", "○ " },
       checkbox = {
-        -- Character that will replace the [ ] in unchecked checkboxes
         unchecked = "󰄱 ",
-        -- Character that will replace the [x] in checked checkboxes
         checked = " ",
       },
       file_types = { "markdown" },
+      win_options = {
+        concealcursor = "vic"
+      },
     }
   end,
 }
