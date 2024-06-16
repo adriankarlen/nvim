@@ -1,6 +1,5 @@
 local servers = {
   "cssls",
-  "emmet_ls",
   "eslint",
   "html",
   "jsonls",
@@ -25,7 +24,7 @@ return {
       }
     end
 
-    lspconfig.tsserver.setup {
+    lspconfig.vtsls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
       root_dir = lspconfig.util.root_pattern "package.json",

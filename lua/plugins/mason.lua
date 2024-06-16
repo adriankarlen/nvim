@@ -35,7 +35,7 @@ return {
 
     mason_lspconfig.setup {
       ensure_installed = {
-        "tsserver",
+        "vtsls",
         "eslint",
         "html",
         "cssls",
@@ -43,7 +43,6 @@ return {
         "denols",
         "tailwindcss",
         "lua_ls",
-        "emmet_ls",
         "jsonls",
         "taplo",
         "yamlls",
@@ -57,7 +56,6 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "jsonlint", -- json formatter
         "csharpier", -- c# formatter
         "xmlformatter", -- xml formatter
       },
