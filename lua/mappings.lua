@@ -71,7 +71,7 @@ map.set('n', '=', 'mxggVG=`x', { silent = true, desc = "indent file contents" })
 map.set("x", "p", 'p:let @+=@0<cr>:let @"=@0<cr>', { desc = "paste without copying" })
 
 -- simpler movement on nordic keyboards
-map.set("n", "§", "`", { desc = "replace § with backtick" })
+map.set("n", "§", "@", { desc = "replace § with @" })
 map.set("n", ";", ":", { desc = "replace semicolon with colon" })
 map.set("n", "å", "\\", { desc = "replace ä with backslash" })
 map.set("n", "ö", "[", { desc = "replace å with left bracket" })
