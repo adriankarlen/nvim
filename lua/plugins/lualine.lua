@@ -172,8 +172,8 @@ return {
         -- Lsp server name .
         function()
           local msg = "No Active Lsp"
-          local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-          local clients = vim.lsp.get_active_clients()
+          local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+          local clients = vim.lsp.get_clients { bufnr = 0 }
           if next(clients) == nil then
             return msg
           end
@@ -191,8 +191,8 @@ return {
 
       -- Add components to right sections
       ins_right {
-        require("noice").api.statusline.mode.get,
-        cond = require("noice").api.statusline.mode.has,
+        require("noice").api.status.command.get,
+        cond = require("noice").api.status.command.has,
         color = { fg = palette.gold },
       }
 
