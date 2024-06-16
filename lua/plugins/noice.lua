@@ -7,6 +7,9 @@ return {
     event = "VeryLazy",
     opts = {
       lsp = {
+        progress = {
+          enabled = false,
+        },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -14,6 +17,10 @@ return {
           ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
       },
+      popupmenu = {
+        enabled = true,
+      },
+      notify = { enabled = false },
       presets = {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
