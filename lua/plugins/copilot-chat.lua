@@ -1,22 +1,3 @@
-local prompts = {
-  -- Code related prompts
-  Explain = "Please explain how the following code works.",
-  Review = "Please review the following code and provide suggestions for improvement.",
-  Tests = "Please explain how the selected code works, then generate unit tests for it.",
-  Refactor = "Please refactor the following code to improve its clarity and readability.",
-  FixCode = "Please fix the following code to make it work as intended.",
-  FixError = "Please explain the error in the following text and provide a solution.",
-  BetterNamings = "Please provide better names for the following variables and functions.",
-  Documentation = "Please provide documentation for the following code.",
-  SwaggerApiDocs = "Please provide documentation for the following API using Swagger.",
-  SwaggerJsDocs = "Please write JSDoc for the following API using Swagger.",
-  -- Text related prompts
-  Summarize = "Please summarize the following text.",
-  Spelling = "Please correct any grammar and spelling errors in the following text.",
-  Wording = "Please improve the grammar and wording of the following text.",
-  Concise = "Please rewrite the following text to make it more concise.",
-}
-
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -28,90 +9,32 @@ return {
     },
     opts = {
       debug = true, -- Enable debugging
-      prompts = prompts,
+      window = {
+        layout = "float",
+        width = 0.8,
+        height = 0.5,
+        row = 5,
+      },
+      selection = function(source)
+        local select = require("CopilotChat.select")
+        return select.visual(source) or select.buffer(source)
+      end,
     },
     config = function(_, opts)
       local chat = require "CopilotChat"
-      local select = require "CopilotChat.select"
-
-      -- Override the git prompts message
-      opts.prompts.Commit = {
-        prompt = "Write commit message for the change with commitizen convention",
-        selection = select.gitdiff,
-      }
-      opts.prompts.CommitStaged = {
-        prompt = "Write commit message for the change with commitizen convention",
-        selection = function(source)
-          return select.gitdiff(source, true)
-        end,
-      }
-
       chat.setup(opts)
-
-      vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
-        chat.ask(args.args, { selection = select.visual })
-      end, { nargs = "*", range = true })
-
-      -- Inline chat with Copilot
-      vim.api.nvim_create_user_command("CopilotChatInline", function(args)
-        chat.ask(args.args, {
-          selection = select.visual,
-          window = {
-            layout = "float",
-            relative = "cursor",
-            width = 1,
-            height = 0.4,
-            row = 1,
-          },
-        })
-      end, { nargs = "*", range = true })
-
-      -- Restore CopilotChatBuffer
-      vim.api.nvim_create_user_command("CopilotChatBuffer", function(args)
-        chat.ask(args.args, { selection = select.buffer })
-      end, { nargs = "*", range = true })
-
-      -- Custom buffer for CopilotChat
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-*",
-        callback = function()
-          vim.opt_local.relativenumber = true
-          vim.opt_local.number = true
-
-          -- Get current filetype and set it to markdown if the current filetype is copilot-chat
-          local ft = vim.bo.filetype
-          if ft == "copilot-chat" then
-            vim.bo.filetype = "markdown"
-          end
-        end,
-      })
-
-      -- Add which-key mappings
-      local wk = require "which-key"
-      wk.register {
-        g = {
-          m = {
-            name = "+Copilot Chat",
-            d = "Show diff",
-            p = "System prompt",
-            s = "Show selection",
-            y = "Yank diff",
-          },
-        },
-      }
     end,
     keys = {
-      -- Show help actions with telescope
+      -- open chat window without asking question
       {
-        "<leader>cch",
-        function()
-          local actions = require "CopilotChat.actions"
-          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+        "<leader>cco",
+        function ()
+          require("CopilotChat").open()
         end,
         mode = { "n", "v" },
-        desc = "copilot chat - show help actions",
+        desc = "copilot chat - open chat window",
       },
-      -- Show prompts actions with telescope
+      -- select a predefined prompt
       {
         "<leader>ccp",
         function()
@@ -119,33 +42,40 @@ return {
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
         mode = { "n", "v" },
-        desc = "copilot chat - show prompts actions",
+        desc = "copilot chat - select a prompt",
       },
-      -- Code related commands
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "copilot chat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "copilot chat - generate tests" },
-      { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "copilot chat - review code" },
-      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "copilot chat - refactor code" },
-      { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "copilot chat - better Naming" },
-      -- Open chat in inline mode
+      -- code related prompts
       {
-        "<leader>ccc",
-        ":CopilotChatInline<cr>",
+        "<leader>cce",
+        "<cmd>CopilotChatExplain<cr>",
         mode = { "n", "v" },
-        desc = "copilot chat - inline chat",
+        desc = "copilot chat - Explain code",
       },
-      -- Custom input for CopilotChat
       {
-        "<leader>cci",
-        function()
-          local input = vim.fn.input "Ask Copilot: "
-          if input ~= "" then
-            vim.cmd("CopilotChat " .. input)
-          end
-        end,
-        desc = "copilot chat - ask input",
+        "<leader>cct",
+        "<cmd>CopilotChatTests<cr>",
+        mode = { "n", "v" },
+        desc = "copilot chat - generate tests",
       },
-      -- Generate commit message based on the git diff
+      {
+        "<leader>ccr",
+        "<cmd>CopilotChatReview<cr>",
+        mode = { "n", "v" },
+        desc = "copilot chat - review code",
+      },
+      {
+        "<leader>ccR",
+        "<cmd>CopilotChatRefactor<cr>",
+        mode = { "n", "v" },
+        desc = "copilot chat - refactor code",
+      },
+      {
+        "<leader>ccn",
+        "<cmd>CopilotChatBetterNamings<cr>",
+        mode = { "n", "v" },
+        desc = "copilot chat - better Naming",
+      },
+      -- commit related prompts
       {
         "<leader>ccm",
         "<cmd>CopilotChatCommit<cr>",
@@ -156,15 +86,16 @@ return {
         "<cmd>CopilotChatCommitStaged<cr>",
         desc = "copilot chat - generate commit message for staged changes",
       },
-      -- Quick chat with Copilot
+      -- open chat and ask for custom prompt
       {
         "<leader>ccq",
         function()
-          local input = vim.fn.input "Quick Chat: "
+          local input = vim.fn.input("question: ")
           if input ~= "" then
-            vim.cmd("CopilotChatBuffer " .. input)
+            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
           end
         end,
+        mode = { "n", "v" },
         desc = "copilot chat - quick chat",
       },
     },
