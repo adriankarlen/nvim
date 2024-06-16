@@ -126,6 +126,11 @@ return {
       }
 
       ins_left {
+        "FugitiveHead",
+        icon = "",
+      }
+
+      ins_left {
         function()
           local statusline = require "arrow.statusline"
           return statusline.text_for_statusline_with_icons()
@@ -181,7 +186,7 @@ return {
           return msg
         end,
         icon = "󱌣",
-        separator,
+        separator = " ",
       }
 
       -- Add components to right sections
@@ -206,11 +211,6 @@ return {
         "fileformat",
         fmt = string.upper,
         icons_enabled = false,
-      }
-
-      ins_right {
-        "branch",
-        icon = "",
       }
 
       ins_right {
