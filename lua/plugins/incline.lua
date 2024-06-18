@@ -10,13 +10,10 @@ return {
     }
 
     incline.setup {
+      hide = {
+        cursorline = true,
+      },
       render = function(props)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        if filename == "" then
-          filename = "[No Name]"
-        end
-        local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
-
         local function get_git_diff()
           local icons = { removed = "-", changed = "~", added = "+" }
           local signs = vim.b[props.buf].gitsigns_status_dict
@@ -28,9 +25,6 @@ return {
             if tonumber(signs[name]) and signs[name] > 0 then
               table.insert(labels, { icon .. signs[name] .. " ", guifg = git_diff_color_map[name] })
             end
-          end
-          if #labels > 0 then
-            table.insert(labels, { "| " })
           end
           return labels
         end
@@ -45,32 +39,20 @@ return {
               table.insert(label, { icon .. " " .. n .. " ", group = "DiagnosticSign" .. severity })
             end
           end
-          if #label > 0 then
-            table.insert(label, { "| " })
-          end
           return label
         end
 
-        local function get_file_name()
-          local label = {}
-          table.insert(label, { (ft_icon or "") .. " ", guifg = ft_color, guibg = "none" })
-          table.insert(label, { vim.bo[props.buf].modified and " " or "", guifg = palette.gold })
-          table.insert(label, { filename, gui = "bold" })
-          if not props.focused then
-            label["group"] = "BufferInactive"
-          end
-
-          return label
-        end
-
+        local diagnostics = get_diagnostic_label()
+        local diff = get_git_diff()
+        local separator = (#diagnostics > 0 and #diff > 0) and " | " or ""
         local buffer = {
-          { get_diagnostic_label() },
-          { get_git_diff() },
-          { get_file_name() },
+          { diagnostics },
+          { separator },
+          { diff },
         }
         return buffer
       end,
     }
   end,
-  event = "VeryLazy",
+  event = { "BufEnter" },
 }
