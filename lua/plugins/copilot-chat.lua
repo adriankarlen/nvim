@@ -16,7 +16,7 @@ return {
         row = 5,
       },
       selection = function(source)
-        local select = require("CopilotChat.select")
+        local select = require "CopilotChat.select"
         return select.visual(source) or select.buffer(source)
       end,
     },
@@ -28,7 +28,7 @@ return {
       -- open chat window without asking question
       {
         "<leader>cco",
-        function ()
+        function()
           require("CopilotChat").open()
         end,
         mode = { "n", "v" },
@@ -90,13 +90,22 @@ return {
       {
         "<leader>ccq",
         function()
-          local input = vim.fn.input("question: ")
+          local input = vim.fn.input "question: "
           if input ~= "" then
-            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+            require("CopilotChat").ask(input)
           end
         end,
         mode = { "n", "v" },
         desc = "copilot chat - quick chat",
+      },
+      -- reset chat
+      {
+        "<leader>ccx",
+        function()
+          require("CopilotChat").reset()
+        end,
+        mode = { "n", "v" },
+        desc = "copilot chat - reset chat",
       },
     },
   },
