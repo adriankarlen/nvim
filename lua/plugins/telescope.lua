@@ -120,7 +120,7 @@ return {
         desc = "telescope - buffers",
       },
       {
-        "<leader>bu",
+        "<leader>fu",
         "<cmd>Telescope undo<cr>",
         desc = "telescope - undo",
       },
