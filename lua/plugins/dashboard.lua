@@ -37,6 +37,9 @@ return {
           { desc = "󱌣 mason", group = "DiagnosticWarn", key = "m", action = "Mason" },
           { desc = "󰭿 quit", group = "DiagnosticWarn", key = "q", action = "qa" },
         },
+        mru = {
+          cwd_only = true,
+        },
         footer = {
           [[                                          ]],
           [[                                          ]],
