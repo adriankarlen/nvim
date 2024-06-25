@@ -9,14 +9,16 @@ return {
     autocmd("VimEnter", {
       callback = function()
         local title = string.format(" %s", curr_dir)
+        wezterm.set_user_var("IS_NVIM", true)
         wezterm.set_tab_title(title)
       end,
       once = true,
     })
 
-    autocmd("VimLeave", {
+    autocmd("ExitPre", {
       callback = function()
         local title = string.format(" %s", curr_dir)
+        wezterm.set_user_var("IS_NVIM", false)
         wezterm.set_tab_title(title)
       end,
       once = true,
