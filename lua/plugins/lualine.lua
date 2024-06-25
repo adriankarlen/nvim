@@ -58,10 +58,10 @@ return {
             normal = {
               c = function()
                 -- auto change color according to neovims mode
-                return { fg = mode_color[vim.fn.mode()], bg = palette.surface }
+                return { fg = mode_color[vim.fn.mode()], bg = palette.base }
               end,
             },
-            inactive = { c = { fg = palette.subtle, bg = palette.surface } },
+            inactive = { c = { fg = palette.subtle, bg = palette.base } },
           },
           disabled_filetypes = {
             statusline = {
