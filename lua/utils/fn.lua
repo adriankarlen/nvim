@@ -1,5 +1,10 @@
 local M = {}
 local fn = vim.fn
+local uv = vim.loop
+
+M.is_win = function()
+  uv.os_uname().version:match "Windows"
+end
 
 M.get_curr_dir = function()
   return fn.getcwd():match "([^/]+)/?$"

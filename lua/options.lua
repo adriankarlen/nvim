@@ -1,4 +1,5 @@
 local opt = vim.opt
+local fn = require "utils.fn"
 local g = vim.g
 local o = vim.o
 
@@ -74,11 +75,10 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 -- add binaries installed by mason.nvim to path
-local is_windows = vim.fn.has "win32" ~= 0
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (fn.is_win and ";" or ":") .. vim.env.PATH
 
 -- shell configuration
-if is_windows then
+if fn.is_win then
   o.shellslash = true
   opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
   opt.shellcmdflag =
@@ -95,19 +95,3 @@ vim.filetype.add {
     mdx = "mdx",
   },
 }
-
--------------------------------------- autocmds ------------------------------------------
-local autocmd = vim.api.nvim_create_autocmd
-
--- dont list quickfix buffers
-autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
-})
-
-autocmd("VimResized", {
-  pattern = "*",
-  command = "tabdo wincmd =",
-})
