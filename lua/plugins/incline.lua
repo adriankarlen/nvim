@@ -9,12 +9,19 @@ return {
       added = palette.foam,
     }
 
+
     incline.setup {
       hide = {
         cursorline = true,
       },
       render = function(props)
-        local function get_git_diff()
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+        if filename == "" then
+          filename = "[No Name]"
+        end
+        local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+
+        local get_git_diff = function()
           local icons = { removed = "-", changed = "~", added = "+" }
           local signs = vim.b[props.buf].gitsigns_status_dict
           local labels = {}
@@ -29,7 +36,7 @@ return {
           return labels
         end
 
-        local function get_diagnostic_label()
+        local get_diagnostic_label = function()
           local icons = { error = "", warn = "", info = "", hint = "" }
 
           local label = {}
@@ -42,13 +49,27 @@ return {
           return label
         end
 
+        local get_file_name = function()
+          local label = {}
+          table.insert(label, { (ft_icon or "") .. " ", guifg = ft_color, guibg = "none" })
+          table.insert(label, { vim.bo[props.buf].modified and " " or "", guifg = palette.gold })
+          table.insert(label, { filename, gui = "bold" })
+          if not props.focused then
+            label["group"] = "BufferInactive"
+          end
+
+          return label
+        end
+
         local diagnostics = get_diagnostic_label()
         local diff = get_git_diff()
-        local separator = (#diagnostics > 0 and #diff > 0) and " | " or ""
+        local file_name = get_file_name()
         local buffer = {
           { diagnostics },
-          { separator },
+          { (#diagnostics > 0 and #diff > 0) and " | " or "" },
           { diff },
+          { (#diagnostics > 0 or #diff > 0) and " | " or "" },
+          { file_name },
         }
         return buffer
       end,
