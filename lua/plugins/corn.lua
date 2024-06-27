@@ -23,11 +23,11 @@ return {
   end,
   keys = {
     {
-      "<leader>ct",
+      "<leader>corn",
       function()
         require("corn").toggle()
       end,
-      desc = "toggle corn style diagnostics ",
+      desc = "corn - toggle",
     },
   },
 }
