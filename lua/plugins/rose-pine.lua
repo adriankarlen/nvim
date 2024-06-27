@@ -34,6 +34,18 @@ return {
           DapUIStepOutNC = { link = "DapUiStepIntoNC" },
           DapUIStepBackNC = { link = "DapUiStepIntoNC" },
           DapUIStopNC = { link = "DapUiStepIntoNC" },
+          rainbow1 = { link = "MarkdownH1" },
+          rainbow2 = { link = "MarkdownH2" },
+          rainbow3 = { link = "MarkdownH3" },
+          rainbow4 = { link = "MarkdownH4" },
+          rainbow5 = { link = "MarkdownH5" },
+          rainbow6 = { link = "MarkdownH6" },
+          markview_h1_icon = { link = "MarkdownH1" },
+          markview_h2_icon = { link = "MarkdownH2" },
+          markview_h3_icon = { link = "MarkdownH3" },
+          markview_h4_icon = { link = "MarkdownH4" },
+          markview_h5_icon = { link = "MarkdownH5" },
+          markview_h6_icon = { link = "MarkdownH6" },
         },
       }
       vim.cmd "colorscheme rose-pine"
