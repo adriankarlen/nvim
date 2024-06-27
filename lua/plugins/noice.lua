@@ -34,6 +34,11 @@ return {
             winblend = 0,
           },
         },
+        cmdline_popup = {
+          border = {
+            style = "single",
+          },
+        },
       },
     },
   },
