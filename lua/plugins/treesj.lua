@@ -3,8 +3,11 @@ return {
   event = "BufReadPre",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
-    require("treesj").setup {--[[ your config ]]
+    require("treesj").setup {
+      use_default_keymaps = false,
     }
   end,
-  keys = { "<leader>m", "<leader>j", "<leader>s" },
+  keys = {
+    { "<leader>m", function() require("treesj").toggle() end, desc = "treesj - toggle join/split" }
+  },
 }
