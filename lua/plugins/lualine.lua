@@ -70,6 +70,7 @@ return {
               "mason",
               "notify",
               "alpha",
+              "dashboard",
               "dapui_scopes",
               "dapui_breakpoints",
               "dapui_stacks",
