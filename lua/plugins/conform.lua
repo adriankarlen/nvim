@@ -22,6 +22,7 @@ return {
         jsonc = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
+        mdx = { "prettier" },
         graphql = { "prettier" },
         c_sharp = { "csharpier" },
         xml = { "xmlformat" },
