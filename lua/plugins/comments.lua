@@ -13,7 +13,7 @@ return {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
-      { desc = "toggle comment on current line" },
+      desc = "comment on current line",
     },
     {
       "<leader>/",

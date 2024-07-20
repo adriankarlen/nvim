@@ -5,7 +5,7 @@ return {
     event = "BufReadPre",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
     },
     opts = {
       debug = true, -- Enable debugging
@@ -27,7 +27,7 @@ return {
     keys = {
       -- open chat window without asking question
       {
-        "<leader>cco",
+        "<leader>aa",
         function()
           require("CopilotChat").open()
         end,
@@ -36,7 +36,7 @@ return {
       },
       -- select a predefined prompt
       {
-        "<leader>ccp",
+        "<leader>ap",
         function()
           local actions = require "CopilotChat.actions"
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
@@ -46,49 +46,49 @@ return {
       },
       -- code related prompts
       {
-        "<leader>cce",
+        "<leader>ae",
         "<cmd>CopilotChatExplain<cr>",
         mode = { "n", "v" },
         desc = "copilot chat - Explain code",
       },
       {
-        "<leader>cct",
+        "<leader>at",
         "<cmd>CopilotChatTests<cr>",
         mode = { "n", "v" },
         desc = "copilot chat - generate tests",
       },
       {
-        "<leader>ccr",
+        "<leader>ar",
         "<cmd>CopilotChatReview<cr>",
         mode = { "n", "v" },
         desc = "copilot chat - review code",
       },
       {
-        "<leader>ccR",
+        "<leader>aR",
         "<cmd>CopilotChatRefactor<cr>",
         mode = { "n", "v" },
         desc = "copilot chat - refactor code",
       },
       {
-        "<leader>ccn",
+        "<leader>an",
         "<cmd>CopilotChatBetterNamings<cr>",
         mode = { "n", "v" },
         desc = "copilot chat - better Naming",
       },
       -- commit related prompts
       {
-        "<leader>ccm",
+        "<leader>am",
         "<cmd>CopilotChatCommit<cr>",
         desc = "copilot chat - generate commit message for all changes",
       },
       {
-        "<leader>ccM",
+        "<leader>aM",
         "<cmd>CopilotChatCommitStaged<cr>",
         desc = "copilot chat - generate commit message for staged changes",
       },
       -- open chat and ask for custom prompt
       {
-        "<leader>ccq",
+        "<leader>aq",
         function()
           local input = vim.fn.input "question: "
           if input ~= "" then
@@ -100,7 +100,7 @@ return {
       },
       -- reset chat
       {
-        "<leader>ccx",
+        "<leader>ax",
         function()
           require("CopilotChat").reset()
         end,

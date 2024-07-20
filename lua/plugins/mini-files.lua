@@ -245,6 +245,7 @@ return {
           end, 10)
         end)
       end,
+      desc = "explorer",
     },
   },
 }

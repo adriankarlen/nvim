@@ -3,11 +3,11 @@ return {
   event = "BufRead",
   keys = {
     {
-      "<leader>H",
+      "<leader>tH",
       function()
         require("precognition").toggle()
       end,
-      desc = "toggle movement hints",
+      desc = "precognition",
     },
   },
 }

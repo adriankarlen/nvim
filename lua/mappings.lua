@@ -51,9 +51,9 @@ map.set("v", "-", ":m '>+1<cr>gv=gv", { silent = true, desc = "bubble up" })
 map.set("v", "_", ":m '<-2<cr>gv=gv", { silent = true, desc = "bubble down" })
 
 -- buffer management
-map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "create new buffer" })
-map.set("n", "<leader>x", "<cmd> bd <cr>", { desc = "delete current buffer" })
-map.set("n", "<leader>X", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
+map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "new buffer" })
+map.set("n", "<leader>bd", "<cmd> bd <cr>", { desc = "delete current buffer" })
+map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 
 -- format
 map.set("n", "<leader>fm", function()

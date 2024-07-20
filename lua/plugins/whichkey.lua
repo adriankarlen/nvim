@@ -6,11 +6,25 @@ return {
     vim.o.timeoutlen = 300
   end,
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    triggers_blacklist = {
-      n = { "d", "y" },
+    preset = "modern",
+    win = { border = "single" },
+    spec = {
+      { "<leader>a", group = "ai" },
+      { "<leader>b", group = "buffer" },
+      { "<leader>c", group = "code" },
+      { "<leader>d", group = "debug" },
+      { "<leader>e", icon = "󰙅" },
+      { "<leader>f", group = "find" },
+      { "<leader>g", group = "git" },
+      { "<leader>l", group = "lsp" },
+      { "<leader>m", icon = "󱓡" },
+      { "<leader>p", group = "packages", icon = "" },
+      { "<leader>t", group = "toggle" },
+      { "<leader>x", group = "diagnostics" },
+      { "<leader>/", icon = "󰆂" }
     },
+    disable = {
+      ft = { "lazygit" }
+    }
   },
 }

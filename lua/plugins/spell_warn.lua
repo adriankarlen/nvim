@@ -5,14 +5,14 @@ return {
 
   keys = {
     {
-      "<leader>sw",
+      "<leader>ts",
       function()
         require("spellwarn").toggle()
       end,
       {
         noremap = true,
         silent = true,
-        description = "spellwarn - toggle",
+        desc = "spellwarn",
       },
     },
   },

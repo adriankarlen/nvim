@@ -23,7 +23,7 @@ return {
   end,
   keys = {
     {
-      "<leader>corn",
+      "<leader>tc",
       function()
         require("corn").toggle()
       end,

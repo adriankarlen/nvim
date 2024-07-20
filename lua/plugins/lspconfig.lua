@@ -64,11 +64,10 @@ return {
     { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", desc = "lsp definition" },
     { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", desc = "lsp hover" },
     { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "lsp implementation" },
-    { "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "lsp signature help" },
-    { "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "lsp type definition" },
+    { "gK", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "lsp signature help" },
+    { "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "lsp type definition" },
     { "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "lsp references" },
     { "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", desc = "lsp goto prev diagnostic" },
     { "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", desc = "lsp goto next diagnostic" },
-    { "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", desc = "lsp set loclist" },
   },
 }

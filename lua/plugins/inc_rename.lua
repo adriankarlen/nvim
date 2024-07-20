@@ -5,12 +5,12 @@ return {
   end,
   keys = {
     {
-      "<leader>rn",
+      "<leader>cr",
       function()
         return ":IncRename " .. vim.fn.expand "<cword>"
       end,
       expr = true,
-      desc = "inc-rename",
+      desc = "rename",
     },
   },
 }
