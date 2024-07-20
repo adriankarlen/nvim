@@ -80,6 +80,7 @@ return {
           { name = "buffer", group_index = 2 },
           { name = "nvim_lua", group_index = 2 },
           { name = "path", group_index = 2 },
+          { name = "cmdline", group_index = 2 },
           {
             name = "html-css",
             group_index = 2,
