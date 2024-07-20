@@ -56,7 +56,7 @@ map.set("n", "<leader>bd", "<cmd> bd <cr>", { desc = "delete current buffer" })
 map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 
 -- format
-map.set("n", "<leader>fm", function()
+map.set("n", "<leader>cf", function()
   vim.lsp.buf.format { async = true }
 end, { desc = "format current buffer" })
 
@@ -71,9 +71,9 @@ map.set("x", "p", 'p:let @+=@0<cr>:let @"=@0<cr>', { desc = "paste without copyi
 -- simpler movement on nordic keyboards
 map.set("n", "§", "@", { desc = "replace § with @" })
 map.set("n", ";", ":", { desc = "replace semicolon with colon" })
-map.set("n", "å", "\\", { desc = "replace ä with backslash" })
-map.set("n", "ö", "[", { desc = "replace å with left bracket" })
-map.set("n", "ä", "]", { desc = "replace ¨ with right bracket" })
+map.set("n", "å", "\\", { desc = "replace å with backslash" })
+map.set("n", "ö", "[", { desc = "replace ö with left bracket" })
+map.set("n", "ä", "]", { desc = "replace ä with right bracket" })
 map.set({ "n", "v" }, "*", '"', { desc = "replace * with double quote" })
 map.set({ "n", "v" }, "Ö", "{", { desc = "replace Ö with left curly brace" })
 map.set({ "n", "v" }, "Ä", "}", { desc = "replace Ä with right curly brace" })
