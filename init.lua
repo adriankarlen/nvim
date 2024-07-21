@@ -15,4 +15,11 @@ require "autocmds"
 require "options"
 require "mappings"
 
-require("lazy").setup "plugins"
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  ui = {
+    border = "single"
+  },
+})
