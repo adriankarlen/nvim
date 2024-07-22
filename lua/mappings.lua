@@ -55,11 +55,6 @@ map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "new buffer" })
 map.set("n", "<leader>bd", "<cmd> bd <cr>", { desc = "delete current buffer" })
 map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 
--- format
-map.set("n", "<leader>cf", function()
-  vim.lsp.buf.format { async = true }
-end, { desc = "format current buffer" })
-
 -- indent line
 map.set("v", "<", "<gv", { silent = true, desc = "indent line to the left" })
 map.set("v", ">", ">gv", { silent = true, desc = "indent line to the right" })

@@ -27,7 +27,7 @@ return {
       function()
         require("corn").toggle()
       end,
-      desc = "corn - toggle",
+      desc = "corn",
     },
   },
 }

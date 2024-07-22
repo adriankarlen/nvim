@@ -9,22 +9,33 @@ return {
     preset = "modern",
     win = { border = "single" },
     spec = {
+      -- groups
       { "<leader>a", group = "ai" },
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
       { "<leader>d", group = "debug" },
-      { "<leader>e", icon = "󰙅" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
       { "<leader>l", group = "lsp" },
-      { "<leader>m", icon = "󱓡" },
       { "<leader>p", group = "packages", icon = "" },
+      { "<leader>pn", group = "dotnet", icon = "󰌛" },
       { "<leader>t", group = "toggle" },
       { "<leader>x", group = "diagnostics" },
-      { "<leader>/", icon = "󰆂" }
+      -- commands
+      { "<leader>e", icon = "󰙅" },
+      { "<leader>bd", icon = "󱄲" },
+      { "<leader>bD", icon = "󱄲" },
+      { "<leader>ca", icon = "󱐋" },
+      { "<leader>cb", icon = "󰅺" },
+      { "<leader>cf", icon = "" },
+      { "<leader>cm", icon = "󱓡" },
+      { "<leader>cr", icon = "󰏪" },
+      { "<leader>ct", icon = "󰅺" },
+      { "<leader>db", icon = "󰃤" },
+      { "<leader>/", icon = "󰅺" },
     },
     disable = {
-      ft = { "lazygit" }
-    }
+      ft = { "lazygit" },
+    },
   },
 }

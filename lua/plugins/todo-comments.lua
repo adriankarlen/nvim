@@ -4,6 +4,6 @@ return {
   opts = {},
   event = "BufRead",
   keys = {
-    { "<leader>fc", "<cmd>TodoTelescope<cr>", desc = "telescope - todo comments" },
+    { "<leader>fc", "<cmd>TodoTelescope<cr>", desc = "todo comments" },
   },
 }

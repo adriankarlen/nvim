@@ -21,7 +21,7 @@ return {
       function()
         require("fastaction").code_action()
       end,
-      desc = "fastaction - code action",
+      desc = "code action",
       buffer = true,
     },
   },

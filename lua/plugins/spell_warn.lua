@@ -9,11 +9,9 @@ return {
       function()
         require("spellwarn").toggle()
       end,
-      {
-        noremap = true,
-        silent = true,
-        desc = "spellwarn",
-      },
+      noremap = true,
+      silent = true,
+      desc = "spellwarn",
     },
   },
 }

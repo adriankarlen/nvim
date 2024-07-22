@@ -8,6 +8,7 @@ local servers = {
   "svelte",
   "taplo",
   "yamlls",
+  "lemminx",
 }
 
 return {

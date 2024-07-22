@@ -89,51 +89,51 @@ return {
         function()
           require("telescope.builtin").find_files()
         end,
-        desc = "telescope - find files",
+        desc = "find files",
       },
       {
         "<leader>fa",
         function()
           require("telescope.builtin").find_files { hidden = true, follow = true, no_ignore = true }
         end,
-        desc = "telescope - find all files",
+        desc = "find all files",
       },
       {
         "<leader>fw",
         function()
           require("telescope.builtin").live_grep()
         end,
-        desc = "telescope - live grep",
+        desc = "live grep",
       },
       {
         "<leader>fo",
         function()
           require("telescope.builtin").oldfiles()
         end,
-        desc = "telescope - old files",
+        desc = "old files",
       },
       {
         "<leader>fb",
         function()
           require("telescope.builtin").buffers()
         end,
-        desc = "telescope - buffers",
+        desc = "buffers",
       },
       {
         "<leader>fu",
         "<cmd>Telescope undo<cr>",
-        desc = "telescope - undo",
+        desc = "undo",
       },
       {
         "<leader>fj",
         "<cmd>telescope - jsonfly<cr>",
-        desc = "telescope - json(fly)",
+        desc = "json(fly)",
         ft = { "json" },
       },
       {
         "<leader>fn",
         "<cmd>Telescope noice<cr>",
-        desc = "telescope - noice",
+        desc = "noice",
       },
     },
   },

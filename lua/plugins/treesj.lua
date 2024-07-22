@@ -8,6 +8,6 @@ return {
     }
   end,
   keys = {
-    { "<leader>m", function() require("treesj").toggle() end, desc = "treesj - join/split" }
+    { "<leader>cm", function() require("treesj").toggle() end, desc = "join/split block" }
   },
 }

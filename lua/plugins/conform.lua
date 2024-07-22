@@ -9,10 +9,10 @@ return {
       lsp_fallback = true,
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { "prettier", "eslint" },
-        typescript = { "prettier", "eslint" },
-        javascriptreact = { "prettier", "eslint" },
-        typescriptreact = { "prettier", "eslint" },
+        javascript = { "prettier", "eslint", stop_after_first = true },
+        typescript = { "prettier", "eslint", stop_after_first = true },
+        javascriptreact = { "prettier", "eslint", stop_after_first = true },
+        typescriptreact = { "prettier", "eslint", stop_after_first = true },
         svelte = { "prettier" },
         css = { "prettier" },
         scss = { "prettier" },
@@ -28,6 +28,7 @@ return {
         xml = { "xmlformat" },
         svg = { "xmlformat" },
         rust = { "rustfmt" },
+        ["_"] = { "trimwhitespace" },
       },
       formatters = {
         xmlformat = {
@@ -39,6 +40,13 @@ return {
     }
   end,
   keys = {
-  { "<leader>cf", "<cmd>lua require('conform').format()<CR>", desc = "format file", silent = true },
+    {
+      "<leader>cf",
+      function()
+        require("conform").format()
+      end,
+      desc = "format",
+      silent = true,
+    },
   },
 }

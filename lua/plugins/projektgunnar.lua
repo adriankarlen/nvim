@@ -5,9 +5,9 @@ return {
   },
   event = "VeryLazy",
   keys = {
-    { "<leader>pap", "<cmd>AddNugetToProject<cr>", desc = "projektgunnar - add nuget packages to project" },
-    { "<leader>par", "<cmd>AddProjectToProject<cr>", desc = "projektgunnar - add project reference to other project" },
-    { "<leader>pup", "<cmd>UpdateNugetsInProject<cr>", desc = "projektgunnar - update packages in project" },
-    { "<leader>pus", "<cmd>UpdateNugetsInSolution<cr>", desc = "projektgunnar - update packages in solution" },
+    { "<leader>pna", "<cmd>AddNugetToProject<cr>", desc = "add nuget packages to project" },
+    { "<leader>pnp", "<cmd>AddProjectToProject<cr>", desc = "add project reference to other project" },
+    { "<leader>pnu", "<cmd>UpdateNugetsInProject<cr>", desc = "update packages in project" },
+    { "<leader>pnU", "<cmd>UpdateNugetsInSolution<cr>", desc = "update packages in solution" },
   },
 }

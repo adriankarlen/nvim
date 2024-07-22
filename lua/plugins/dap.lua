@@ -41,7 +41,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - continue",
+        desc = "continue",
       },
       {
         "<leader>do",
@@ -50,7 +50,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - step over",
+        desc = "step over",
       },
       {
         "<leader>di",
@@ -59,7 +59,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - step into",
+        desc = "step into",
       },
       {
         "<leader>du",
@@ -68,7 +68,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - step out",
+        desc = "step out",
       },
       {
         "<leader>dr",
@@ -77,7 +77,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - restart",
+        desc = "restart",
       },
       {
         "<leader>dt",
@@ -86,7 +86,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - terminate",
+        desc = "terminate",
       },
       {
         "<leader>db",
@@ -95,7 +95,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = "dap - toggle breakpoint",
+        desc = "toggle breakpoint",
       },
     },
   },
