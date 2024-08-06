@@ -61,8 +61,29 @@ return {
           end,
         },
         window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+          completion = {
+            border = "single",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+          },
+          documentation = cmp.config.window.bordered {
+            border = "single",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          },
+        },
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          expandable_indicator = true,
+          format = function(_, vim_item)
+            if _G.MiniIcons then
+              local icon, hl, _ = MiniIcons.get("lsp", vim_item.kind)
+              vim_item.menu = "    (" .. vim_item.kind .. ")"
+              vim_item.kind = " " .. (icon or "") .. " "
+              vim_item.kind_hl_group = hl
+            end
+            return vim_item
+          end,
         },
         mapping = cmp.mapping.preset.insert {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
