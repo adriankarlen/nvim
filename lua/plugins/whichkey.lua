@@ -16,6 +16,7 @@ return {
       { "<leader>d", group = "debug" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
+      { "<leader>h", group = "hurl", icon=""},
       { "<leader>l", group = "lsp" },
       { "<leader>p", group = "packages", icon = "" },
       { "<leader>pn", group = "dotnet", icon = "󰌛" },
@@ -23,8 +24,8 @@ return {
       { "<leader>x", group = "diagnostics" },
       -- commands
       { "<leader>e", icon = "󰙅" },
-      { "<leader>bd", icon = "󱄲" },
-      { "<leader>bD", icon = "󱄲" },
+      { "<leader>bd", icon = "󰭿" },
+      { "<leader>bD", icon = "󰭿" },
       { "<leader>ca", icon = "󱐋" },
       { "<leader>cb", icon = "󰅺" },
       { "<leader>cf", icon = "" },
