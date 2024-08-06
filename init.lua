@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require "autocmds"
 require "options"
 require "mappings"
+require "statusline"
 
 require("lazy").setup({
   spec = {
@@ -23,3 +24,4 @@ require("lazy").setup({
     border = "single"
   },
 })
+

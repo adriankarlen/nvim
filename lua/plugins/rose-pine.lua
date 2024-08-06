@@ -5,6 +5,7 @@ return {
     name = "rose-pine",
 
     config = function()
+      local status_line_bg = "surface"
       require("rose-pine").setup {
         styles = {
           transparency = true,
@@ -43,22 +44,30 @@ return {
           Markview_h4_icon = { link = "MarkdownH4" },
           Markview_h5_icon = { link = "MarkdownH5" },
           Markview_h6_icon = { link = "MarkdownH6" },
+          StatuslineTextMain = { fg = "text", bg = status_line_bg },
+          StatuslineTextBold = { link = "StatuslineTextMain", bold = true },
+          StatuslineTextAccent = { fg = "muted", bg = status_line_bg },
+          StatuslineModeNormal = { fg = "text", bg = status_line_bg, bold = true },
+          StatuslineModeInsert = { fg = "foam", bg = status_line_bg, bold = true },
+          StatuslineModeVisual = { fg = "iris", bg = status_line_bg, bold = true },
+          StatuslineModeReplace = { fg = "love", bg = status_line_bg, bold = true },
+          StatuslineModeCommand = { fg = "foam", bg = status_line_bg, bold = true },
+          StatuslineModeSelect = { fg = "iris", bg = status_line_bg, bold = true },
+          StatuslineFiletype = { fg = "text", bg = status_line_bg },
+          StatuslineNotSaved = { fg = "gold", bg = status_line_bg },
+          StatuslineReadOnly = { fg = "love", bg = status_line_bg },
+          StatuslineLspOn = { fg = "pine", bg = status_line_bg },
+          StatuslineLspError = { fg = "love", bg = status_line_bg },
+          StatuslineLspWarning = { fg = "gold", bg = status_line_bg },
+          StatuslineLspInfo = { fg = "foam", bg = status_line_bg },
+          StatuslineLspHint = { fg = "iris", bg = status_line_bg },
+          StatuslineFormatterStatus = { fg = "rose", bg = status_line_bg },
+          StatuslineCopilot = { fg = "rose", bg = status_line_bg },
+          StatuslineGitBranch = { fg = "foam", bg = status_line_bg },
+          StatuslineMacroRecording = { fg = "gold", bg = status_line_bg, italic = true },
         },
       }
       vim.cmd "colorscheme rose-pine"
-    end,
-  },
-  {
-    "rachartier/tiny-devicons-auto-colors.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    event = "VeryLazy",
-    config = function()
-      local palette = require "rose-pine.palette"
-      require("tiny-devicons-auto-colors").setup {
-        colors = palette,
-      }
     end,
   },
 }
