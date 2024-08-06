@@ -1,6 +1,13 @@
 return {
   "echasnovski/mini.icons",
-  opts = {},
+  opts = {
+    file = {
+      ["init.lua"] = { glyph = "󰢱", hl = "MiniIconsAzure" },
+    },
+    lsp = {
+      copilot = { glyph = "", hl = "MiniIconsOrange" },
+    },
+  },
   lazy = true,
   specs = {
     { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
