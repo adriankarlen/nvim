@@ -13,7 +13,6 @@ local function _truncate()
   return "%<"
 end
 
---
 -- From TJDevries
 -- https://github.com/tjdevries/lazy-require.nvim
 local function lazy_require(require_path)
@@ -124,8 +123,7 @@ end
 local function get_lsp_status()
   local clients = vim.lsp.get_clients { bufnr = 0 }
   local higroup = "%#StatuslineLspOn#"
-  if #clients > 0 then
-    local line = ""
+  if #clients > 0 and clients[1].initialized then
     return higroup .. "  " .. _spacer(0)
   else
     return ""
