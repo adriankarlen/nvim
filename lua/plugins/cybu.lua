@@ -1,7 +1,6 @@
 return {
   "ghillb/cybu.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
-  enabeld = false,
   config = function()
     require("cybu").setup {
       behavior = {
