@@ -19,6 +19,7 @@ return {
       },
       popupmenu = {
         enabled = true,
+        backend = "cmp",
       },
       notify = { enabled = false },
       presets = {
