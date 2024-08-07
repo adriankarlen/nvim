@@ -16,11 +16,11 @@ return {
       { "<leader>d", group = "debug" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
-      { "<leader>h", group = "hurl", icon=""},
+      { "<leader>h", group = "hurl", icon = "" },
       { "<leader>l", group = "lsp" },
       { "<leader>p", group = "packages", icon = "" },
       { "<leader>pn", group = "dotnet", icon = "󰌛" },
-      { "<leader>r", icon= "", group = "compiler"},
+      { "<leader>r", group = "compiler", icon = "" },
       { "<leader>t", group = "toggle" },
       { "<leader>x", group = "diagnostics" },
       -- commands
@@ -37,7 +37,10 @@ return {
       { "<leader>/", icon = "󰅺" },
     },
     disable = {
-      ft = { "lazygit" },
+      ft = {
+        "lazygit",
+        "toggleterm",
+      },
     },
   },
 }
