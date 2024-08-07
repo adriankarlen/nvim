@@ -198,7 +198,7 @@ local function get_branch()
   local branch = vim.fn.FugitiveHead()
   local higroup_main = "%#StatuslineTextMain#"
   local higroup_accent = "%#StatuslineTextAccent#"
-  if branch == nil then
+  if branch == "" then
     return ""
   end
   return higroup_accent .. " " .. higroup_main .. branch .. _spacer(2)
