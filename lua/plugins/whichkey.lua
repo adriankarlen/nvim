@@ -20,10 +20,10 @@ return {
       { "<leader>l", group = "lsp" },
       { "<leader>p", group = "packages", icon = "" },
       { "<leader>pn", group = "dotnet", icon = "󰌛" },
+      { "<leader>r", icon= "", group = "compiler"},
       { "<leader>t", group = "toggle" },
       { "<leader>x", group = "diagnostics" },
       -- commands
-      { "<leader>e", icon = "󰙅" },
       { "<leader>bd", icon = "󰭿" },
       { "<leader>bD", icon = "󰭿" },
       { "<leader>ca", icon = "󱐋" },
@@ -33,6 +33,7 @@ return {
       { "<leader>cr", icon = "󰏪" },
       { "<leader>ct", icon = "󰅺" },
       { "<leader>db", icon = "󰃤" },
+      { "<leader>e", icon = "󰙅" },
       { "<leader>/", icon = "󰅺" },
     },
     disable = {

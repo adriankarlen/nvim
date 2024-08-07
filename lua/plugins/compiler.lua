@@ -5,20 +5,20 @@ return {
     dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
     opts = {},
     keys = {
-      { "<F6>", "<cmd>CompilerOpen<CR>", noremap = true, silent = true, desc = "compiler - open" },
+      { "<leader>ro", "<cmd>CompilerOpen<cr>", noremap = true, silent = true, desc = "compiler - open" },
       {
-        "<S-F6>",
+        "<leader>rx",
         "<cmd>CompilerStop<cr>" .. "<cmd>CompilerRedo<CR>",
         noremap = true,
         silent = true,
         desc = "compiler - redo",
       },
-      { "<S-F7>", "<cmd>CompilerToggleResults<CR>", noremap = true, silent = true, desc = "compiler - toggle results" },
+      { "<leader>rt", "<cmd>CompilerToggleResults<CR>", noremap = true, silent = true, desc = "compiler - toggle results" },
     },
   },
   {
     "stevearc/overseer.nvim",
-    commit = "68a2d344cea4a2e11acfb5690dc8ecd1a1ec0ce0",
+    commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
     cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
     opts = {
       task_list = {
