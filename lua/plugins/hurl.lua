@@ -12,11 +12,11 @@ return {
   },
   keys = {
     -- Run API request
-    { "<leader>hr", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
-    { "<leader>ha", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
-    { "<leader>hA", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
-    { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
-    { "<leader>ht", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+    { "<leader>hr", "<cmd>HurlRunnerAt<CR>", desc = "run api request" },
+    { "<leader>ha", "<cmd>HurlRunner<CR>", desc = "run all requests" },
+    { "<leader>hA", "<cmd>HurlVerbose<CR>", desc = "run api in verbose mode" },
+    { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "run api request to entry" },
+    { "<leader>ht", "<cmd>HurlToggleMode<CR>", desc = "toggle popup/split result" },
     {
       "<leader>hv",
       function()

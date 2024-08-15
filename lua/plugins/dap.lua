@@ -14,18 +14,23 @@ return {
         command = "netcoredbg",
         args = { "--interpreter=vscode" },
       }
+      dap.adapters.netcoredbg = {
+        type = "executable",
+        command = "netcoredbg",
+        args = { "--interpreter=vscode" },
+      }
 
       dap.configurations.cs = {
         {
           type = "coreclr",
           name = "launch - netcoredbg",
           request = "launch",
-          env = "ASPNETCORE_ENVIRONMENT=Development",
-          args = {
-            "/p:EnvironmentName=Development", -- this is a msbuild jk
-            --  this is set via environment variable ASPNETCORE_ENVIRONMENT=Development
-            "--environment=Development",
-          },
+          -- env = "ASPNETCORE_ENVIRONMENT=Development",
+          -- args = {
+          --   "/p:EnvironmentName=Development", -- this is a msbuild jk
+          --   --  this is set via environment variable ASPNETCORE_ENVIRONMENT=Development
+          --   "--environment=Development",
+          -- },
           program = function()
             return fn.get_cs_debug_dll()
           end,

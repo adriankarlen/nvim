@@ -3,7 +3,7 @@ return {
   event = "BufRead",
   keys = {
     {
-      "<leader>tH",
+      "<leader>Tp",
       function()
         require("precognition").toggle()
       end,

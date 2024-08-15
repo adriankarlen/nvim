@@ -21,7 +21,8 @@ return {
       { "<leader>p", group = "packages", icon = "" },
       { "<leader>pn", group = "dotnet", icon = "󰌛" },
       { "<leader>r", group = "compiler", icon = "" },
-      { "<leader>t", group = "toggle" },
+      { "<leader>t", group = "test" },
+      { "<leader>T", group = "toggle" },
       { "<leader>x", group = "diagnostics" },
       -- commands
       { "<leader>bd", icon = "󰭿" },
@@ -29,7 +30,7 @@ return {
       { "<leader>ca", icon = "󱐋" },
       { "<leader>cb", icon = "󰅺" },
       { "<leader>cf", icon = "" },
-      { "<leader>cm", icon = "󱓡" },
+      { "<leader>cm", icon = "󱓡", desc = "join/split block" },
       { "<leader>cr", icon = "󰏪" },
       { "<leader>ct", icon = "󰅺" },
       { "<leader>db", icon = "󰃤" },

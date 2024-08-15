@@ -48,6 +48,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "csharpier", -- c# formatter
+        "netcoredbg", -- c# debugger
         "xmlformatter", -- xml formatter
       },
     }

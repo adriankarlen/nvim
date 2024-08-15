@@ -5,7 +5,7 @@ return {
 
   keys = {
     {
-      "<leader>ts",
+      "<leader>Ts",
       function()
         require("spellwarn").toggle()
       end,
