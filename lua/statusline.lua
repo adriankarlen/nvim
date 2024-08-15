@@ -16,15 +16,15 @@ end
 -- From TJDevries
 -- https://github.com/tjdevries/lazy-require.nvim
 local function lazy_require(require_path)
-    return setmetatable({}, {
-        __index = function(_, key)
-            return require(require_path)[key]
-        end,
+  return setmetatable({}, {
+    __index = function(_, key)
+      return require(require_path)[key]
+    end,
 
-        __newindex = function(_, key, value)
-            require(require_path)[key] = value
-        end,
-    })
+    __newindex = function(_, key, value)
+      require(require_path)[key] = value
+    end,
+  })
 end
 
 local function mode_color()
@@ -39,7 +39,7 @@ local function mode_color()
   elseif current_mode == "R" or current_mode == "Rv" then
     higroup = "%#StatuslineModeReplace#"
   elseif current_mode == "s" or current_mode == "S" or current_mode == "" then
-    higroup = "%#StatuslineModeSelect#"
+    higroup = "%#StatuslineModeVisual#"
   elseif current_mode == "c" then
     higroup = "%#StatuslineModeCommand#"
   end
@@ -49,26 +49,18 @@ end
 local function get_mode()
   local modes = {
     ["n"] = "NORMAL",
-    ["no"] = "NORMAL",
-    ["i"] = "INSERT",
-    ["ic"] = "INSERT",
     ["v"] = "VISUAL",
     ["V"] = "V-LINE",
     [""] = "V-BLOCK",
     ["s"] = "SELECT",
     ["S"] = "S-LINE",
     [""] = "S-BLOCK",
+    ["i"] = "INSERT",
     ["R"] = "REPLACE",
-    ["Rv"] = "V-REPLACE",
     ["c"] = "COMMAND",
-    ["cv"] = "VIM EX",
-    ["ce"] = "EX",
     ["r"] = "PROMPT",
-    ["rm"] = "MOAR",
-    ["r?"] = "CONFIRM",
     ["!"] = "SHELL",
     ["t"] = "TERMINAL",
-    ["niI"] = "INS-NOR",
   }
   local current_mode = vim.api.nvim_get_mode().mode
   local value = ""
@@ -132,7 +124,7 @@ end
 
 local function get_formatter_status()
   local higroup = "%#StatuslineFormatterStatus#"
-  local conform = lazy_require("conform")
+  local conform = lazy_require "conform"
 
   local formatters = conform.list_formatters(0)
   if #formatters > 0 then
@@ -144,7 +136,7 @@ end
 
 local function get_copilot_status()
   local hi_copilot = "%#StatuslineCopilot#"
-  local c = lazy_require("copilot.client")
+  local c = lazy_require "copilot.client"
   local ok = not c.is_disabled() and c.buf_is_attached(vim.api.nvim_get_current_buf())
   if not ok then
     return ""
@@ -158,11 +150,11 @@ local function get_diagnostics()
   local count_info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
   local count_hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local diag_count = 0
-  local higroup_error = "%#StatuslineLspError#"
-  local higroup_warning = "%#StatuslineLspWarning#"
+  local higroup_error = "%#DiagnosticError#"
+  local higroup_warning = "%#DiagnosticWarn#"
 
-  local higroup_info = "%#StatuslineLspInfo#"
-  local higroup_hint = "%#StatuslineLspHint#"
+  local higroup_info = "%#DiagnosticInfo#"
+  local higroup_hint = "%#DiagnosticHint#"
   local error, warning, info, hint = "", "", "", ""
   if count_error == 0 then
     error = ""
@@ -205,18 +197,18 @@ end
 local function get_recording()
   local higroup_main = "%#StatuslineTextMain#"
   local higroup_accent = "%#StatuslineTextAccent#"
-  local recorder = lazy_require("recorder")
+  local recorder = lazy_require "recorder"
   local status = recorder.recordingStatus()
   if status == "" then
     return ""
   end
-  return higroup_accent .. " " .. higroup_main .. recorder.recordingStatus() .._spacer(2)
+  return higroup_accent .. " " .. higroup_main .. recorder.recordingStatus() .. _spacer(2)
 end
 
 local function get_macro_slots()
   local higroup_main = "%#StatuslineTextMain#"
   local higroup_accent = "%#StatuslineTextAccent#"
-  local recorder = lazy_require("recorder")
+  local recorder = lazy_require "recorder"
   local display_slots = recorder.displaySlots()
 
   if display_slots == "" then
@@ -224,7 +216,6 @@ local function get_macro_slots()
   end
 
   return higroup_accent .. " " .. higroup_main .. display_slots .. _spacer(2)
-
 end
 
 local function get_percentage()
@@ -247,7 +238,7 @@ local function get_percentage()
 end
 
 local function get_filetype()
-  local higroup = "%#StatuslineFiletype#"
+  local higroup = "%#StatuslineTextMain#"
   local ft = vim.bo.filetype:upper()
   if ft == "" then
     return higroup .. "-" .. _spacer(2)
@@ -256,7 +247,21 @@ local function get_filetype()
   end
 end
 
+M.setup = function()
+  vim.opt.laststatus = 3
+  vim.opt.showmode = false
+end
+
 M.load = function()
+  local curr_ft = vim.bo.filetype
+  local disabled_filetypes = {
+    "dashboard",
+  }
+
+  if vim.tbl_contains(disabled_filetypes, curr_ft) then
+    return nil
+  end
+
   return table.concat {
     get_mode(),
     get_path(),
@@ -268,8 +273,8 @@ M.load = function()
     _spacer(2),
     _align(),
     get_diagnostics(),
-    get_recording(),
-    get_macro_slots(),
+    -- get_recording(),
+    -- get_macro_slots(),
     get_branch(),
     get_percentage(),
     get_filetype(),

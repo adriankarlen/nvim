@@ -4,7 +4,7 @@ return {
     event = "BufReadPre",
     opts = {
       dimming = {
-        alpha = 0.15,
+       alpha = 0.40,
       },
     },
   },

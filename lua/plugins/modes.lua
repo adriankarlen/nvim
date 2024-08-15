@@ -4,6 +4,7 @@ return {
   config = function()
     local palette = require "rose-pine.palette"
     require("modes").setup {
+      set_cursor = false,
       colors = {
         bg = palette.base,
       },

@@ -7,8 +7,8 @@ local o = vim.o
 g.mapleader = " "
 
 -------------------------------------- options ------------------------------------------
-opt.laststatus = 2
-opt.showmode = false
+-- opt.laststatus = 3
+-- opt.showmode = false
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true

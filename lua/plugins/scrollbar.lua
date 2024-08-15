@@ -4,9 +4,15 @@ return {
   config = function()
     require("scrollbar").setup({
       hide_if_all_visible = true,
-      excluded_filetypes = {
-        "minifiles",
+      handle = {
+        blend = 0,
       },
+      handlers = {
+        gitsigns = true,
+      },
+      -- excluded_filetypes = {
+      --   "minifiles",
+      -- },
     })
   end,
 }

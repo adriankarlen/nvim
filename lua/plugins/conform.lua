@@ -24,11 +24,10 @@ return {
         markdown = { "prettier" },
         mdx = { "prettier" },
         graphql = { "prettier" },
-        c_sharp = { "csharpier" },
+        cs = { "csharpier" },
         xml = { "xmlformat" },
         svg = { "xmlformat" },
         rust = { "rustfmt" },
-        ["_"] = { "trimwhitespace" },
       },
       formatters = {
         xmlformat = {

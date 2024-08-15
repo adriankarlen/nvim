@@ -4,11 +4,9 @@ return {
   version = "*",
   dependencies = {
     "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons", -- optional dependency
+    "echasnovski/mini.icons",
   },
-  opts = {
-    -- configurations go here
-  },
+  event = "BufWinEnter",
   config = function()
     local palette = require "rose-pine.palette"
     -- triggers CursorHold event faster
