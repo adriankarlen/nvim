@@ -3,15 +3,15 @@ return {
   version = false,
   opts = {
     mappings = {
-      left = "<C-Left>",
+      left = "<",
       down = "-",
       up = "_",
-      right = "<C-Right",
+      right = ">",
 
-      line_left = "<C-Left>",
+      line_left = "<",
       line_down = "-",
       line_up = "_",
-      line_right = "<C-Right>",
+      line_right = ">",
     },
   },
 }

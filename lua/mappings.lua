@@ -49,11 +49,6 @@ map.set("n", "<leader>bn", "<cmd> enew <cr>", { desc = "new buffer" })
 map.set("n", "<leader>bd", "<cmd> bd <cr>", { desc = "delete current buffer" })
 map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 
--- indent line
-map.set("v", "<", "<gv", { silent = true, desc = "indent line to the left" })
-map.set("v", ">", ">gv", { silent = true, desc = "indent line to the right" })
-map.set("n", "=", "mxggVG=`x", { silent = true, desc = "indent file contents" })
-
 -- paste without copying
 map.set("x", "p", 'p:let @+=@0<cr>:let @"=@0<cr>', { desc = "paste without copying" })
 
