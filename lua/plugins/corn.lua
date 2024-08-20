@@ -19,6 +19,20 @@ return {
         end
         vim.diagnostic.config { virtual_text = { prefix = ">" } }
       end,
+      item_preprocess_func = function(item)
+        local max_width = vim.api.nvim_win_get_width(0) / 4
+        local message = item.message
+        local lines = {}
+
+        while #message > max_width do
+          table.insert(lines, string.sub(message, 1, max_width))
+          message = string.sub(message, max_width + 1)
+        end
+        table.insert(lines, message)
+
+        item.message = table.concat(lines, "\n")
+        return item
+      end,
     }
   end,
   keys = {
