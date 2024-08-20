@@ -27,74 +27,75 @@ local function lazy_require(require_path)
   })
 end
 
-local function mode_color()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local higroup = "%#StatuslineModeCommand#"
-  if current_mode == "n" then
-    higroup = "%#StatuslineModeNormal#"
-  elseif current_mode == "i" or current_mode == "ic" then
-    higroup = "%#StatuslineModeInsert#"
-  elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-    higroup = "%#StatuslineModeVisual#"
-  elseif current_mode == "R" or current_mode == "Rv" then
-    higroup = "%#StatuslineModeReplace#"
-  elseif current_mode == "s" or current_mode == "S" or current_mode == "" then
-    higroup = "%#StatuslineModeVisual#"
-  elseif current_mode == "c" then
-    higroup = "%#StatuslineModeCommand#"
-  end
-  return higroup
+local is_truncated = function(trunc_width)
+  local cur_width = vim.o.laststatus == 3 and vim.o.columns or vim.api.nvim_win_get_width(0)
+  return cur_width < (trunc_width or -1)
 end
 
+local CTRL_S = vim.api.nvim_replace_termcodes("<C-S>", true, true, true)
+local CTRL_V = vim.api.nvim_replace_termcodes("<C-V>", true, true, true)
+
+local modes = setmetatable({
+  ["n"] = { long = "NORMAL", short = "N", hl = "%#StatuslineModeNormal#" },
+  ["v"] = { long = "VISUAL", short = "V", hl = "%#StatuslineModeVisual#" },
+  ["V"] = { long = "V-LINE", short = "V-L", hl = "%#StatuslineModeVisual#" },
+  [CTRL_V] = { long = "V-BLOCK", short = "V-B", hl = "%#StatuslineModeVisual#" },
+  ["s"] = { long = "SELECT", short = "S", hl = "%#StatuslineModeVisual#" },
+  ["S"] = { long = "S-LINE", short = "S-L", hl = "%#StatuslineModeVisual#" },
+  [CTRL_S] = { long = "S-BLOCK", short = "S-B", hl = "%#StatuslineModeVisual#" },
+  ["i"] = { long = "INSERT", short = "I", hl = "%#StatuslineModeInsert#" },
+  ["R"] = { long = "REPLACE", short = "R", hl = "%#StatuslineModeReplace#" },
+  ["c"] = { long = "COMMAND", short = "C", hl = "%#StatuslineModeCommand#" },
+  ["r"] = { long = "PROMPT", short = "P", hl = "%#StatuslineModeOther#" },
+  ["!"] = { long = "SHELL", short = "Sh", hl = "%#StatuslineModeOther#" },
+  ["t"] = { long = "TERMINAL", short = "T", hl = "%#StatuslineModeOther#" },
+}, {
+  __index = function()
+    return { long = "Unknown", short = "U", hl = "%#StatuslineModeOther#" }
+  end,
+})
+
 local function get_mode()
-  local modes = {
-    ["n"] = "NORMAL",
-    ["v"] = "VISUAL",
-    ["V"] = "V-LINE",
-    [""] = "V-BLOCK",
-    ["s"] = "SELECT",
-    ["S"] = "S-LINE",
-    [""] = "S-BLOCK",
-    ["i"] = "INSERT",
-    ["R"] = "REPLACE",
-    ["c"] = "COMMAND",
-    ["r"] = "PROMPT",
-    ["!"] = "SHELL",
-    ["t"] = "TERMINAL",
-  }
-  local current_mode = vim.api.nvim_get_mode().mode
-  local value = ""
-  if modes[current_mode] == nil then
-    value = "UNKNOWN"
-  else
-    value = modes[current_mode]
-  end
-  return mode_color() .. " " .. value .. " " .. _spacer(0)
+  local mode_info = modes[vim.fn.mode()]
+  local mode = is_truncated(120) and mode_info.short or mode_info.long
+  return mode_info.hl .. " " .. mode .. " " .. _spacer(0)
+end
+
+local function get_filetype()
+  if vim.fn.mode() == "t" then return "" end
+  local icon, hl, _ = require("mini.icons").get("filetype", vim.bo.filetype)
+  hl = "%#" .. hl .. "#"
+  return hl .. icon .. _spacer(0)
 end
 
 local function get_path()
+  if vim.fn.mode() == "t" then return "" end
+  if is_truncated(100) then
+    return _spacer(1)
+  end
   local path = vim.fn.expand "%:~:.:h"
-  local higroup = "%#StatuslineTextAccent#"
+  local hl = "%#StatuslineTextAccent#"
   local max_width = 30
   if path == "." or path == "" then
     return ""
   elseif #path > max_width then
     path = "…" .. string.sub(path, -max_width + 2)
   end
-  return _spacer(1) .. higroup .. path .. "/"
+  return _spacer(1) .. hl .. path .. "/"
 end
 
 local function get_filename()
+  if vim.fn.mode() == "t" then return "" end
   local filename = vim.fn.expand "%:~:t"
   local path = vim.fn.expand "%:~:.:h"
-  local higroup = "%#StatuslineTextMain#"
+  local hl = "%#StatuslineTextMain#"
   if filename == "" then
-    return _spacer(1) .. higroup .. "[No Name]"
+    return _spacer(1) .. hl .. "[No Name]"
   end
   if path == "." then
-    return _spacer(1) .. higroup .. filename
+    return _spacer(1) .. hl .. filename
   end
-  return higroup .. filename
+  return hl .. filename
 end
 
 local function get_modification_status()
@@ -106,7 +107,7 @@ local function get_modification_status()
   if buf_modified then
     return hi_notsaved .. " • "
   elseif buf_modifiable == false or buf_readonly == true then
-    return hi_readonly .. " • "
+    return hi_readonly .. " 󰑇 "
   else
     return ""
   end
@@ -114,21 +115,21 @@ end
 
 local function get_lsp_status()
   local clients = vim.lsp.get_clients { bufnr = 0 }
-  local higroup = "%#StatuslineLspOn#"
+  local hl = "%#StatuslineLspOn#"
   if #clients > 0 and clients[1].initialized then
-    return higroup .. "  " .. _spacer(0)
+    return hl .. "  " .. _spacer(0)
   else
     return ""
   end
 end
 
 local function get_formatter_status()
-  local higroup = "%#StatuslineFormatterStatus#"
+  local hl = "%#StatuslineFormatterStatus#"
   local conform = lazy_require "conform"
 
   local formatters = conform.list_formatters(0)
   if #formatters > 0 then
-    return higroup .. "  " .. _spacer(0)
+    return hl .. "  " .. _spacer(0)
   else
     return ""
   end
@@ -150,31 +151,31 @@ local function get_diagnostics()
   local count_info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
   local count_hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local diag_count = 0
-  local higroup_error = "%#DiagnosticError#"
-  local higroup_warning = "%#DiagnosticWarn#"
+  local hl_error = "%#DiagnosticError#"
+  local hl_warning = "%#DiagnosticWarn#"
 
-  local higroup_info = "%#DiagnosticInfo#"
-  local higroup_hint = "%#DiagnosticHint#"
+  local hl_info = "%#DiagnosticInfo#"
+  local hl_hint = "%#DiagnosticHint#"
   local error, warning, info, hint = "", "", "", ""
   if count_error == 0 then
     error = ""
   else
-    error = higroup_error .. "• " .. count_error .. _spacer(1)
+    error = hl_error .. "• " .. count_error .. _spacer(1)
   end
   if count_warning == 0 then
     warning = ""
   else
-    warning = higroup_warning .. "• " .. count_warning .. _spacer(1)
+    warning = hl_warning .. "• " .. count_warning .. _spacer(1)
   end
   if count_info == 0 then
     info = ""
   else
-    info = higroup_info .. "• " .. count_info .. _spacer(1)
+    info = hl_info .. "• " .. count_info .. _spacer(1)
   end
   if count_hint == 0 then
     hint = ""
   else
-    hint = higroup_hint .. "• " .. count_hint .. _spacer(1)
+    hint = hl_hint .. "• " .. count_hint .. _spacer(1)
   end
   if count_error + count_warning + count_info + count_hint == 0 then
     diag_count = 0
@@ -185,66 +186,49 @@ local function get_diagnostics()
 end
 
 local function get_branch()
+  if is_truncated(40) then
+    return ""
+  end
   local branch = vim.fn.FugitiveHead()
-  local higroup_main = "%#StatuslineTextMain#"
-  local higroup_accent = "%#StatuslineTextAccent#"
+  local hl_main = "%#StatuslineTextMain#"
+  local hl_accent = "%#StatuslineTextAccent#"
   if branch == "" then
     return ""
   end
-  return higroup_accent .. " " .. higroup_main .. branch .. _spacer(2)
+  return hl_accent .. " " .. hl_main .. branch .. _spacer(2)
 end
 
 local function get_recording()
-  local higroup_main = "%#StatuslineTextMain#"
-  local higroup_accent = "%#StatuslineTextAccent#"
-  local recorder = lazy_require "recorder"
-  local status = recorder.recordingStatus()
-  if status == "" then
+  local hl_main = "%#StatuslineTextMain#"
+  local hl_accent = "%#StatuslineTextAccent#"
+  local noice = lazy_require "noice"
+  local status = noice.api.status.mode.get()
+  if status == nil then
     return ""
   end
-  return higroup_accent .. " " .. higroup_main .. recorder.recordingStatus() .. _spacer(2)
-end
-
-local function get_macro_slots()
-  local higroup_main = "%#StatuslineTextMain#"
-  local higroup_accent = "%#StatuslineTextAccent#"
-  local recorder = lazy_require "recorder"
-  local display_slots = recorder.displaySlots()
-
-  if display_slots == "" then
-    return ""
-  end
-
-  return higroup_accent .. " " .. higroup_main .. display_slots .. _spacer(2)
+  return hl_accent .. " " .. hl_main .. status .. _spacer(2)
 end
 
 local function get_percentage()
+  if is_truncated(75) then
+    return ""
+  end
   local current_line = vim.fn.line "."
   local total_lines = vim.fn.line "$"
   local percent = vim.fn.floor(current_line / total_lines * 100)
   local content = ""
-  local higroup_bold = "%#StatuslineTextBold#"
-  local higroup_accent = "%#StatuslineTextAccent#"
+  local hl_bold = "%#StatuslineTextBold#"
+  local hl_accent = "%#StatuslineTextAccent#"
   if current_line == 1 then
     content = "TOP"
   elseif current_line == total_lines then
     content = "END"
   elseif percent < 10 then
-    content = higroup_accent .. "·" .. higroup_bold .. percent .. "%%"
+    content = hl_accent .. "·" .. hl_bold .. percent .. "%%"
   else
     content = percent .. "%%"
   end
-  return higroup_accent .. "≡ " .. higroup_bold .. content .. _spacer(2)
-end
-
-local function get_filetype()
-  local higroup = "%#StatuslineTextMain#"
-  local ft = vim.bo.filetype:upper()
-  if ft == "" then
-    return higroup .. "-" .. _spacer(2)
-  else
-    return higroup .. ft .. _spacer(2)
-  end
+  return hl_accent .. "≡ " .. hl_bold .. content .. _spacer(2)
 end
 
 M.setup = function()
@@ -264,6 +248,7 @@ M.load = function()
 
   return table.concat {
     get_mode(),
+    get_filetype(),
     get_path(),
     get_filename(),
     get_modification_status(),
@@ -273,11 +258,9 @@ M.load = function()
     _spacer(2),
     _align(),
     get_diagnostics(),
-    -- get_recording(),
-    -- get_macro_slots(),
+    get_recording(),
     get_branch(),
     get_percentage(),
-    get_filetype(),
     _truncate(),
   }
 end
