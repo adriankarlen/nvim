@@ -8,37 +8,20 @@ return {
       "nvim-neotest/nvim-nio",
     },
     config = function()
-      local neotest_ns = vim.api.nvim_create_namespace "neotest"
-      vim.diagnostic.config({
-        virtual_text = {
-          format = function(diagnostic)
-            -- Replace newline and tab characters with space for more compact diagnostics
-            local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-            return message
-          end,
-        },
-      }, neotest_ns)
-
       require("neotest").setup {
         adapters = {
-          require "neotest-dotnet",
-        },
-        status = { virtual_text = true },
-        output = { open_on_run = true },
-        quickfix = {
-          open = function()
-            if LazyVim.has "trouble.nvim" then
-              require("trouble").open { mode = "quickfix", focus = false }
-            else
-              vim.cmd "copen"
-            end
-          end,
+          require "neotest-dotnet" {
+            dotnet_additional_args = {
+              "--runtime win-x64",
+            },
+            discovery_root = "solution",
+          },
         },
       }
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "run file" },
+      { "<leader>tt", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = { "--runtime win-x64" } }) end, desc = "run-file" },
       { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "run all test files" },
       { "<leader>tr", function() require("neotest").run.run() end, desc = "run nearest" },
       { "<leader>tl", function() require("neotest").run.run_last() end, desc = "run last" },

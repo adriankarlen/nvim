@@ -18,6 +18,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>h", group = "hurl", icon = "" },
       { "<leader>l", group = "lsp" },
+      { "<leader>n", group = ".net", icon = "󰌛" },
       { "<leader>p", group = "packages", icon = "" },
       { "<leader>pn", group = "dotnet", icon = "󰌛" },
       { "<leader>r", group = "compiler", icon = "" },
