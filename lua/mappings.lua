@@ -1,8 +1,8 @@
 local map = vim.keymap
 
 -- go to beginning and end
-map.set("i", "<C-b>", "<esc>^i", { desc = "go to beginning of line" })
-map.set("i", "<C-e>", "<end>", { desc = "go to end of line" })
+map.set("i", "<C-6>", "<esc>^i", { desc = "go to beginning of line" })
+map.set("i", "<C-4>", "<end>", { desc = "go to end of line" })
 
 map.set("n", "<esc>", "<cmd> noh <cr>", { silent = true, desc = "clear search highlight" })
 
@@ -44,14 +44,8 @@ map.set(
   { expr = true, desc = "move down through wrapped lines" }
 )
 
--- bubble lines
-map.set("n", "-", ":m .+1<cr>==", { silent = true, desc = "bubble up" })
-map.set("n", "_", ":m .-2<cr>==", { silent = true, desc = "bubble down" })
-map.set("v", "-", ":m '>+1<cr>gv=gv", { silent = true, desc = "bubble up" })
-map.set("v", "_", ":m '<-2<cr>gv=gv", { silent = true, desc = "bubble down" })
-
 -- buffer management
-map.set("n", "<leader>n", "<cmd> enew <cr>", { desc = "new buffer" })
+map.set("n", "<leader>bn", "<cmd> enew <cr>", { desc = "new buffer" })
 map.set("n", "<leader>bd", "<cmd> bd <cr>", { desc = "delete current buffer" })
 map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buffers except current one" })
 
