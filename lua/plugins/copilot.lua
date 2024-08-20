@@ -1,5 +1,16 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      suggestion = {
+        enable = false,
+      },
+      panel = {
+        enable = false,
+      },
+    },
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     event = "BufReadPre",

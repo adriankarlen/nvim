@@ -1,19 +1,5 @@
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    opts = {
-      suggestion = {
-        enable = false,
-      },
-      panel = {
-        enable = false,
-      },
-    },
-  },
-  {
-    "hrsh7th/cmp-nvim-lsp",
-  },
+  { "hrsh7th/cmp-nvim-lsp" },
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
@@ -33,15 +19,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
-    opts = {},
+    event = "InsertEnter",
     config = function()
       local cmp = require "cmp"
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -50,6 +28,23 @@ return {
         "minifiles",
         "TelescopePrompt",
       }
+      local function get_lsp_completion_context(completion, source)
+        local ok, source_name = pcall(function()
+          return source.source.client.config.name
+        end)
+
+        if not ok then
+          return nil
+        end
+
+        if source_name == "vtsls" then
+          if completion.labelDetails ~= nil then
+            return completion.labelDetails.description
+          end
+        end
+
+        return nil
+      end
 
       cmp.setup {
         enabled = function()
@@ -67,7 +62,7 @@ return {
             col_offset = -3,
             side_padding = 0,
           },
-          documentation = cmp.config.window.bordered {
+          documentation = {
             border = "single",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
           },
@@ -75,13 +70,22 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           expandable_indicator = true,
-          format = function(_, vim_item)
-            if _G.MiniIcons then
-              local icon, hl, _ = MiniIcons.get("lsp", vim_item.kind)
-              vim_item.menu = "    (" .. vim_item.kind .. ")"
-              vim_item.kind = " " .. (icon or "") .. " "
-              vim_item.kind_hl_group = hl
+          format = function(entry, vim_item)
+            local icons = require "mini.icons"
+            local icon, hl, _ = icons.get("lsp", vim_item.kind)
+            local menu = "    (" .. vim_item.kind .. ")"
+
+            vim_item.kind = " " .. (icon or "") .. " "
+            vim_item.kind_hl_group = hl
+            local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+            if completion_context ~= nil and completion_context ~= "" then
+              local truncated_context = string.sub(completion_context, 1, 8)
+              if truncated_context ~= completion_context then
+                truncated_context = truncated_context .. "…"
+              end
+              menu = "    " .. truncated_context
             end
+            vim_item.menu = menu
             return vim_item
           end,
         },
@@ -91,7 +95,7 @@ return {
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-x>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm { select = true },
         },
         sources = {
