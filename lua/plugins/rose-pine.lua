@@ -6,6 +6,7 @@ return {
 
     config = function()
       require("rose-pine").setup {
+        dark_variant = "moon",
         styles = {
           transparency = true,
         },
@@ -26,6 +27,9 @@ return {
           StatuslineFormatterStatus = { fg = "foam" },
           StatuslineCopilot = { fg = "rose" },
           QuickFixFilename = { fg = "text" },
+          NoiceCmdlinePopupBorder = { fg = "rose" },
+          NoiceCmdlinePopupTitle = { link = "NoiceCmdlinePopupBorder" },
+          NoiceCmdlineIcon = { link = "NoiceCmdlinePopupBorder" },
         },
       }
       vim.cmd "colorscheme rose-pine"
