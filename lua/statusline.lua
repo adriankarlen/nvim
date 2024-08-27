@@ -58,18 +58,25 @@ local modes = setmetatable({
 local function get_mode()
   local mode_info = modes[vim.fn.mode()]
   local mode = is_truncated(120) and mode_info.short or mode_info.long
-  return mode_info.hl .. " " .. mode .. " " .. _spacer(0)
+  return mode_info.hl .. " " .. mode .. " " .. _spacer(1)
 end
 
 local function get_filetype()
-  if vim.fn.mode() == "t" then return "" end
+  local disabled_modes = {
+    "t", "!"
+  }
+  if vim.tbl_contains(disabled_modes, vim.fn.mode()) then
+    return ""
+  end
   local icon, hl, _ = require("mini.icons").get("filetype", vim.bo.filetype)
   hl = "%#" .. hl .. "#"
-  return hl .. icon .. _spacer(0)
+  return hl .. icon .. _spacer(1)
 end
 
 local function get_path()
-  if vim.fn.mode() == "t" then return "" end
+  if vim.fn.mode() == "t" then
+    return ""
+  end
   if is_truncated(100) then
     return _spacer(1)
   end
@@ -81,21 +88,23 @@ local function get_path()
   elseif #path > max_width then
     path = "…" .. string.sub(path, -max_width + 2)
   end
-  return _spacer(1) .. hl .. path .. "/"
+  return hl .. path .. "/"
 end
 
 local function get_filename()
-  if vim.fn.mode() == "t" then return "" end
+  if vim.fn.mode() == "t" then
+    return ""
+  end
   local filename = vim.fn.expand "%:~:t"
   local path = vim.fn.expand "%:~:.:h"
   local hl = "%#StatuslineTextMain#"
   if filename == "" then
-    return _spacer(1) .. hl .. "[No Name]"
+    return hl .. "[No Name]" .. _spacer(1)
   end
   if path == "." then
-    return _spacer(1) .. hl .. filename
+    return hl .. filename .. _spacer(1)
   end
-  return hl .. filename
+  return hl .. filename .. _spacer(1)
 end
 
 local function get_modification_status()
@@ -105,9 +114,9 @@ local function get_modification_status()
   local hi_notsaved = "%#StatuslineNotSaved#"
   local hi_readonly = "%#StatuslineReadOnly#"
   if buf_modified then
-    return hi_notsaved .. " • "
+    return hi_notsaved .. "•" .. _spacer(1)
   elseif buf_modifiable == false or buf_readonly == true then
-    return hi_readonly .. " 󰑇 "
+    return hi_readonly .. "󰑇" .. _spacer(1)
   else
     return ""
   end
@@ -117,7 +126,7 @@ local function get_lsp_status()
   local clients = vim.lsp.get_clients { bufnr = 0 }
   local hl = "%#StatuslineLspOn#"
   if #clients > 0 and clients[1].initialized then
-    return hl .. "  " .. _spacer(0)
+    return hl .. " " .. _spacer(1)
   else
     return ""
   end
@@ -129,20 +138,31 @@ local function get_formatter_status()
 
   local formatters = conform.list_formatters(0)
   if #formatters > 0 then
-    return hl .. "  " .. _spacer(0)
+    return hl .. " " .. _spacer(1)
   else
     return ""
   end
 end
 
 local function get_copilot_status()
-  local hi_copilot = "%#StatuslineCopilot#"
+  local hl_copilot = "%#StatuslineCopilot#"
   local c = lazy_require "copilot.client"
   local ok = not c.is_disabled() and c.buf_is_attached(vim.api.nvim_get_current_buf())
   if not ok then
     return ""
   end
-  return hi_copilot .. "  " .. _spacer(0)
+  return hl_copilot .. " " .. _spacer(1)
+end
+
+local function get_arrow_status()
+  local hl_main = "%#StatuslineTextMain#"
+  local hl_accent = "%#StatuslineTextAccent#"
+  local arrow = lazy_require "arrow.statusline"
+  if not arrow.is_on_arrow_file() then
+    return ""
+  end
+  local index = arrow.text_for_statusline()
+  return hl_accent .. "󱡁 " .. hl_main .. index .. _spacer(1)
 end
 
 local function get_diagnostics()
@@ -252,14 +272,13 @@ M.load = function()
     get_path(),
     get_filename(),
     get_modification_status(),
+    get_arrow_status(),
     get_lsp_status(),
     get_formatter_status(),
     get_copilot_status(),
-    _spacer(2),
     _align(),
     get_diagnostics(),
     get_recording(),
-    get_branch(),
     get_percentage(),
     _truncate(),
   }
