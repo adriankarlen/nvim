@@ -238,14 +238,14 @@ return {
       end,
     })
 
-    -- vim.api.nvim_create_autocmd("User", {
-    --   pattern = "MiniFilesWindowUpdate",
-    --   callback = function(args)
-    --     local config = vim.api.nvim_win_get_config(args.data.win_id)
-    --     config.height = 15
-    --     vim.api.nvim_win_set_config(args.data.win_id, config)
-    --   end,
-    -- })
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesWindowUpdate",
+      callback = function(args)
+        local config = vim.api.nvim_win_get_config(args.data.win_id)
+        config.height = 15
+        vim.api.nvim_win_set_config(args.data.win_id, config)
+      end,
+    })
   end,
   keys = {
     {
