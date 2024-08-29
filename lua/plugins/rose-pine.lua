@@ -30,6 +30,9 @@ return {
           NoiceCmdlinePopupBorder = { fg = "rose" },
           NoiceCmdlinePopupTitle = { link = "NoiceCmdlinePopupBorder" },
           NoiceCmdlineIcon = { link = "NoiceCmdlinePopupBorder" },
+          AvanteTitle = { fg = "rose", bg = "none" },
+          AvanteSubTitle = { fg = "pine", bg = "none" },
+          AvanteThirdTitle = { fg = "iris", bg = "none" },
         },
       }
       vim.cmd "colorscheme rose-pine"

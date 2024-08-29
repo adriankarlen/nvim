@@ -2,7 +2,7 @@ return {
   "MeanderingProgrammer/render-markdown.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
   opts = {
-    -- file_types = { "markdown", "copilot-chat" },
+    file_types = { "markdown", "copilot-chat","Avante" },
     code = {
       sign = false,
       width = "block",
@@ -13,5 +13,5 @@ return {
       icons = { "󰉫 ", "󰉬  ", "󰉭   ", "󰉮    ", "󰉯     ", "󰉰      " },
     },
   },
-  ft = { "markdown", "copilot-chat" },
+  ft = { "markdown", "Avante" },
 }
