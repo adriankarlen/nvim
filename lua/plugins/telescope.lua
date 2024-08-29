@@ -1,16 +1,11 @@
 return {
   {
-    "nvim-telescope/telescope-ui-select.nvim",
-  },
-  {
-    "debugloop/telescope-undo.nvim",
-  },
-  {
-    "Myzel394/jsonfly.nvim",
-  },
-  {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "Myzel394/jsonfly.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+    },
     lazy = false,
     config = function()
       require("telescope").setup {
@@ -18,7 +13,6 @@ return {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {},
           },
-          ["undo"] = {},
         },
         defaults = {
           vimgrep_arguments = {
@@ -79,7 +73,6 @@ return {
         },
       }
       require("telescope").load_extension "ui-select"
-      require("telescope").load_extension "undo"
       require("telescope").load_extension "jsonfly"
       require("telescope").load_extension "noice"
     end,
@@ -120,15 +113,10 @@ return {
         desc = "buffers",
       },
       {
-        "<leader>fu",
-        "<cmd>Telescope undo<cr>",
-        desc = "undo",
-      },
-      {
         "<leader>fj",
         "<cmd>telescope - jsonfly<cr>",
         desc = "json(fly)",
-        ft = { "json" },
+        ft = { "json", "xml", "yaml" },
       },
       {
         "<leader>fn",
