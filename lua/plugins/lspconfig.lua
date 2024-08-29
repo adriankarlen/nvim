@@ -62,14 +62,17 @@ return {
     }
   end,
   keys = {
-    { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", desc = "lsp declaration" },
-    { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", desc = "lsp definition" },
-    { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", desc = "lsp hover" },
-    { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "lsp implementation" },
-    { "gK", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "lsp signature help" },
-    { "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "lsp type definition" },
-    { "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "lsp references" },
-    { "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", desc = "lsp goto prev diagnostic" },
-    { "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", desc = "lsp goto next diagnostic" },
+    -- stylua: ignore start
+    { "gD", function() vim.lsp.buf.declaration()end, desc = "lsp declaration" },
+    { "gd", function() vim.lsp.buf.definition()end, desc = "lsp definition" },
+    { "K", function() vim.lsp.buf.hover()end, desc = "lsp hover" },
+    { "gi", function() vim.lsp.buf.implementation()end, desc = "lsp implementation" },
+    { "gK", function() vim.lsp.buf.signature_help()end, desc = "lsp signature help" },
+    { "gy", function() vim.lsp.buf.type_definition()end, desc = "lsp type definition" },
+    { "gr", function() vim.lsp.buf.references()end, desc = "lsp references" },
+    { "[d", function() vim.lsp.diagnostic.goto_prev()end, desc = "lsp goto prev diagnostic" },
+    { "]d", function() vim.lsp.diagnostic.goto_next()end, desc = "lsp goto next diagnostic" },
+    {"<leader>Ti", function() vim.lsp.inlay_hint.enable() end, desc = "inlay hint"},
+    -- stylua: ignore start
   },
 }

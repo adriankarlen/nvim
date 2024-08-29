@@ -63,7 +63,8 @@ end
 
 local function get_filetype()
   local disabled_modes = {
-    "t", "!"
+    "t",
+    "!",
   }
   if vim.tbl_contains(disabled_modes, vim.fn.mode()) then
     return ""
@@ -205,6 +206,18 @@ local function get_diagnostics()
   return error .. warning .. info .. hint .. _spacer(diag_count)
 end
 
+local function get_dotnet_solution()
+  local hl_main = "%#StatuslineTextMain#"
+  local solution = vim.fs.basename(vim.g.roslyn_nvim_selected_solution)
+  if solution == nil then
+    return ""
+  end
+  solution = solution:gsub("%.[^%.]+$", "")
+  local icon, hl, _ = require("mini.icons").get("filetype", "solution")
+  hl = "%#" .. hl .. "#"
+  return hl .. icon .. " " .. hl_main .. solution .. _spacer(2)
+end
+
 local function get_branch()
   if is_truncated(40) then
     return ""
@@ -279,6 +292,8 @@ M.load = function()
     _align(),
     get_diagnostics(),
     get_recording(),
+    get_dotnet_solution(),
+    get_branch(),
     get_percentage(),
     _truncate(),
   }
