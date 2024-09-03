@@ -14,14 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 require "autocmds"
 require "options"
 require "mappings"
-require "statusline".setup()
+require("statusline").setup()
+require("lang.dotnet.commands").setup()
 
-require("lazy").setup({
+require("lazy").setup {
   spec = {
     { import = "plugins" },
   },
   ui = {
-    border = "single"
+    border = "single",
   },
-})
-
+}
