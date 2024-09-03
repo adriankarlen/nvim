@@ -30,6 +30,7 @@ return {
           NoiceCmdlinePopupBorder = { fg = "rose" },
           NoiceCmdlinePopupTitle = { link = "NoiceCmdlinePopupBorder" },
           NoiceCmdlineIcon = { link = "NoiceCmdlinePopupBorder" },
+          NoiceMini = { fg = "muted" },
           AvanteTitle = { fg = "rose", bg = "none" },
           AvanteSubtitle = { fg = "pine", bg = "none" },
           AvanteThirdTitle = { fg = "iris", bg = "none" },
@@ -41,6 +42,7 @@ return {
           DapUIPlayPause = { fg = "pine" },
           DapUIRestart = { fg = "pine" },
           DapUIUnavailable = { fg = "muted" },
+          IndentLineCurrent = { fg = "muted" },
         },
       }
       vim.cmd "colorscheme rose-pine"

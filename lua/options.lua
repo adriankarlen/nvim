@@ -43,7 +43,7 @@ opt.undofile = true
 
 -- show tab and trailing characters
 opt.list = true
-opt.listchars = { tab = "┊ ", trail = "·" }
+opt.listchars = { trail = "·" }
 
 -- diagnostic configurations
 vim.diagnostic.config {

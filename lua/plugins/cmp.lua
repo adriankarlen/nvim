@@ -2,17 +2,11 @@ return {
   { "hrsh7th/cmp-nvim-lsp" },
   {
     "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-    },
+    dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
   },
   {
     "Jezda1337/nvim-html-css",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-lua/plenary.nvim",
-    },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
     config = function()
       require("html-css"):setup()
     end,
@@ -24,10 +18,7 @@ return {
       local cmp = require "cmp"
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      local disabled_filetypes = {
-        "minifiles",
-        "TelescopePrompt",
-      }
+      local disabled_filetypes = { "minifiles", "TelescopePrompt" }
       local function get_lsp_completion_context(completion, source)
         local ok, source_name = pcall(function()
           return source.source.client.config.name
@@ -61,6 +52,7 @@ return {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0,
+            scrollbar = false,
           },
           documentation = {
             border = "single",
@@ -73,7 +65,7 @@ return {
           format = function(entry, vim_item)
             local icons = require "mini.icons"
             local icon, hl, _ = icons.get("lsp", vim_item.kind)
-            local menu = "    (" .. vim_item.kind .. ")"
+            local menu = "    " .. vim_item.kind
 
             vim_item.kind = " " .. (icon or "") .. " "
             vim_item.kind_hl_group = hl
@@ -86,6 +78,7 @@ return {
               menu = "    " .. truncated_context
             end
             vim_item.menu = menu
+            vim_item.menu_hl_group = hl
             return vim_item
           end,
         },
