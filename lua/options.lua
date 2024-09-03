@@ -79,14 +79,18 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (fn.is_win and ";" or ":
 
 -- shell configuration
 if fn.is_win then
-  o.shellslash = true
-  opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
-  opt.shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-  opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-  opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  opt.shellquote = ""
-  opt.shellxquote = ""
+  local powershell_options = {
+    shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+    shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+    shellquote = "",
+    shellxquote = "",
+  }
+
+  for option, value in pairs(powershell_options) do
+    opt[option] = value
+  end
 end
 
 -- add filetype handlings
