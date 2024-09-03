@@ -2,6 +2,7 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   event = "ColorScheme",
+  cmd = "ToggleTerm",
   config = function()
     local highlights = require "rose-pine.plugins.toggleterm"
     require("toggleterm").setup {
@@ -19,25 +20,18 @@ return {
       },
     }
   end,
-  keys = {
-    {
-      "<leader><leader>",
-      function()
-        if vim.bo.filetype ~= "lazygit" then
-          vim.cmd "ToggleTerm"
-        end
-      end,
-      desc = "toggle terminal",
-    },
-    {
-      "<leader><leader>",
-      function()
-        if vim.bo.filetype ~= "lazygit" then
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n><C-w>l", true, true, true), "n", {})
-        end
-      end,
-      mode = "t",
-      desc = "hide terminal",
-    },
-  },
+  keys = function(_, keys)
+    local function toggleterm()
+      local venv = vim.b["virtual_env"]
+      local term = require("toggleterm.terminal").Terminal:new {
+        env = venv and { VIRTUAL_ENV = venv } or nil,
+        count = vim.v.count > 0 and vim.v.count or 1,
+      }
+      term:toggle()
+    end
+    local mappings = {
+      { "<leader><leader>", mode = { "n", "t" }, toggleterm, desc = "toggle terminal" },
+    }
+    return vim.list_extend(mappings, keys)
+  end,
 }
