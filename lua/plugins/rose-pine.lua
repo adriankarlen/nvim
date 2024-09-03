@@ -31,8 +31,16 @@ return {
           NoiceCmdlinePopupTitle = { link = "NoiceCmdlinePopupBorder" },
           NoiceCmdlineIcon = { link = "NoiceCmdlinePopupBorder" },
           AvanteTitle = { fg = "rose", bg = "none" },
-          AvanteSubTitle = { fg = "pine", bg = "none" },
+          AvanteSubtitle = { fg = "pine", bg = "none" },
           AvanteThirdTitle = { fg = "iris", bg = "none" },
+          DapUIStepOver = { fg = "foam" },
+          DapUIStepInto = { fg = "foam" },
+          DapUIStepBack = { fg = "foam" },
+          DapUIStepOut = { fg = "foam" },
+          DapUIStop = { fg = "love" },
+          DapUIPlayPause = { fg = "pine" },
+          DapUIRestart = { fg = "pine" },
+          DapUIUnavailable = { fg = "muted" },
         },
       }
       vim.cmd "colorscheme rose-pine"

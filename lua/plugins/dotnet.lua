@@ -15,20 +15,6 @@ return {
     },
   },
   {
-    "adamkali/dotnvim",
-    ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
-    opts = {},
-    keys = {
-      -- stylua: ignore start 
-      { "<leader>nb", function() require("dotnvim").build(true) end, desc = "build last project" },
-      { "<leader>nw", function() require("dotnvim").watch(true) end, desc = "watch last project" },
-      { "<leader>nW", function() require("dotnvim").restart_watch() end, desc = "restart watch job" },
-      { "<leader>nx", function() require("dotnvim").shutdown_watch() end, desc = "shutdown watch job" },
-      { "<leader>pns", function() require("dotnvim").nuget_auth() end, desc = "authenticate nuget sources" },
-      -- stylua: ignore end
-    },
-  },
-  {
     "seblj/roslyn.nvim",
     opts = function()
       require("roslyn").setup {
@@ -71,5 +57,36 @@ return {
         end,
       })
     end,
+  },
+  {
+    "GustavEikaas/easy-dotnet.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+    opts = {
+      terminal = function(path, action)
+        local commands = {
+          run = function()
+            return "dotnet run --project " .. path
+          end,
+          test = function()
+            return "dotnet test " .. path
+          end,
+          restore = function()
+            return "dotnet restore " .. path
+          end,
+          build = function()
+            return "dotnet build " .. path
+          end,
+        }
+        local command = commands[action]() .. "\r"
+        require("toggleterm").exec(command, nil, nil, nil, "float")
+      end,
+    },
+    keys = {
+      -- stylua: ignore start 
+      { "<leader>nb", function() require("easy-dotnet").build_default_quickfix() end, desc = "build" },
+      { "<leader>nr", function() require("easy-dotnet").run_default() end, desc = "run" },
+      -- stylua: ignore end
+    },
   },
 }
