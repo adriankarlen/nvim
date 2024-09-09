@@ -55,6 +55,9 @@ return {
     opts = {
       show_notification = true,
       mode = "popup",
+      env_file = {
+        "env/vars.env",
+      }
     },
     keys = {
       -- Run API request
