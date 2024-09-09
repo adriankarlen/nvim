@@ -1,16 +1,12 @@
-local opt = vim.opt
 local fn = require "utils.fn"
+local opt = vim.opt
 local g = vim.g
-local o = vim.o
 
--------------------------------------- globals ------------------------------------------
+-- ─[ globals ]────────────────────────────────────────────────────────
 g.mapleader = " "
 g.maplocalleader = ","
 
--------------------------------------- options ------------------------------------------
--- opt.laststatus = 3
--- opt.showmode = false
-
+-- ─[ options ]────────────────────────────────────────────────────────
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
@@ -30,7 +26,7 @@ opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
-opt.relativenumber = true
+opt.rnu = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"

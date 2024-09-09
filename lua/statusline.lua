@@ -291,7 +291,7 @@ M.load = function()
     get_copilot_status(),
     _align(),
     get_diagnostics(),
-    -- get_recording(),
+    get_recording(),
     get_dotnet_solution(),
     get_branch(),
     get_percentage(),

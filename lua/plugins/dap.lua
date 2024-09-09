@@ -19,6 +19,9 @@ return {
         dapui.close()
       end
 
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "DapBreakpoint", numhl = "" })
+      vim.fn.sign_define("DapStopped", { text = "󰳟", texthl = "", linehl = "DapStopped", numhl = "" })
+
       require("dap-config.netcore").register_net_dap()
     end,
     keys = {

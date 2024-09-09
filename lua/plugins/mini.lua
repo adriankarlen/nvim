@@ -44,7 +44,7 @@ return {
       require("mini.files").setup {
         windows = {
           width_preview = 60,
-          width_focus = 30,
+          width_focus = 40,
           preview = true,
         },
         mappings = {

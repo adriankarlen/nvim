@@ -79,8 +79,11 @@ return {
           end,
         }
         local command = commands[action]() .. "\r"
-        require("toggleterm").exec(command, nil, nil, nil, "float")
+        require("toggleterm").Terminal:new({ cmd = command, close_on_exit = true, direction = "float" }):toggle()
       end,
+      testrunner = {
+        viewmode = "float",
+      },
     },
     keys = {
       -- stylua: ignore start 

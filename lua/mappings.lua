@@ -1,3 +1,4 @@
+-- ─[ mappings ]───────────────────────────────────────────────────────
 local map = vim.keymap
 
 -- go to beginning and end
