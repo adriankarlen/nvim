@@ -10,7 +10,10 @@ g.maplocalleader = ","
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
--- Indenting
+-- tabline
+opt.showtabline = 2
+
+-- indenting
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.smartindent = true
@@ -22,7 +25,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 
--- Numbers
+-- numbers
 opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
@@ -75,6 +78,7 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (fn.is_win and ";" or ":
 
 -- shell configuration
 if fn.is_win then
+  vim.o.shellslash = true
   local powershell_options = {
     shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
     shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
