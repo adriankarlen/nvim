@@ -1,5 +1,6 @@
 local fn = require "utils.fn"
 local opt = vim.opt
+local o = vim.o
 local g = vim.g
 
 -- ─[ globals ]────────────────────────────────────────────────────────
@@ -26,10 +27,10 @@ opt.smartcase = true
 opt.mouse = "a"
 
 -- numbers
-opt.number = true
-opt.numberwidth = 2
-opt.ruler = false
-opt.rnu = true
+o.number = true
+o.numberwidth = 2
+o.ruler = false
+o.rnu = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"
