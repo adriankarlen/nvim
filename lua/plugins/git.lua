@@ -3,8 +3,18 @@ return {
     "tpope/vim-fugitive",
   },
   {
-    event = "BufReadPre",
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewFileHistory",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+    },
+    opts = {},
+  },
+  {
     "lewis6991/gitsigns.nvim",
+    cmd = "Gitsigns",
     config = function()
       require("gitsigns").setup()
       require("scrollbar.handlers.gitsigns").setup()
@@ -36,6 +46,31 @@ return {
     end,
     keys = {
       { "<leader>gl", "<cmd>LazyGit<cr>", desc = "lazygit" },
+    },
+  },
+  {
+    "chrisgrieser/nvim-tinygit",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      staging = {
+        stagedIndicator = "+",
+      },
+      commitMsg = {
+        spellcheck = true,
+        conventionalCommits = {
+          enforce = true,
+        },
+      },
+    },
+    keys = {
+      -- stylua: ignore start
+      { "<leader>ga", function() require("tinygit").interactiveStaging() end, desc = "stage" },
+      { "<leader>gc", function() require("tinygit").smartCommit() end, desc = "commit" },
+      { "<leader>gp", function() require("tinygit").push() end, desc = "push" },
+      { "<leader>gP", function() require("tinygit").createGitHubPr() end, desc = "create pr" },
+      -- stylua: ignore end
     },
   },
 }
