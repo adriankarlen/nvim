@@ -5,11 +5,9 @@ return {
     opts = {},
     keys = {
       -- stylua: ignore start 
-      { "<leader>na", "<cmd>:DotnetUI new_item<cr>", desc = "new item" },
-      { "<leader>ns", "<cmd>:DotnetUI file bootstrap<cr>", desc = "bootstrap class", silent = true},
-      { "<leader>pnA", "<cmd>:DotnetUI project reference add<cr>", desc = "add project reference", silent = true },
-      { "<leader>pnR", "<cmd>:DotnetUI project reference remove<cr>", desc = "remove project reference", silent = true},
-      { "<leader>pna", "<cmd>:DotnetUI project package add<cr>", desc = "add project package", silent = true},
+      { "<leader>ns", "<cmd>:DotnetUI file bootstrap<cr>", desc = "bootstrap class", silent = true },
+      { "<leader>pnR", "<cmd>:DotnetUI project reference remove<cr>", desc = "remove project reference", silent = true },
+      { "<leader>pna", "<cmd>:DotnetUI project package add<cr>", desc = "add project package", silent = true },
       { "<leader>pnr", "<cmd>:DotnetUI project package remove<cr>",  desc = "remove project package", silent = true },
       -- stylua: ignore end
     },
@@ -59,7 +57,8 @@ return {
     end,
   },
   {
-    "GustavEikaas/easy-dotnet.nvim",
+    "adriankarlen/easy-dotnet.nvim",
+    branch = "hotfix/use-diagnostics-hl-groups",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
     opts = {
@@ -79,16 +78,30 @@ return {
           end,
         }
         local command = commands[action]() .. "\r"
-        require("toggleterm").Terminal:new({ cmd = command, close_on_exit = true, direction = "float" }):toggle()
+        require("toggleterm.terminal").Terminal
+          :new({
+            cmd = command,
+            close_on_exit = action ~= "test",
+            direction = action == "test" and "horizontal" or "float",
+          })
+          :toggle()
       end,
-      testrunner = {
+      test_runner = {
         viewmode = "float",
+        icons = {
+          project = "󰗀",
+        },
       },
     },
     keys = {
       -- stylua: ignore start 
       { "<leader>nb", function() require("easy-dotnet").build_default_quickfix() end, desc = "build" },
+      { "<leader>nB", function() require("easy-dotnet").build_quickfix() end, desc = "build solution" },
       { "<leader>nr", function() require("easy-dotnet").run_default() end, desc = "run" },
+      { "<leader>nR", function() require("easy-dotnet").run_solution() end, desc = "run solution" },
+      { "<leader>nx", function() require("easy-dotnet").clean() end, desc = "clean solution" },
+      { "<leader>na", "<cmd>Dotnet new<cr>", desc = "new item" },
+      { "<leader>nt", "<cmd>Dotnet testrunner<cr>", desc = "open test runner" },
       -- stylua: ignore end
     },
   },

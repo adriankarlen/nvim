@@ -49,6 +49,9 @@ return {
           DapUIRestart = { fg = "pine" },
           DapUIUnavailable = { fg = "muted" },
           IndentLineCurrent = { fg = "muted" },
+          EasyDotnetTestRunnerSolution = { fg = "pine" },
+          EasyDotnetTestRunnerProject = { fg = "rose" },
+          EasyDotnetTestRunnerTest = { fg = "iris" },
         },
       }
       vim.cmd "colorscheme rose-pine"
