@@ -19,7 +19,7 @@ return {
   },
   {
     "OXY2DEV/markview.nvim",
-    ft = "markdown, codecompanion",
+    ft = { "markdown", "codecompanion" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
@@ -31,6 +31,7 @@ return {
           hl = "CursorLine",
           sign_hl = nil,
         },
+        filetypes = { "markdown", "quarto", "rmd", "codecompanion" },
         highlight_groups = {
           { group_name = "Heading1", value = { fg = palette.base, bg = palette.iris } },
           { group_name = "Heading1Corner", value = { fg = palette.iris } },
