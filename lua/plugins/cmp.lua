@@ -12,6 +12,14 @@ return {
     end,
   },
   {
+    "David-Kunz/cmp-npm",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    ft = "json",
+    config = function()
+      require("cmp-npm").setup {}
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     config = function()
@@ -36,6 +44,8 @@ return {
 
         return nil
       end
+
+      cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
 
       cmp.setup {
         enabled = function()
@@ -92,14 +102,15 @@ return {
           ["<CR>"] = cmp.mapping.confirm { select = true },
         },
         sources = {
-          { name = "nvim_lsp", group_index = 2 },
-          { name = "copilot", group_index = 2 },
-          { name = "luasnip", group_index = 2 },
-          { name = "buffer", group_index = 2 },
-          { name = "nvim_lua", group_index = 2 },
-          { name = "path", group_index = 2 },
-          { name = "buffer", group_index = 2 },
-          { name = "cmdline", group_index = 2 },
+          { name = "nvim_lsp",    group_index = 2 },
+          { name = "copilot",     group_index = 2 },
+          { name = "luasnip",     group_index = 2 },
+          { name = "buffer",      group_index = 2 },
+          { name = "nvim_lua",    group_index = 2 },
+          { name = "path",        group_index = 2 },
+          { name = "cmdline",     group_index = 2 },
+          { name = "easy-dotnet", group_index = 2 },
+          { name = "npm",         group_index = 2 },
           {
             name = "html-css",
             group_index = 2,
