@@ -10,6 +10,7 @@ local servers = {
   "yamlls",
   "tailwindcss",
   "lemminx",
+  "rust_analyzer",
 }
 
 return {
