@@ -30,7 +30,6 @@ return {
         "html",
         "cssls",
         "svelte",
-        "denols",
         "tailwindcss",
         "lua_ls",
         "jsonls",
@@ -40,6 +39,7 @@ return {
         "powershell_es",
         "marksman",
         "lemminx",
+        "rust_analyzer",
       },
     }
 
