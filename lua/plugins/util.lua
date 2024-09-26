@@ -6,6 +6,9 @@ return {
       require("better_escape").setup()
     end,
     event = "InsertEnter",
+    mappings = {
+      t = false,
+    },
   },
   {
     "chrishrb/gx.nvim",
@@ -57,15 +60,15 @@ return {
       mode = "popup",
       env_file = {
         "env/vars.env",
-      }
+      },
     },
     keys = {
       -- Run API request
-      { "<leader>hr", "<cmd>HurlRunnerAt<CR>", desc = "run api request" },
-      { "<leader>ha", "<cmd>HurlRunner<CR>", desc = "run all requests" },
-      { "<leader>hA", "<cmd>HurlVerbose<CR>", desc = "run api in verbose mode" },
-      { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "run api request to entry" },
-      { "<leader>ht", "<cmd>HurlToggleMode<CR>", desc = "toggle popup/split result" },
+      { "<leader>hr", "<cmd>HurlRunnerAt<CR>", desc = "run api request", ft = "hurl" },
+      { "<leader>ha", "<cmd>HurlRunner<CR>", desc = "run all requests", ft = "hurl" },
+      { "<leader>hA", "<cmd>HurlVerbose<CR>", desc = "run api in verbose mode", ft = "hurl" },
+      { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "run api request to entry", ft = "hurl" },
+      { "<leader>ht", "<cmd>HurlToggleMode<CR>", desc = "toggle popup/split result", ft = "hurl" },
       {
         "<leader>hv",
         function()
@@ -76,10 +79,11 @@ return {
           end
         end,
         desc = "add env variable",
+        ft = "hurl",
       },
-      { "<leader>hm", "<cmd>HurlManageVariable<cr>", desc = "manage variable" },
+      { "<leader>hm", "<cmd>HurlManageVariable<cr>", desc = "manage variable", ft = "hurl" },
       -- Run Hurl request in visual mode
-      { "<leader>h", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
+      { "<leader>h", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v", ft = "hurl" },
     },
   },
   {
