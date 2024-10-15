@@ -57,8 +57,7 @@ return {
     end,
   },
   {
-    "adriankarlen/easy-dotnet.nvim",
-    branch = "hotfix/use-diagnostics-hl-groups",
+    "GustavEikaas/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
     opts = {

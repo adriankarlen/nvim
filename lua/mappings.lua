@@ -54,15 +54,22 @@ map.set("n", "<leader>bD", "<cmd> %bd|e#|bd#|'\" <cr>", { desc = "delete all buf
 map.set("x", "p", 'p:let @+=@0<cr>:let @"=@0<cr>', { desc = "paste without copying" })
 
 -- simpler movement on nordic keyboards
-map.set("n", ";", ":", { desc = "replace semicolon with colon" })
-map.set("n", "å", "\\", { desc = "replace å with backslash" })
-map.set("n", "ö", "[", { desc = "replace ö with left bracket" })
-map.set("n", "ä", "]", { desc = "replace ä with right bracket" })
-map.set({ "n", "v" }, "*", '"', { desc = "replace * with double quote" })
-map.set({ "n", "v" }, "Ö", "{", { desc = "replace Ö with left curly brace" })
-map.set({ "n", "v" }, "Ä", "}", { desc = "replace Ä with right curly brace" })
-map.set({ "n", "s", "v" }, "&", "^", { desc = "replace & with caret" })
-map.set({ "n", "s", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign" })
+map.set("n", ";", ":", { desc = "replace semicolon with colon", remap = true })
+map.set("n", "å", "\\", { desc = "replace å with backslash", remap = true })
+map.set("n", "ö", "[", { desc = "replace ö with left bracket", remap = true })
+map.set("n", "ä", "]", { desc = "replace ä with right bracket", remap = true })
+map.set({ "n", "v" }, "*", '"', { desc = "replace * with double quote", remap = true })
+map.set({ "n", "v" }, "Ö", "{", { desc = "replace Ö with left curly brace", remap = true })
+map.set({ "n", "v" }, "Ä", "}", { desc = "replace Ä with right curly brace", remap = true })
+map.set({ "n", "s", "v" }, "&", "^", { desc = "replace & with caret", remap = true })
+map.set({ "n", "s", "v" }, "¤", "$", { desc = "replace ¤ with dollar sign", remap = true })
 
 -- capitalize word in insert mode
 map.set("i", "GG", "<esc>bgUiwea", { desc = "make word uppercase" })
+
+-- remove carriage returns
+map.set("n", "<leader>sx", function()
+  local current_line = vim.fn.line "."
+  vim.cmd "%s/\r$//"
+  vim.fn.cursor(current_line, 0)
+end, { desc = "delete carriage returns" })

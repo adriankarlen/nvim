@@ -3,17 +3,11 @@ return {
     "echasnovski/mini.ai",
     version = false,
     config = function()
-      require("mini.ai").setup {
-        n_lines = 500,
-      }
+      require("mini.ai").setup { n_lines = 500 }
     end,
   },
-  {
-    "echasnovski/mini.align",
-    version = false,
-    event = "BufReadPre",
-    opts = {},
-  },
+  { "echasnovski/mini.align", version = false, event = "BufReadPre", opts = {} },
+  { "echasnovski/mini.bracketed", version = false },
   {
     "echasnovski/mini.cursorword",
     version = false,
@@ -134,12 +128,8 @@ return {
             if status then
               local symbol, hl_group = map_symbols(status)
               vim.api.nvim_buf_set_extmark(buf_id, ns_mini_files, i - 1, 0, {
-                -- NOTE: if you want the signs on the right uncomment those and comment
-                -- the 3 lines after
-                -- virt_text = { { symbol, hlGroup } },
-                -- virt_text_pos = "right_align",
-                sign_text = symbol,
-                sign_hl_group = hl_group,
+                virt_text = { { symbol, hl_group } },
+                virt_text_pos = "right_align",
                 priority = 2,
               })
             else
@@ -239,7 +229,6 @@ return {
       autocmd("User", {
         group = augroup "start",
         pattern = "MiniFilesExplorerOpen",
-        -- pattern = { "minifiles" },
         callback = function()
           local bufnr = vim.api.nvim_get_current_buf()
           update_git_status(bufnr)
@@ -338,28 +327,12 @@ return {
       },
     },
   },
-  {
-    "echasnovski/mini.pairs",
-    version = false,
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
+  { "echasnovski/mini.pairs", version = false, opts = {} },
   {
     "echasnovski/mini.splitjoin",
     version = false,
     event = "BufReadPre",
-    opts = {
-      mappings = {
-        toggle = "<leader>cm",
-      },
-    },
+    opts = { mappings = { toggle = "<leader>cm" } },
   },
-  {
-    "echasnovski/mini.surround",
-    version = false,
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
+  { "echasnovski/mini.surround", version = false, opts = {} },
 }

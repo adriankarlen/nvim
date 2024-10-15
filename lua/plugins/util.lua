@@ -7,6 +7,22 @@ return {
     end,
     event = "InsertEnter",
     mappings = {
+      i = {
+        j = {
+          j = function()
+            if vim.bo.filetype == "lazygit" then
+              return "<c-v>j<c-v>k"
+            end
+            return "<esc>"
+          end,
+          k = function()
+            if vim.bo.filetype == "lazygit" then
+              return "<c-v>j<c-v>k"
+            end
+            return "<esc>"
+          end,
+        },
+      },
       t = false,
     },
   },
@@ -44,7 +60,7 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {},
     keys = {
-      { "<leader>Th", "<cmd>Hardtime toggle<cr>", desc = "hardtime" },
+      { "<leader>th", "<cmd>Hardtime toggle<cr>", desc = "hardtime" },
     },
   },
   {
@@ -59,7 +75,8 @@ return {
       show_notification = true,
       mode = "popup",
       env_file = {
-        "env/vars.env",
+        "vars.env",
+        "env/at.env",
       },
     },
     keys = {
@@ -120,7 +137,7 @@ return {
     event = "BufRead",
     keys = {
       {
-        "<leader>Tp",
+        "<leader>tp",
         function()
           require("precognition").toggle()
         end,
@@ -131,12 +148,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       local config = require "nvim-treesitter.configs"
       config.setup {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
+        ensure_installed = { "lua", "vim", "typescript" },
       }
       vim.treesitter.language.register("markdown", "mdx")
     end,

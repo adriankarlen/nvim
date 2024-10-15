@@ -126,21 +126,6 @@ return {
     },
   },
   {
-    "petertriho/nvim-scrollbar",
-    event = "BufReadPre",
-    config = function()
-      require("scrollbar").setup {
-        hide_if_all_visible = true,
-        handle = {
-          blend = 0,
-        },
-        handlers = {
-          gitsigns = true,
-        },
-      }
-    end,
-  },
-  {
     "nvimdev/dashboard-nvim",
     lazy = false,
     dependencies = { "echasnovski/mini.icons" },
@@ -184,11 +169,11 @@ return {
           project = { enable = false },
           shortcut = {
             -- stylua: ignore start
-            { icon = "󰥨 ", desc = "find files", group = "DiagnosticWarn", key = "f", action = "Telescope find_files" },
-            { icon = " ", desc = "browse git", group = "DiagnosticWarn", key = "g", action = "LazyGit" },
-            { icon = "󰒲 ", desc = "lazy", group = "DiagnosticWarn", key = "l", action = "Lazy" },
-            { icon = "󱌣 ", desc = "mason", group = "DiagnosticWarn", key = "m", action = "Mason" },
-            { icon = "󰭿 ", desc = "quit", group = "DiagnosticWarn", key = "q", action = "qa" },
+            { icon = "󰥨 ", desc = "find files", key = "f", action = "Telescope find_files" },
+            { icon = " ", desc = "browse git", key = "g", action = "LazyGit" },
+            { icon = "󰒲 ", desc = "lazy", key = "l", action = "Lazy" },
+            { icon = "󱌣 ", desc = "mason", key = "m", action = "Mason" },
+            { icon = "󰭿 ", desc = "quit", key = "q", action = "qa" },
             -- stylua: ignore end
           },
           mru = {
@@ -239,7 +224,6 @@ return {
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
           },
         },
         notify = { enabled = false },
@@ -280,10 +264,6 @@ return {
         },
       },
     },
-  },
-  {
-    "stevearc/quicker.nvim",
-    opts = {},
   },
   {
     {
@@ -374,6 +354,18 @@ return {
         { "<leader>fn", "<cmd>Telescope noice<cr>", desc = "noice" },
         -- stylua: ignore end
       },
+    },
+  },
+  { "nvchad/volt", lazy = true },
+  {
+    "nvchad/menu",
+    lazy = true,
+    opts = {},
+
+    keys = {
+      -- stylua: ignore start
+      { "<C-t>", function() require("menu").open "default" end },
+      -- stylua: ignore end
     },
   },
 }

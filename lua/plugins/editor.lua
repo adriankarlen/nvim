@@ -1,6 +1,7 @@
 return {
   {
     "otavioschwanck/arrow.nvim",
+    lazy = true,
     opts = {
       show_icons = true,
       leader_key = ",", -- Recommended to be a single key
@@ -21,21 +22,6 @@ return {
         desc = "comment - title line",
       },
     },
-  },
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    vscode = true,
-    opts = {},
-    -- stylua: ignore start
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-    },
-    -- stylua: ignore end
   },
   {
     "MagicDuck/grug-far.nvim",
@@ -152,6 +138,7 @@ return {
   },
   {
     "folke/trouble.nvim",
+    cmd = "Trouble",
     opts = {
       modes = {
         preview_float = {
@@ -159,7 +146,7 @@ return {
           preview = {
             type = "float",
             relative = "editor",
-            border = "rounded",
+            border = "single",
             title = "Preview",
             title_pos = "center",
             position = { 0, -2 },
@@ -171,12 +158,12 @@ return {
     },
     -- stylua: ignore start
     keys = {
-      {"<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "diagnostics",},
-      {"<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "buffer Diagnostics",},
-      {"<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "symbols",},
-      {"<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "lsp definitions / references / ...",},
-      {"<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "location list",},
-      {"<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "quickfix list",},
+      {"<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", desc = "workspace diagnostics" },
+      {"<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "buffer diagnostics" },
+      {"<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "symbols" },
+      {"<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "lsp definitions / references / ..." },
+      {"<leader>l", "<cmd>Trouble loclist toggle<cr>", desc = "location list" },
+      {"<leader>q", "<cmd>Trouble qflist toggle<cr>", desc = "quickfix list" },
     },
     -- stylua: ignore end
   },
@@ -203,9 +190,8 @@ return {
         { "<leader>n", group = ".net", icon = "󰌛" },
         { "<leader>p", group = "packages", icon = "" },
         { "<leader>pn", group = "dotnet", icon = "󰌛" },
-        { "<leader>r", group = "compiler", icon = "" },
-        { "<leader>t", group = "test" },
-        { "<leader>T", group = "toggle" },
+        { "<leader>s", group = "search/replace" },
+        { "<leader>t", group = "toggle" },
         { "<leader>x", group = "diagnostics" },
         -- commands
         { "<leader>aa", icon = { icon = "", color = "red" } },
@@ -220,7 +206,6 @@ return {
         { "<leader>ct", icon = "󰅺" },
         { "<leader>db", icon = "󰃤" },
         { "<leader>e", icon = "󰙅" },
-        { "<leader>/", icon = "󰅺" },
       },
       disable = {
         ft = {
@@ -253,5 +238,9 @@ return {
         { "<Leader>z", "<cmd>ZenMode<cr>", desc = "zen mode" },
       },
     },
+  },
+  {
+    "tzachar/highlight-undo.nvim",
+    opts = { asdasdas },
   },
 }

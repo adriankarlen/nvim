@@ -79,6 +79,7 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (fn.is_win and ";" or ":
 
 -- shell configuration
 if fn.is_win then
+  opt.fileformats = { "unix", "dos" }
   vim.o.shellslash = true
   local powershell_options = {
     shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",

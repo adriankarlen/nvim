@@ -17,6 +17,7 @@ return {
   },
   {
     "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
     opts = {},
     keys = {
       {
@@ -29,9 +30,5 @@ return {
       },
     },
   },
-  {
-    "folke/ts-comments.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
+  { "folke/ts-comments.nvim", event = "VeryLazy", opts = {} },
 }
