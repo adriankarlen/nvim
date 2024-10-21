@@ -1,6 +1,8 @@
 return {
   {
     "OlegGulevskyy/better-ts-errors.nvim",
+    ft = { "typescript", "typescriptreact" },
+    event = "LspAttach",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       keymaps = {

@@ -1,8 +1,5 @@
 return {
   {
-    "tpope/vim-fugitive",
-  },
-  {
     "sindrets/diffview.nvim",
     cmd = {
       "DiffviewOpen",
@@ -18,6 +15,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
+    cmd = "Gitsigns",
     ft = { "gitcommit", "diff" },
     init = function()
       -- load gitsigns only when a git file is opened

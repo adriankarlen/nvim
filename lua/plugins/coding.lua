@@ -1,9 +1,7 @@
 return {
   {
     "windwp/nvim-ts-autotag",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
+    opts = {},
     ft = {
       "html",
       "svelte",
@@ -30,5 +28,5 @@ return {
       },
     },
   },
-  { "folke/ts-comments.nvim", event = "VeryLazy", opts = {} },
+  { "folke/ts-comments.nvim", event = "BufReadPre", opts = {} },
 }

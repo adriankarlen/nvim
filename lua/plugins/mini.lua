@@ -1,16 +1,11 @@
 return {
-  {
-    "echasnovski/mini.ai",
-    version = false,
-    config = function()
-      require("mini.ai").setup { n_lines = 500 }
-    end,
-  },
+  { "echasnovski/mini.ai", version = false, event = "BufReadPre", opts = { n_lines = 500 } },
   { "echasnovski/mini.align", version = false, event = "BufReadPre", opts = {} },
-  { "echasnovski/mini.bracketed", version = false },
+  { "echasnovski/mini.bracketed", version = false, event = "BufReadPre" },
   {
     "echasnovski/mini.cursorword",
     version = false,
+    event = "BufReadPre",
     config = function()
       require("mini.cursorword").setup()
       vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -34,6 +29,7 @@ return {
   {
     "echasnovski/mini.files",
     version = false,
+    lazy = true,
     config = function()
       require("mini.files").setup {
         windows = {
@@ -327,12 +323,12 @@ return {
       },
     },
   },
-  { "echasnovski/mini.pairs", version = false, opts = {} },
+  { "echasnovski/mini.pairs", version = false, event = "InsertEnter", opts = {} },
   {
     "echasnovski/mini.splitjoin",
     version = false,
     event = "BufReadPre",
     opts = { mappings = { toggle = "<leader>cm" } },
   },
-  { "echasnovski/mini.surround", version = false, opts = {} },
+  { "echasnovski/mini.surround", event = "BufReadPre", version = false, opts = {} },
 }

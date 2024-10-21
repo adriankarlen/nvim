@@ -1,22 +1,21 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      suggestion = {
-        enable = false,
-      },
-      panel = {
-        enable = false,
-      },
-    },
-  },
-  {
     "olimorris/codecompanion.nvim",
-    event = "BufEnter",
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- Optional
+      {
+        "zbirenbaum/copilot.lua",
+        opts = {
+          suggestion = {
+            enable = false,
+          },
+          panel = {
+            enable = false,
+          },
+        },
+      },
     },
     opts = {
       strategies = {

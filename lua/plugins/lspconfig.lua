@@ -15,7 +15,7 @@ local servers = {
 
 return {
   "neovim/nvim-lspconfig",
-  lazy = false,
+event = "User FilePost",
   config = function()
 
     local lspconfig = require "lspconfig"

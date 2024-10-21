@@ -10,6 +10,7 @@ return {
   },
   {
     "LudoPinelli/comment-box.nvim",
+    cmd = { "CBccbox18", "CBllline6" },
     keys = {
       {
         "<leader>cb",
@@ -47,6 +48,7 @@ return {
   },
   {
     "nvimdev/indentmini.nvim",
+    event = "User FilePost",
     opts = {
       char = "┊",
       only_current = true,
@@ -55,6 +57,7 @@ return {
   },
   {
     "brenoprata10/nvim-highlight-colors",
+    event = "BufReadPre",
     config = function()
       require("nvim-highlight-colors").setup {
         render = "virtual",
@@ -82,6 +85,7 @@ return {
   {
     "luckasRanarison/tailwind-tools.nvim",
     name = "tailwind-tools",
+    ft = { "html", "typescriptreact", "javascriptreact", "svelte" },
     build = ":UpdateRemotePlugins",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -102,8 +106,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    event = "ColorScheme",
-    cmd = "ToggleTerm",
+    lazy = true,
     config = function()
       local highlights = require "rose-pine.plugins.toggleterm"
       require("toggleterm").setup {
@@ -169,11 +172,11 @@ return {
   },
   {
     "folke/which-key.nvim",
-    event = "VeryLazy",
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+    event = "VeryLazy",
     opts = {
       preset = "modern",
       win = { border = "single" },
@@ -216,31 +219,19 @@ return {
     },
   },
   {
-    {
-      "folke/twilight.nvim",
-      event = "BufReadPre",
-      opts = {
-        dimming = {
-          alpha = 0.40,
-        },
+    "folke/zen-mode.nvim",
+    dependencies = {
+      { "folke/twilight.nvim", opts = { dimming = { alpha = 0.40 } } },
+    },
+    cmd = "ZenMode",
+    opts = {
+      wezterm = {
+        enabled = true,
+        font_size = "+4",
       },
     },
-    {
-      "folke/zen-mode.nvim",
-      event = "BufReadPre",
-      opts = {
-        wezterm = {
-          enabled = true,
-          font_size = "+4",
-        },
-      },
-      keys = {
-        { "<Leader>z", "<cmd>ZenMode<cr>", desc = "zen mode" },
-      },
+    keys = {
+      { "<Leader>z", "<cmd>ZenMode<cr>", desc = "zen mode" },
     },
-  },
-  {
-    "tzachar/highlight-undo.nvim",
-    opts = { asdasdas },
   },
 }

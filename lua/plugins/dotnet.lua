@@ -14,9 +14,24 @@ return {
   },
   {
     "seblj/roslyn.nvim",
+    ft = "cs",
     opts = function()
-      require("roslyn").setup {
-        ft = "cs",
+      vim.api.nvim_create_autocmd({ "LspAttach", "InsertLeave" }, {
+        pattern = "*",
+        callback = function()
+          local clients = vim.lsp.get_clients { name = "roslyn" }
+          if not clients or #clients == 0 then
+            return
+          end
+
+          local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
+          for _, buf in ipairs(buffers) do
+            vim.lsp.util._refresh("textDocument/diagnostic", { bufnr = buf })
+            vim.lsp.codelens.refresh()
+          end
+        end,
+      })
+      return {
         config = {
           settings = {
             ["csharp|inlay_hints"] = {
@@ -39,27 +54,14 @@ return {
           },
         },
       }
-      vim.api.nvim_create_autocmd({ "LspAttach", "InsertLeave" }, {
-        pattern = "*",
-        callback = function()
-          local clients = vim.lsp.get_clients { name = "roslyn" }
-          if not clients or #clients == 0 then
-            return
-          end
-
-          local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
-          for _, buf in ipairs(buffers) do
-            vim.lsp.util._refresh("textDocument/diagnostic", { bufnr = buf })
-            vim.lsp.codelens.refresh()
-          end
-        end,
-      })
     end,
   },
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+    lazy = true,
+    cmd = "Dotnet",
     opts = {
       terminal = function(path, action)
         local commands = {

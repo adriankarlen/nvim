@@ -4,7 +4,7 @@ return {
     name = "barbecue",
     version = "*",
     dependencies = { "SmiteshP/nvim-navic", "echasnovski/mini.icons" },
-    event = "BufWinEnter",
+    event = "BufReadPost",
     config = function()
       local palette = require "rose-pine.palette"
       -- triggers CursorHold event faster
@@ -21,13 +21,10 @@ return {
       }
 
       vim.api.nvim_create_autocmd({
-        "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+        "WinResized", -- or WinResized on NVIM-v0.9 and higher
         "BufWinEnter",
         "CursorHold",
         "InsertLeave",
-
-        -- include this if you have set `show_modified` to `true`
-        "BufModifiedSet",
       }, {
         group = vim.api.nvim_create_augroup("barbecue.updater", {}),
         callback = function()
@@ -39,6 +36,7 @@ return {
   {
     "willothy/nvim-cokeline",
     dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
+    event = "BufReadPost",
     config = function()
       local cokeline = require "cokeline"
       local get_hex = require("cokeline.hlgroups").get_hl_attr
@@ -71,6 +69,7 @@ return {
   {
     "ghillb/cybu.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
+    lazy = true,
     config = function()
       require("cybu").setup {
         behavior = {
@@ -104,7 +103,7 @@ return {
   },
   {
     "Chaitanyabsprip/fastaction.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       register_ui_select = true,
       popup = {
@@ -122,6 +121,7 @@ return {
     keys = {
       -- stylua: ignore start
       { "<leader>ca", function() require("fastaction").code_action() end, desc = "code action", buffer = true },
+      { "<leader>cA", function() require("fastaction").range_code_action() end, mode = "x", desc = "code action", buffer = true },
       -- stylua: ignore end
     },
   },
@@ -193,7 +193,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    event = "BufEnter",
+    event = "BufReadPre",
     opts = {
       progress = {
         display = {
@@ -268,12 +268,12 @@ return {
   {
     {
       "nvim-telescope/telescope.nvim",
+      cmd = "Telescope",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "Myzel394/jsonfly.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
       },
-      lazy = false,
       config = function()
         require("telescope").setup {
           extensions = {

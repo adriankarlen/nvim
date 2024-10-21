@@ -3,7 +3,6 @@ return {
     "rose-pine/neovim",
     lazy = false,
     name = "rose-pine",
-
     config = function()
       require("rose-pine").setup {
         dark_variant = "moon",

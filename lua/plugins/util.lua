@@ -58,7 +58,16 @@ return {
   {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {},
+    opts = {
+      hints = {
+        ["[dcyvV][ia][%(%)]"] = {
+          message = function(keys)
+            return "Use " .. keys:sub(1, 2) .. "b instead of " .. keys
+          end,
+          length = 3,
+        },
+      },
+    },
     keys = {
       { "<leader>th", "<cmd>Hardtime toggle<cr>", desc = "hardtime" },
     },
@@ -105,7 +114,7 @@ return {
   },
   {
     "HakonHarnes/img-clip.nvim",
-    event = "VeryLazy",
+    cmd = "PasteImage",
     opts = {
       default = {
         embed_image_as_base64 = false,
@@ -134,7 +143,10 @@ return {
   },
   {
     "tris203/precognition.nvim",
-    event = "BufRead",
+    lazy = true,
+    opts = {
+      highlightColor = { link = "Comment" },
+    },
     keys = {
       {
         "<leader>tp",
