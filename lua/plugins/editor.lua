@@ -197,8 +197,6 @@ return {
         { "<leader>t", group = "toggle" },
         { "<leader>x", group = "diagnostics" },
         -- commands
-        { "<leader>aa", icon = { icon = "", color = "red" } },
-        { "<leader>aq", icon = "󱧌" },
         { "<leader>bd", icon = "󰭿" },
         { "<leader>bD", icon = "󰭿" },
         { "<leader>ca", icon = "󱐋" },

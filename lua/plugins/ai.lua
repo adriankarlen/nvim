@@ -1,10 +1,13 @@
 return {
   {
-    "olimorris/codecompanion.nvim",
-    lazy = true,
+    "yetone/avante.nvim",
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      provider = "copilot",
+    },
+    event = "BufReadPost",
+    build = "pwsh -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       {
         "zbirenbaum/copilot.lua",
         opts = {
@@ -16,36 +19,6 @@ return {
           },
         },
       },
-    },
-    opts = {
-      strategies = {
-        inline = {
-          adapter = "copilot",
-        },
-        chat = {
-          adapter = "copilot",
-          roles = {
-            llm = "  Copilot",
-          },
-        },
-        agent = {
-          adapter = "copilot",
-        },
-      },
-      display = {
-        chat = {
-          window = {
-            width = 0.25,
-          },
-        },
-      },
-    },
-    keys = {
-      -- stylua: ignore start
-      { "<leader>aq", function() local q = vim.fn.input "Ask: " if q ~= "" then vim.cmd("CodeCompanion " .. q) end end, desc = "quick ask" },
-      { "<leader>aa", "<cmd>CodeCompanionActions<cr>", mode = { "n", "x" }, desc = "actions" },
-      { "<leader>at", "<cmd>CodeCompanionToggle<cr>", mode = { "n", "x" }, desc = "toggle" },
-      -- stylua: ignore end
     },
   },
 }
