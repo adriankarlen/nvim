@@ -73,3 +73,6 @@ map.set("n", "<leader>sx", function()
   vim.cmd "%s/\r$//"
   vim.fn.cursor(current_line, 0)
 end, { desc = "delete carriage returns" })
+
+-- sort bindings
+map.set("x", "<leader>cS", "<cmd>'<,'>sort<cr>")

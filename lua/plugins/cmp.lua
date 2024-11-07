@@ -5,9 +5,7 @@ return {
     dependencies = "rafamadriz/friendly-snippets",
     version = "v0.*",
     opts = {
-      highlight = {
-        use_nvim_cmp_as_default = true,
-      },
+      keymap = { preset = "default" },
       nerd_font_variant = "normal",
       windows = {
         autocomplete = {

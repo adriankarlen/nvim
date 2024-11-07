@@ -16,7 +16,7 @@ return {
           normal = { fg = palette.subtle },
         },
         symbols = {
-          separator = "",
+          separator = " ",
         },
       }
 
@@ -67,36 +67,11 @@ return {
     end,
   },
   {
-    "ghillb/cybu.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
-    lazy = true,
-    config = function()
-      require("cybu").setup {
-        behavior = {
-          mode = {
-            last_used = {
-              switch = "immediate",
-              view = "rolling",
-            },
-          },
-          display_time = 250,
-        },
-      }
-    end,
-    keys = {
-
-      -- stylua: ignore start
-      { "<tab>", function() require("cybu").cycle "next" end, mode = { "n", "v" }, desc = "cybu - next" },
-      { "<s-tab>", function() require("cybu").cycle "prev" end, mode = { "n", "v" }, desc = "cybu - prev" },
-      -- stylua: ignore end
-    },
-    event = "BufRead",
-  },
-  {
     "leath-dub/snipe.nvim",
+    lazy = true,
     keys = {
       -- stylua: ignore start
-      { "<leader><tab>", function() require("snipe").open_buffer_menu() end, desc = "snipe buffer menu" },
+      { "<leader><tab>", function() require("snipe").open_buffer_menu() end, desc = "snipe buffer" },
       -- stylua: ignore end
     },
     opts = {},
@@ -108,20 +83,12 @@ return {
       register_ui_select = true,
       popup = {
         border = "single",
-        hide_cursor = true,
-        highlight = {
-          divider = "FloatBorder",
-          key = "MoreMsg",
-          title = "Title",
-          window = "NormalFloat",
-        },
-        title = "Select:",
+        title = "select:",
       },
     },
     keys = {
       -- stylua: ignore start
       { "<leader>ca", function() require("fastaction").code_action() end, desc = "code action", buffer = true },
-      { "<leader>cA", function() require("fastaction").range_code_action() end, mode = "x", desc = "code action", buffer = true },
       -- stylua: ignore end
     },
   },
@@ -170,7 +137,7 @@ return {
           shortcut = {
             -- stylua: ignore start
             { icon = "󰥨 ", desc = "find files", key = "f", action = "Telescope find_files" },
-            { icon = " ", desc = "browse git", key = "g", action = "LazyGit" },
+            { icon = " ", desc = "browse git", key = "g", action = function() Snacks.lazygit() end, },
             { icon = "󰒲 ", desc = "lazy", key = "l", action = "Lazy" },
             { icon = "󱌣 ", desc = "mason", key = "m", action = "Mason" },
             { icon = "󰭿 ", desc = "quit", key = "q", action = "qa" },
@@ -256,6 +223,11 @@ return {
               style = "single",
             },
           },
+          cmdline_input = {
+            border = {
+              style = "single",
+            },
+          },
           cmdline_popup = {
             border = {
               style = "single",
@@ -272,15 +244,9 @@ return {
       dependencies = {
         "nvim-lua/plenary.nvim",
         "Myzel394/jsonfly.nvim",
-        "nvim-telescope/telescope-ui-select.nvim",
       },
       config = function()
         require("telescope").setup {
-          extensions = {
-            ["ui-select"] = {
-              require("telescope.themes").get_dropdown {},
-            },
-          },
           defaults = {
             vimgrep_arguments = {
               "rg",
@@ -339,7 +305,6 @@ return {
             },
           },
         }
-        require("telescope").load_extension "ui-select"
         require("telescope").load_extension "jsonfly"
         require("telescope").load_extension "noice"
       end,
@@ -366,6 +331,15 @@ return {
       -- stylua: ignore start
       { "<C-t>", function() require("menu").open "default" end },
       -- stylua: ignore end
+    },
+  },
+  {
+    "folke/edgy.nvim",
+    event = "VeryLazy",
+    opts = {
+      animate = {
+        enabled = false,
+      },
     },
   },
 }

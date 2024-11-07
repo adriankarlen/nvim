@@ -136,7 +136,6 @@ return {
     opts = {
       library = {
         { path = "luvit-meta/library", words = { "vim%.uv" } },
-        { path = "LazyVim", words = { "LazyVim" } },
         { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
@@ -167,7 +166,10 @@ return {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-        ensure_installed = { "lua", "vim", "typescript" },
+        ignore_install = {},
+        ensure_installed = {},
+        sync_install = false,
+        modules = {},
       }
       vim.treesitter.language.register("markdown", "mdx")
     end,

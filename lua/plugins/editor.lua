@@ -52,7 +52,7 @@ return {
     opts = {
       char = "┊",
       only_current = true,
-      exclude = { "mini-files", "dashboard", "help", "lazy", "mason", "notify", "toggleterm" },
+      exclude = { "mini-files", "dashboard", "help", "lazy", "mason", "notify", "toggleterm", "copilot-chat" },
     },
   },
   {
@@ -93,6 +93,10 @@ return {
       "neovim/nvim-lspconfig",
     },
     opts = {},
+    keys = {
+      { "<leader>co", "<cmd>TailwindSort(Sync)", desc = "tailwind sort" },
+      { "<leader>co", mode = "x", "<cmd>TailwindSortSelection(Sync)", desc = "tailwind sort" },
+    },
   },
   {
     "folke/todo-comments.nvim",

@@ -14,6 +14,9 @@ opt.cursorline = true
 -- tabline
 opt.showtabline = 2
 
+-- split
+opt.splitkeep = "screen"
+
 -- indenting
 opt.expandtab = true
 opt.shiftwidth = 2
