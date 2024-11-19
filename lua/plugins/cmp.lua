@@ -5,11 +5,19 @@ return {
     dependencies = "rafamadriz/friendly-snippets",
     version = "v0.*",
     opts = {
-      keymap = { preset = "default" },
       nerd_font_variant = "normal",
       windows = {
         autocomplete = {
           border = "single",
+        },
+      },
+      sources = {
+        completion = {
+          enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+        },
+        providers = {
+          lsp = { fallback_for = { "lazydev" } },
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
         },
       },
     },

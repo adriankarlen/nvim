@@ -31,7 +31,7 @@ return {
   },
   {
     "GustavEikaas/easy-dotnet.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim"  },
     ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
     lazy = true,
     cmd = "Dotnet",
@@ -51,14 +51,8 @@ return {
             return "dotnet build " .. path
           end,
         }
-        local command = commands[action]() .. "\r"
-        require("toggleterm.terminal").Terminal
-          :new({
-            cmd = command,
-            close_on_exit = action ~= "test",
-            direction = action == "test" and "horizontal" or "float",
-          })
-          :toggle()
+        local cmd = commands[action]() .. "\r"
+        Snacks.terminal.open(cmd)
       end,
       test_runner = {
         viewmode = "float",
@@ -69,7 +63,7 @@ return {
     },
     keys = {
       -- stylua: ignore start 
-      { "<leader>nb", function() require("easy-dotnet").build_default_quickfix() end, desc = "build" },
+      -- { "<leader>nb", function() require("easy-dotnet").build_default_quickfix() end, desc = "build" },
       { "<leader>nB", function() require("easy-dotnet").build_quickfix() end, desc = "build solution" },
       { "<leader>nr", function() require("easy-dotnet").run_default() end, desc = "run" },
       { "<leader>nR", function() require("easy-dotnet").run_solution() end, desc = "run solution" },

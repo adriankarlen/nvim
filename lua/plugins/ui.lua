@@ -21,7 +21,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd({
-        "WinResized", -- or WinResized on NVIM-v0.9 and higher
+        "WinResized",
         "BufWinEnter",
         "CursorHold",
         "InsertLeave",
@@ -93,262 +93,102 @@ return {
     },
   },
   {
-    "nvimdev/dashboard-nvim",
-    lazy = false,
-    dependencies = { "echasnovski/mini.icons" },
-    opts = function()
-      local snufkin = [[
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠄⠒⠊⠉⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⡰⢾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠈⠉⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⢀⠀⠀⠀⠀⠀⢠⠎⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠒⠢⠤⣷⠒⢾⠂⡡⢒⣦⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⣷⣴⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣥⠀⢰⣋⡩⣴⣿⠎⠣⢶⡏⡖⣰⠠⣦⣠⣧⠤⣴⣂⣞⠙⡏⡸⢛⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠢⡉⠣⢲⣱⣁⡟⣓⠀⣴⣶⢑⣊⣹⡈⣣⣔⠡⠾⢄⠡⣿⠆⣋⣱⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⡦⡋⠛⠿⠥⡖⣸⢀⢦⣼⡴⢂⢙⠋⣌⣙⡥⢞⣰⠦⠜⠫⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⢰⠀⠀⠀⠀⠀⡘⡃⣮⢱⣷⠀⠀⠀⠀⠀⠀⠀⠀⢰⢸⣿⡦⢄⡀⠈⠀⠁⠛⠩⠾⠑⠚⢒⠙⢉⡃⡀⠙⣀⠤⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢠⣢⢠⢓⠂⢤⠀⢸⣼⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⢸⠰⢉⡀⢔⠅⠉⢩⣷⣶⠒⠈⡏⠉⠁⠙⡕⣾⣏⡓⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢒⡓⡾⣟⠂⡠⠊⠀⠀⠻⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⢆⠘⠥⣀⡀⠓⡄⠫⣁⠠⠞⠀⠀⠀⣸⡔⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠔⠊⠐⠄⠀⠀⠀⠀⠀⠀⠐⡌⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⡢⠄⣉⡁⠀⠀⠀⠀⢀⡠⡖⠁⣀⠤⠒⠂⠉⠉⠉⠐⠒⠤⡀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣾⡆⠀⠀⠀⠀⠀⠀⠀⢀⡤⠊⠔⢁⡝⡖⣷⠲⠶⣮⠹⠖⠋⢸⠊⠀⠀⠀⠀⠀⠀⢱⡀⡀⠀⠈⢠⣦⣸⡿⣀⡀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣸⣼⡇⡆⠀⠀⢽⣷⠒⢤⣾⣦⣄⡠⠊⣑⠕⢁⠔⡱⡌⠈⢿⣰⣤⡦⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⣧⢱⡀⢠⣶⢮⡀⣸⣛⠃⠀
-⠀⠀⠀⠀⠀⠀⠀⢀⡀⡂⡄⢀⡀⡄⢠⠀⠀⠀⠀⣿⣿⣿⣷⠃⢀⢼⠬⠭⡿⣸⣯⢟⠋⣱⣄⠉⠉⠛⠦⠟⠀⠀⠈⠛⠛⠁⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⣧⠀⠀⠸⠿⠙⠿⠃⠀
-⠀⠀⠀⠀⠀⠀⠀⠑⡔⡇⢰⠱⠁⢸⠀⡇⠀⢆⠀⠸⢿⠿⡫⠊⡱⢸⠫⠝⠳⠜⣿⣯⡻⡟⢊⡗⡄⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⢀⠄⡌⠀⠀⠀⠀⠀⠀⢸⡄⠈⣇⢹⡆⠀⠀⡎⠀⡔⢠⠃
-⠀⠀⠀⠀⠀⠀⠈⢆⠃⠃⠈⡗⡀⢸⡆⣿⢠⠸⡄⠀⡼⠊⠀⢠⠁⢸⠀⠀⢀⡠⣪⢿⢛⣚⠿⠃⢛⠀⠀⠀⠀⠀⢀⠔⠊⠀⢀⠎⢀⠃⠀⠀⠀⠀⠀⡄⠀⡼⡀⣿⠸⣷⠀⢠⠇⡼⠀⡞⢀
-⠀⠀⠀⠀⠄⠀⠐⠈⣾⠀⠀⣧⣧⢸⡇⣿⢸⠀⣧⠘⡄⠀⠀⢸⠀⠨⠒⠊⡡⠊⠀⠀⢳⣂⡈⠀⢀⠕⠒⠒⠤⠾⠥⡀⠀⣠⠊⠀⡜⠀⠀⠀⠀⠀⠀⢳⠀⡇⡇⡿⡄⣿⡀⢸⢸⠇⢰⡇⡜
-⠀⠀⠀⢢⠈⡄⠀⡇⢿⡀⢀⡇⢻⢸⣇⡟⣸⠠⠟⣴⣿⣿⣤⠈⠀⠀⠠⠊⠀⠀⠀⠀⠀⠈⠰⠲⡏⡀⠀⠀⠀⠀⠀⠀⠔⠁⠀⢰⠁⠀⠀⠀⠀⠀⠀⢸⡄⡇⢱⣷⡇⢿⡇⣾⣾⠀⢸⢃⡇
-⠀⠀⠀⠀⢣⢸⡄⢷⢸⡿⡧⡇⢸⠘⢨⣧⡁⠀⠀⣨⣽⣿⠟⠉⠁⢈⣽⣄⠀⠀⠀⠀⠀⠀⠀⠇⠐⢌⠑⠢⠤⣀⡀⠀⠀⡀⡰⡁⠠⡀⠀⠀⠀⠀⠀⢸⣇⠇⡏⢻⢸⢸⡇⣿⣿⠀⢸⢸⡇
-⠀⠀⠀⠀⠈⣇⣧⢸⠸⡇⡇⡇⢸⠀⠈⢿⣿⣶⣶⣾⡿⠋⠀⠀⠀⢛⣿⣿⣿⠦⣞⣠⠠⡚⠀⠸⡄⠀⠣⡀⠀⠀⠀⠉⠉⣰⠣⠆⣁⡓⠡⢇⠆⠀⠀⠀⠘⠀⠃⣿⢸⢸⡇⣿⣿⡄⠸⠋⠃
-⠀⠀⠀⠀⠀⢸⣸⣼⡆⠃⠃⣧⠛⠀⠀⠀⠉⠉⠻⣿⣿⣶⣦⣤⣶⡟⠁⠙⠁⠀⠀⠈⠀⢅⡀⠀⠀⠀⠀⠈⠀⠀⠀⢀⠜⠑⢏⢁⠍⣍⣑⠭⠀⣀⣀⡀⠲⠖⠀⡿⠸⢸⡇⠈⠘⠇⠀⠀⠀
-⠀⠀⠀⠀⠀⠈⡏⡇⠃⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠈⠋⠉⢹⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⢶⠆⠀⠐⠾⠿⣷⠂⢠⣤⣤⡌⠹⠇⠠⠀⠘⠛⠛⠁⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣴⠆⠀⠀⢀⣀⠀⠺⠿⠟⠀⠠⡶⣶⡗⠀⠀⠀⠓⠶⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-      ]]
-      local moria = [[
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢀⡀⠀⢀⠀⠀⠀⠀⠀⠀⣤⣀⣤⡾⢴⣶⠾⢟⢖⠷⣶⢦⢿⣤⣀⣤⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀
-⠀⠀⠺⠮⡏⠋⠀⠀⠀⣴⡔⢞⢣⡑⠶⠊⡇⣉⣀⣠⣇⣀⢋⡈⠜⠓⠎⢙⡳⢦⣤⠀⠀⠸⠜⠦⠇⠀⠀
-⠀⠀⠀⠘⠛⠀⢠⣤⠞⡨⡰⡏⣡⢴⣖⡿⠽⠓⠓⡓⣒⠒⠚⠯⠽⣿⣦⣌⡑⢧⣪⡳⣤⡄⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⣀⡮⣡⡞⢠⣴⡻⠗⠉⠀⠀⠀⠀⠀⢜⡷⠀⠀⠀⠀⠀⠉⠛⢽⣶⣔⠺⣮⣳⣀⡀⠀⠀⠀
-⠀⠀⠀⠀⢨⡟⣴⠋⡻⡫⠋⠀⠀⠀⣀⡀⠲⡟⡐⠁⠈⢢⢳⠶⢀⣀⠀⠀⠀⠙⢟⢦⠌⢑⠽⡅⠀⠀⠀
-⠀⠀⠀⢲⡟⠾⣂⢟⡽⠁⠀⠀⣠⠈⠻⠋⠀⢶⡐⡴⢂⢂⡷⠂⠙⠟⠁⣀⠀⠀⠈⢳⣱⡄⢻⢽⡖⠀⠀
-⠀⠀⢠⡼⢐⠇⡹⡽⠁⠀⠀⠈⠙⠃⠀⠀⠀⠘⠯⠭⠭⠽⠃⠀⠀⠀⠀⠉⠁⠀⠀⠀⢿⣥⡀⠴⢶⣀⠀
-⠀⣀⠤⠅⠙⠀⢳⣃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣞⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣘⡟⠂⠘⠳⠧⣀
-⠀⣵⣲⡀⠀⠀⣖⣆⣇⠤⢄⡀⠀⠀⠀⠀⠠⠴⡾⠿⠿⢿⡓⠶⠀⠀⠀⠀⢀⡠⠤⡸⣰⡲⠀⠀⢀⣖⣮
-⠀⠀⣸⠈⠉⠉⢹⡰⢱⠹⡵⣸⣀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠀⣀⣇⢯⠏⡎⢆⡏⠉⠉⠁⣇⠀
-⢀⡞⢹⠀⠀⠀⢸⢃⢇⠔⡫⠗⠒⠻⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠟⠒⠚⢝⠢⡸⡜⡇⠀⠀⠀⡏⢳
-⠈⢞⠾⣀⠀⠀⠘⢀⠏⡼⣴⢩⡀⢀⣾⠀⡆⢠⠀⠀⠀⠀⠄⢰⠀⣧⡀⢀⡍⣦⢧⠹⡀⠁⠀⠀⣀⠷⡳
-⠀⠀⡗⠢⣍⠒⠤⣸⠀⡟⢸⠑⢒⠶⠷⠾⣅⡴⢣⠀⠀⡜⢦⣨⠷⠮⠶⡒⠊⡇⢻⠀⣗⠤⠒⣩⠔⢺⠀
-⠀⠀⡇⠀⠀⠙⠢⡈⢧⠙⠀⡔⠁⢠⠂⠀⠘⣷⠚⠀⠀⠓⣾⠃⠀⠐⡄⠈⢢⠀⠋⡼⢁⠔⠋⠀⠀⢸⠀
-⠀⡜⡇⠀⠀⠀⠀⣿⣎⠂⣸⡎⢦⠸⡢⠤⢜⡜⠀⠀⠀⠀⢣⡣⠤⢴⠇⡴⢳⣇⠘⣵⣿⠀⠀⠀⠀⣸⢦
-⠀⡇⢯⡀⠀⠀⠀⡟⣿⠀⡟⠀⡈⡆⠀⠉⠁⢠⣰⣸⣦⣢⠄⠈⠉⠁⢰⢁⠀⢻⠀⣿⠻⠀⠀⠀⢀⡟⢸
-⠀⠹⣄⠉⠲⠤⣀⢠⢸⠀⢣⢸⡼⠋⢳⠀⠠⣭⡷⢽⠼⢶⡭⠄⠀⡞⠙⢧⡇⡌⠀⡇⡆⣀⠤⠖⠉⣠⠏
-⠀⠀⡇⠙⠒⢤⡈⠙⢾⠀⡸⢕⢁⡆⠁⠀⠀⠪⢗⣿⡼⡻⠑⠀⠀⠈⢰⡈⡪⢇⠀⡧⠋⢁⡤⠒⠉⢸⠀
-⠀⠀⡇⠀⠀⠀⠈⢢⡈⠀⡜⠀⠉⠀⠀⠀⠀⠀⠀⠘⠁⠁⠀⠀⠀⠀⠈⠉⠀⢃⠀⢁⡔⠁⠀⠀⠀⢸⠀
-⠀⠀⡇⠀⠀⠀⠀⢸⢳⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⣞⠇⠀⠀⠀⠀⢸⠀
-⠀⠀⡇⠀⠀⠀⠀⠀⣿⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⣿⠀⠀⠀⠀⠀⢸⠀
-⠀⠀⡇⠀⠀⠀⠀⠀⡿⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⢿⠀⠀⠀⠀⠀⢸⠀
-⠀⠀⡇⠀⠀⠀⠀⠀⡇⠀⡇⠀⠀⠀⠀⠀⠀⠀⣠⢄⠤⡀⠀⠀⠀⠀⠀⠀⠀⢸⠀⢸⠀⠀⠀⠀⠀⢸⠀
-⠀⠀⡇⠀⠀⠀⠀⠀⡇⠀⠱⣀⠀⠀⠀⠀⠀⠀⣹⠛⠛⠁⠀⠀⠀⠀⠀⠀⣀⠎⠀⢸⠀⠀⠀⠀⠀⢸⠀
-⠀⡴⣓⡤⠤⠤⠤⢄⡳⡄⠀⠀⠑⣄⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⣠⠊⠀⠀⢠⣖⡠⠤⠤⠤⢤⣚⢦
-⠀⡏⠒⠚⠋⠭⠛⠓⠊⡇⠀⠀⠀⠀⠉⠉⠉⠓⠒⠒⠒⠒⠚⠉⠉⠉⠀⠀⠀⠀⢸⠑⠚⠛⠉⠙⠓⠒⢹
-⠀⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉
-]]
-
-      return {
-        theme = "hyper",
-        shortcut_type = "number",
-        config = {
-          hide = {
-            statusline = false,
-          },
-          header = vim.split(moria, "\n"),
-          packages = { enable = false },
-          project = { enable = false },
-          shortcut = {
-            -- stylua: ignore start
-            { icon = "󰥨 ", desc = "find files", key = "f", action = "Telescope find_files" },
-            { icon = " ", desc = "browse git", key = "g", action = function() Snacks.lazygit() end, },
-            { icon = "󰒲 ", desc = "lazy", key = "l", action = "Lazy" },
-            { icon = "󱌣 ", desc = "mason", key = "m", action = "Mason" },
-            { icon = "󰭿 ", desc = "quit", key = "q", action = "qa" },
-            -- stylua: ignore end
-          },
-          mru = {
-            cwd_only = true,
-          },
-          footer = function()
-            local stats = require("lazy").stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return {
-              [[                                                                                    ]],
-              " Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-            }
-          end,
-        },
-      }
-    end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    event = "BufReadPre",
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    tag = "v4.4.7",
+    event = "VeryLazy",
     opts = {
-      progress = {
-        display = {
-          progress_icon = { pattern = "meter", period = 1 },
+      lsp = {
+        progress = { enabled = false },
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
         },
       },
-      notification = {
-        override_vim_notify = true,
-        poll_rate = 60, -- FPS
-        window = {
-          winblend = 0,
-          border = "single", -- Border around the notification window
+      notify = { enabled = false },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "written",
+          },
+          opts = { skip = true },
         },
       },
-    },
-  },
-  {
-    {
-      "folke/noice.nvim",
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-      },
-      tag = "v4.4.7",
-      event = "VeryLazy",
-      opts = {
-        lsp = {
-          progress = { enabled = false },
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
+      views = {
+        mini = {
+          position = {
+            col = -2,
+            row = -2,
           },
-        },
-        notify = { enabled = false },
-        presets = {
-          bottom_search = true,
-          command_palette = true,
-          long_message_to_split = true,
-          inc_rename = true,
-        },
-        routes = {
-          {
-            filter = {
-              event = "msg_show",
-              kind = "",
-              find = "written",
-            },
-            opts = { skip = true },
-          },
-        },
-        views = {
-          mini = {
-            position = {
-              col = -2,
-              row = -2,
-            },
-            win_options = {
-              winblend = 0,
-            },
-            border = {
-              style = "single",
-            },
-          },
-          cmdline_input = {
-            border = {
-              style = "single",
-            },
-          },
-          cmdline_popup = {
-            border = {
-              style = "single",
-            },
-          },
-        },
-      },
-    },
-  },
-  {
-    {
-      "nvim-telescope/telescope.nvim",
-      cmd = "Telescope",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "Myzel394/jsonfly.nvim",
-      },
-      config = function()
-        require("telescope").setup {
-          defaults = {
-            vimgrep_arguments = {
-              "rg",
-              "-L",
-              "--color=never",
-              "--no-heading",
-              "--with-filename",
-              "--line-number",
-              "--column",
-              "--smart-case",
-            },
-            prompt_prefix = "   ",
-            selection_caret = "  ",
-            entry_prefix = "  ",
-            initial_mode = "insert",
-            selection_strategy = "reset",
-            sorting_strategy = "ascending",
-            layout_strategy = "horizontal",
-            layout_config = {
-              horizontal = {
-                prompt_position = "top",
-                preview_width = 0.55,
-              },
-              vertical = {
-                mirror = false,
-              },
-              width = 0.87,
-              height = 0.80,
-              preview_cutoff = 120,
-            },
-            file_sorter = require("telescope.sorters").get_fuzzy_file,
-            file_ignore_patterns = { "node_modules" },
-            generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-            path_display = {
-              filename_first = {
-                reverse_directories = false,
-              },
-            },
+          win_options = {
             winblend = 0,
-            border = {},
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-            -- color_devicons = true,
-            set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-            file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-            grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-            qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-            -- Developer configurations: Not meant for general override
-            buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-            mappings = {
-              n = { ["q"] = require("telescope.actions").close },
-            },
           },
-          pickers = {
-            find_files = {
-              find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
-            },
+          border = {
+            style = "single",
           },
-        }
-        require("telescope").load_extension "jsonfly"
-        require("telescope").load_extension "noice"
-      end,
-      keys = {
-        -- stylua: ignore start
-        { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "find files" },
-        { "<leader>fa", function() require("telescope.builtin").find_files { hidden = true, follow = true, no_ignore = true } end, desc = "find all files" },
-        { "<leader>fw", function() require("telescope.builtin").live_grep() end, desc = "live grep" },
-        { "<leader>fo", function() require("telescope.builtin").oldfiles() end, desc = "old files" },
-        { "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "buffers" },
-        { "<leader>fj", "<cmd>telescope - jsonfly<cr>", desc = "json(fly)", ft = { "json", "xml", "yaml" } },
-        { "<leader>fn", "<cmd>Telescope noice<cr>", desc = "noice" },
-        -- stylua: ignore end
+        },
+        cmdline_input = {
+          border = {
+            style = "single",
+          },
+        },
+        cmdline_popup = {
+          border = {
+            style = "single",
+          },
+        },
       },
+    },
+  },
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    opts = {
+      winopts = {
+        height = 0.25,
+        width = 0.4,
+        row = 0.5,
+        border = "single",
+      },
+      fzf_opts = {
+        ["--no-info"] = "",
+        ["--info"] = "hidden",
+        ["--padding"] = "13%,5%,13%,5%",
+        ["--header"] = " ",
+        ["--no-scrollbar"] = "",
+      },
+      files = {
+        formatter = "path.filename_first",
+        git_icons = true,
+        prompt = "files:",
+        preview_opts = "hidden",
+        no_header = true,
+        cwd_header = false,
+        cwd_prompt = false,
+        cwd = require("utils.fn").root(),
+      },
+      search = {
+        prompt = "search:",
+        cwd = require("utils.fn").root(),
+      },
+    },
+    keys = {
+        -- stylua: ignore start
+        { "<leader>ff", function() require("fzf-lua").files() end, desc = "find files" },
+        { "<leader>fw", function() require("fzf-lua").live_grep() end, desc = "live grep" },
+        { "<leader>fw", function() require("fzf-lua").grep_visual() end, mode = "x", desc = "grep selection" },
+        { "<leader>fo", function() require("fzf-lua").oldfiles({}) end, desc = "old files" },
+      -- stylua: ignore end
     },
   },
   { "nvchad/volt", lazy = true },
@@ -365,11 +205,92 @@ return {
   },
   {
     "folke/edgy.nvim",
-    event = "VeryLazy",
-    opts = {
-      animate = {
-        enabled = false,
-      },
-    },
+    lazy = true,
+    event = { "BufWinLeave" },
+    opts = function(_, opts)
+      opts = {
+        animate = {
+          enabled = false,
+        },
+        bottom = {
+          { ft = "qf", title = "quickfix" },
+          {
+            ft = "help",
+            size = { height = 20 },
+            -- only show help buffers
+            filter = function(buf)
+              return vim.bo[buf].buftype == "help"
+            end,
+          },
+        },
+        right = {
+          { title = "grug far", ft = "grug-far", size = { width = 0.4 } },
+          { title = "copilot chat", ft = "copilot-chat", size = { width = 50 } },
+        },
+      }
+
+      --snacks terminal
+      for _, pos in ipairs { "top", "bottom", "left", "right" } do
+        opts[pos] = opts[pos] or {}
+        table.insert(opts[pos], {
+          ft = "snacks_terminal",
+          size = { height = 0.4 },
+          title = "%{b:snacks_terminal.id}",
+          filter = function(_, win)
+            return vim.w[win].snacks_win
+              and vim.w[win].snacks_win.position == pos
+              and vim.w[win].snacks_win.relative == "editor"
+              and not vim.w[win].trouble_preview
+          end,
+        })
+      end
+
+      -- trouble
+      for _, pos in ipairs { "top", "bottom", "left", "right" } do
+        opts[pos] = opts[pos] or {}
+        table.insert(opts[pos], {
+          ft = "trouble",
+          filter = function(_, win)
+            return vim.w[win].trouble
+              and vim.w[win].trouble.position == pos
+              and vim.w[win].trouble.type == "split"
+              and vim.w[win].trouble.relative == "editor"
+              and not vim.w[win].trouble_preview
+          end,
+        })
+      end
+
+      -- snacks terminal
+      for _, pos in ipairs { "top", "bottom", "left", "right" } do
+        opts[pos] = opts[pos] or {}
+        table.insert(opts[pos], {
+          ft = "snacks_terminal",
+          size = { height = 0.4 },
+          title = "%{b:snacks_terminal.id}: %{b:term_title}",
+          filter = function(_, win)
+            return vim.w[win].snacks_win
+              and vim.w[win].snacks_win.position == pos
+              and vim.w[win].snacks_win.relative == "editor"
+              and not vim.w[win].trouble_preview
+          end,
+        })
+      end
+      return opts
+    end,
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    lazy = true,
+    opts = function(_, opts)
+      local palette = require "rose-pine.palette"
+      opts = {
+        hi = {
+          fg = palette.gold,
+        },
+        smooth = false,
+      }
+      return opts
+    end,
+    event = { "BufWinLeave" },
   },
 }

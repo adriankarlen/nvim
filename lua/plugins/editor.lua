@@ -52,7 +52,7 @@ return {
     opts = {
       char = "┊",
       only_current = true,
-      exclude = { "mini-files", "dashboard", "help", "lazy", "mason", "notify", "toggleterm", "copilot-chat" },
+      exclude = { "mini-files", "dashboard", "help", "lazy", "mason", "notify", "snacks_terminal", "copilot-chat" },
     },
   },
   {
@@ -89,7 +89,6 @@ return {
     build = ":UpdateRemotePlugins",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim",
       "neovim/nvim-lspconfig",
     },
     opts = {},
@@ -104,44 +103,8 @@ return {
     opts = {},
     event = "BufRead",
     keys = {
-      { "<leader>fc", "<cmd>TodoTelescope<cr>", desc = "todo comments" },
+      { "<leader>fc", "<cmd>Trouble todo<cr>", desc = "todo comments" },
     },
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    lazy = true,
-    config = function()
-      local highlights = require "rose-pine.plugins.toggleterm"
-      require("toggleterm").setup {
-        highlights = highlights,
-        direction = "float",
-        shade_terminals = false,
-        float_opts = {
-          width = function()
-            return math.ceil(vim.o.columns * 0.5)
-          end,
-          height = function()
-            return math.ceil(vim.o.lines * 0.5)
-          end,
-          winblend = 0,
-        },
-      }
-    end,
-    keys = function(_, keys)
-      local function toggleterm()
-        local venv = vim.b["virtual_env"]
-        local term = require("toggleterm.terminal").Terminal:new {
-          env = venv and { VIRTUAL_ENV = venv } or nil,
-          count = vim.v.count > 0 and vim.v.count or 1,
-        }
-        term:toggle()
-      end
-      local mappings = {
-        { "<leader><leader>", mode = { "n", "t" }, toggleterm, desc = "toggle terminal" },
-      }
-      return vim.list_extend(mappings, keys)
-    end,
   },
   {
     "folke/trouble.nvim",
@@ -182,7 +145,7 @@ return {
     end,
     event = "VeryLazy",
     opts = {
-      preset = "modern",
+      preset = "helix",
       win = { border = "single" },
       spec = {
         -- groups
@@ -215,7 +178,7 @@ return {
       disable = {
         ft = {
           "lazygit",
-          "toggleterm",
+          "snacks_terminal",
         },
       },
     },
@@ -234,6 +197,19 @@ return {
     },
     keys = {
       { "<Leader>z", "<cmd>ZenMode<cr>", desc = "zen mode" },
+    },
+  },
+  {
+    "yorickpeterse/nvim-pqf",
+    lazy = true,
+    ft = "qf",
+    opts = {
+      signs = {
+        error = { text = "", hl = "DiagnosticSignError" },
+        warning = { text = "", hl = "DiagnosticSignWarn" },
+        info = { text = "", hl = "DiagnosticSignInfo" },
+        hint = { text = "", hl = "DiagnosticSignHint" },
+      },
     },
   },
 }

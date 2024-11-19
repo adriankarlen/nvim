@@ -100,7 +100,6 @@
 
 ### lsp
 
-- [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [smjonas/inc-rename.nvim](https://dotfyle.com/plugins/smjonas/inc-rename.nvim)
 

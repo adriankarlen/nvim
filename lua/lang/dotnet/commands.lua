@@ -28,9 +28,13 @@ local check_csproj = function(csproj)
   return false
 end
 
-local execute = function(cmd, display_name)
-  local toggleterm = require "toggleterm.terminal"
+local execute = function(cmd)
   local all_csproj = get_all_csproj()
+  local terminal_opts = {
+    win = {
+      position = "bottom"
+    }
+  }
   if vim.g.dotnet_utils.last_used_csproj == nil then
     vim.ui.select(all_csproj, {
       prompt = "Select a project:",
@@ -46,31 +50,19 @@ local execute = function(cmd, display_name)
       vim.g.dotnet_utils.last_used_csproj = choice
       vim.g.dotnet_utils.watch_is_running = true
 
-      local command = toggleterm.Terminal:new {
-        cmd = cmd .. choice,
-        display_name = display_name,
-        close_on_exit = close_on_exit,
-        direction = "float",
-      }
-      command:toggle()
+      Snacks.terminal.toggle(cmd .. choice, terminal_opts)
     end)
   else
-    local command = toggleterm.Terminal:new {
-      cmd = cmd .. vim.g.dotnet_utils.last_used_csproj,
-      display_name = display_name,
-      close_on_exit = true,
-      direction = "float",
-    }
-    command:toggle()
+    Snacks.terminal.toggle(cmd .. vim.g.dotnet_utils.last_used_csproj, terminal_opts)
   end
 end
 
 M.build = function()
-  execute("dotnet build ", "dotnet build")
+  execute "dotnet build "
 end
 
 M.watch = function()
-  execute("dotnet watch --project ", "dotnet watch")
+  execute "dotnet watch --project "
 end
 
 M.setup = function()
