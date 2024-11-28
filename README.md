@@ -1,8 +1,4 @@
-# nvim/
-
-<a href="https://dotfyle.com/adriankarlen/nvim"><img src="https://dotfyle.com/adriankarlen/nvim/badges/plugins?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/adriankarlen/nvim"><img src="https://dotfyle.com/adriankarlen/nvim/badges/leaderkey?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/adriankarlen/nvim"><img src="https://dotfyle.com/adriankarlen/nvim/badges/plugin-manager?style=for-the-badge" /></a>
+# `nvim`
 
 ## 📷
 
@@ -12,23 +8,13 @@
 
 ### ai
 
-- [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
-
-### bars-and-lines
-
-- [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic)
-- [utilyre/barbecue.nvim](https://dotfyle.com/plugins/utilyre/barbecue.nvim)
-
-### code-runner
-
-- [Zeioth/compiler.nvim](https://dotfyle.com/plugins/Zeioth/compiler.nvim)
-- [stevearc/overseer.nvim](https://dotfyle.com/plugins/stevearc/overseer.nvim)
+- [olimorris/codecompanion.nvim](https://dotfyle.com/plugins/olimorris/codecompanion.nvim)
 
 ### color
 
-- [mvllow/modes.nvim](https://dotfyle.com/plugins/mvllow/modes.nvim)
 - [brenoprata10/nvim-highlight-colors](https://dotfyle.com/plugins/brenoprata10/nvim-highlight-colors)
 - [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
+- [mvllow/modes.nvim](https://dotfyle.com/plugins/mvllow/modes.nvim)
 
 ### colorscheme
 
@@ -36,13 +22,13 @@
 
 ### comment
 
-- [LudoPinelli/comment-box.nvim](https://dotfyle.com/plugins/LudoPinelli/comment-box.nvim)
+- [folke/ts-comments.nvim](https://dotfyle.com/plugins/folke/ts-comments.nvim)
 - [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
+- [LudoPinelli/comment-box.nvim](https://dotfyle.com/plugins/LudoPinelli/comment-box.nvim)
 
 ### completion
 
 - [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
-- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 
 ### cursorline
 
@@ -50,22 +36,23 @@
 
 ### debugging
 
-- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 - [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
+- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 
 ### diagnostics
 
-- [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
 - [RaafatTurki/corn.nvim](https://dotfyle.com/plugins/RaafatTurki/corn.nvim)
+- [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
 
 ### editing-support
 
-- [echasnovski/mini.pairs](https://dotfyle.com/plugins/echasnovski/mini.pairs)
-- [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
 - [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
-- [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
 - [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
 - [echasnovski/mini.splitjoin](https://dotfyle.com/plugins/echasnovski/mini.splitjoin)
+- [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
+- [echasnovski/mini.pairs](https://dotfyle.com/plugins/echasnovski/mini.pairs)
+- [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
+- [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
 
 ### file-explorer
 
@@ -73,35 +60,34 @@
 
 ### formatting
 
-- [echasnovski/mini.align](https://dotfyle.com/plugins/echasnovski/mini.align)
 - [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
+- [echasnovski/mini.align](https://dotfyle.com/plugins/echasnovski/mini.align)
 
 ### fuzzy-finder
 
-- [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+- [ibhagwan/fzf-lua](https://dotfyle.com/plugins/ibhagwan/fzf-lua)
 
 ### git
 
-- [kdheepak/lazygit.nvim](https://dotfyle.com/plugins/kdheepak/lazygit.nvim)
-- [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+- [echasnovski/mini.diff](https://dotfyle.com/plugins/echasnovski/mini.diff)
+- [akinsho/git-conflict.nvim](https://dotfyle.com/plugins/akinsho/git-conflict.nvim)
 
 ### icon
 
-- [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
+- [echasnovski/mini.icons](https://dotfyle.com/plugins/echasnovski/mini.icons)
 
 ### indent
 
-- [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
+- [nvimdev/indentmini.nvim](https://dotfyle.com/plugins/nvimdev/indentmini.nvim)
 
 ### keybinding
 
-- [max397574/better-escape.nvim](https://dotfyle.com/plugins/max397574/better-escape.nvim)
 - [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 
 ### lsp
 
-- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [smjonas/inc-rename.nvim](https://dotfyle.com/plugins/smjonas/inc-rename.nvim)
+- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 
 ### lsp-installer
 
@@ -122,14 +108,16 @@
 
 ### motion
 
+- [echasnovski/mini.bracketed](https://dotfyle.com/plugins/echasnovski/mini.bracketed)
 - [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim)
-- [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim)
 
 ### nvim-dev
 
+- [jbyuki/one-small-step-for-vimkind](https://dotfyle.com/plugins/jbyuki/one-small-step-for-vimkind)
+- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
+- [echasnovski/mini.doc](https://dotfyle.com/plugins/echasnovski/mini.doc)
 - [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 - [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
-- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
 
 ### plugin-manager
 
@@ -137,15 +125,11 @@
 
 ### programming-languages-support
 
-- [MoaidHathot/dotnet.nvim](https://dotfyle.com/plugins/MoaidHathot/dotnet.nvim)
+- [GustavEikaas/easy-dotnet.nvim](https://dotfyle.com/plugins/GustavEikaas/easy-dotnet.nvim)
 
 ### quickfix
 
-- [stevearc/quicker.nvim](https://dotfyle.com/plugins/stevearc/quicker.nvim)
-
-### scrollbar
-
-- [petertriho/nvim-scrollbar](https://dotfyle.com/plugins/petertriho/nvim-scrollbar)
+- [yorickpeterse/nvim-pqf](https://dotfyle.com/plugins/yorickpeterse/nvim-pqf)
 
 ### search
 
@@ -153,64 +137,36 @@
 
 ### snippet
 
-- [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 - [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
 
-### startup
+### split-and-window
 
-- [nvimdev/dashboard-nvim](https://dotfyle.com/plugins/nvimdev/dashboard-nvim)
+- [folke/edgy.nvim](https://dotfyle.com/plugins/folke/edgy.nvim)
+- [nvim-zh/colorful-winsep.nvim](https://dotfyle.com/plugins/nvim-zh/colorful-winsep.nvim)
 
 ### syntax
 
-- [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
 - [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+- [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
 
 ### tabline
 
-- [willothy/nvim-cokeline](https://dotfyle.com/plugins/willothy/nvim-cokeline)
+- [adriankarlen/buffed.nvim](https://dotfyle.com/plugins/adriankarlen/buffed.nvim)
 
 ### terminal-integration
 
-- [akinsho/toggleterm.nvim](https://dotfyle.com/plugins/akinsho/toggleterm.nvim)
 - [willothy/wezterm.nvim](https://dotfyle.com/plugins/willothy/wezterm.nvim)
-
-### test
-
-- [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
 
 ### utility
 
-- [jellydn/hurl.nvim](https://dotfyle.com/plugins/jellydn/hurl.nvim)
-- [ghillb/cybu.nvim](https://dotfyle.com/plugins/ghillb/cybu.nvim)
-- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
-- [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 - [leath-dub/snipe.nvim](https://dotfyle.com/plugins/leath-dub/snipe.nvim)
+- [jellydn/hurl.nvim](https://dotfyle.com/plugins/jellydn/hurl.nvim)
+- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 
 ### web-development
 
-- [adamkali/dotnvim](https://dotfyle.com/plugins/adamkali/dotnvim)
 - [luckasRanarison/tailwind-tools.nvim](https://dotfyle.com/plugins/luckasRanarison/tailwind-tools.nvim)
 
 ### workflow
 
 - [m4xshen/hardtime.nvim](https://dotfyle.com/plugins/m4xshen/hardtime.nvim)
-
-## Language Servers
-
-- cssls
-- denols
-- eslint
-- html
-- jsonls
-- lemminx
-- lua_ls
-- marksman
-- omnisharp
-- powershell_es
-- svelte
-- tailwindcss
-- taplo
-- vtsls
-- yamlls
-
-This readme was generated by [Dotfyle](https://dotfyle.com)
