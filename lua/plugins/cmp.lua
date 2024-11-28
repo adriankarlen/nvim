@@ -11,6 +11,7 @@ return {
           border = "single",
         },
       },
+      opts_extend = { "sources.completion.enabled_providers" },
       sources = {
         completion = {
           enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
