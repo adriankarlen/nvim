@@ -17,7 +17,7 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
     opts = {
-      file_types = { "markdown", "copilot-chat" },
+      file_types = { "markdown", "copilot-chat", "codecompanion" },
       code = {
         sign = false,
         width = "block",
@@ -30,7 +30,7 @@ return {
       },
       pipe_table = { alignment_indicator = "┅" },
     },
-    ft = { "markdown", "Avante" },
+    ft = { "markdown", "copilot-chat", "codecompanion" },
     keys = {
       -- stylua: ignore start
       { "<leader>tm", function() require('render-markdown').toggle() end, ft = { "markdown", "copilot-chat" }, desc = "toggle markdown rendering" },
