@@ -1,74 +1,8 @@
 return {
   {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = { "SmiteshP/nvim-navic", "echasnovski/mini.icons" },
-    event = "BufReadPost",
-    config = function()
-      local palette = require "rose-pine.palette"
-      -- triggers CursorHold event faster
-      vim.opt.updatetime = 200
-
-      require("barbecue").setup {
-        create_autocmd = false,
-        theme = {
-          normal = { fg = palette.subtle },
-        },
-        symbols = {
-          separator = " ",
-        },
-      }
-
-      vim.api.nvim_create_autocmd({
-        "WinResized",
-        "BufWinEnter",
-        "CursorHold",
-        "InsertLeave",
-      }, {
-        group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-        callback = function()
-          require("barbecue.ui").update()
-        end,
-      })
-    end,
-  },
-  {
-    "willothy/nvim-cokeline",
-    dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
-    event = "BufReadPost",
-    config = function()
-      local cokeline = require "cokeline"
-      local get_hex = require("cokeline.hlgroups").get_hl_attr
-      local components = {
-        filename = {
-          text = function(buf)
-            return " " .. buf.filename .. " "
-          end,
-        },
-        modified = {
-          text = function(buf)
-            return buf.is_modified and " " or "  "
-          end,
-          fg = function(buf)
-            return buf.is_modified and get_hex("DiagnosticWarn", "fg") or get_hex("Normal", "fg")
-          end,
-        },
-      }
-      cokeline.setup {
-        show_if_buffers_are_at_least = 1,
-        buffers = {
-          filter_valid = function(buf)
-            return buf.is_modified
-          end,
-        },
-        components = { components.filename, components.modified },
-      }
-    end,
-  },
-  {
     "leath-dub/snipe.nvim",
     lazy = true,
+    enabled = false,
     keys = {
       -- stylua: ignore start
       { "<leader><tab>", function() require("snipe").open_buffer_menu() end, desc = "snipe buffer" },
@@ -82,6 +16,7 @@ return {
     opts = {
       register_ui_select = true,
       popup = {
+        x_offset = vim.api.nvim_get_option_value("columns", {}),
         border = "single",
         title = "select:",
       },
@@ -97,7 +32,6 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    tag = "v4.4.7",
     event = "VeryLazy",
     opts = {
       lsp = {
@@ -152,7 +86,15 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    -- optional for icon support
+    keys = {
+        -- stylua: ignore start
+        { "<leader>ff", function() require("fzf-lua").files() end, desc = "find files" },
+        { "<leader>fw", function() require("fzf-lua").live_grep() end, desc = "live grep" },
+        { "<leader>fw", function() require("fzf-lua").grep_visual() end, mode = "x", desc = "grep selection" },
+        { "<leader>fo", function() require("fzf-lua").oldfiles() end, desc = "old files" },
+        { "<leader><tab>", function() require("fzf-lua").buffers() end, desc = "buffers" },
+      -- stylua: ignore end
+    },
     opts = {
       winopts = {
         height = 0.25,
@@ -177,30 +119,17 @@ return {
         cwd_prompt = false,
         cwd = require("utils.fn").root(),
       },
-      search = {
+      grep = {
         prompt = "search:",
         cwd = require("utils.fn").root(),
       },
-    },
-    keys = {
-        -- stylua: ignore start
-        { "<leader>ff", function() require("fzf-lua").files() end, desc = "find files" },
-        { "<leader>fw", function() require("fzf-lua").live_grep() end, desc = "live grep" },
-        { "<leader>fw", function() require("fzf-lua").grep_visual() end, mode = "x", desc = "grep selection" },
-        { "<leader>fo", function() require("fzf-lua").oldfiles({}) end, desc = "old files" },
-      -- stylua: ignore end
-    },
-  },
-  { "nvchad/volt", lazy = true },
-  {
-    "nvchad/menu",
-    lazy = true,
-    opts = {},
-
-    keys = {
-      -- stylua: ignore start
-      { "<C-t>", function() require("menu").open "default" end },
-      -- stylua: ignore end
+      buffers = {
+        prompt = "buffers:",
+        preview_opts = "hidden",
+      },
+      oldfiles = {
+        prompt = "history:",
+      },
     },
   },
   {
@@ -226,6 +155,7 @@ return {
         right = {
           { title = "grug far", ft = "grug-far", size = { width = 0.4 } },
           { title = "copilot chat", ft = "copilot-chat", size = { width = 50 } },
+          { title = "code companion", ft = "codecompanion", size = { width = 50 } },
         },
       }
 
@@ -259,22 +189,6 @@ return {
           end,
         })
       end
-
-      -- snacks terminal
-      for _, pos in ipairs { "top", "bottom", "left", "right" } do
-        opts[pos] = opts[pos] or {}
-        table.insert(opts[pos], {
-          ft = "snacks_terminal",
-          size = { height = 0.4 },
-          title = "%{b:snacks_terminal.id}: %{b:term_title}",
-          filter = function(_, win)
-            return vim.w[win].snacks_win
-              and vim.w[win].snacks_win.position == pos
-              and vim.w[win].snacks_win.relative == "editor"
-              and not vim.w[win].trouble_preview
-          end,
-        })
-      end
       return opts
     end,
   },
@@ -292,5 +206,31 @@ return {
       return opts
     end,
     event = { "BufWinLeave" },
+  },
+  {
+    "adriankarlen/buffed.nvim",
+    event = "BufReadPost",
+    dependencies = { "echasnovski/mini.icons" },
+    opts = {},
+    keys = {
+      {
+        "<leader>fb",
+        function()
+          vim.ui.select(require("buffed").buffs(), { prompt = "select buff" }, function(selection)
+            vim.cmd.edit(selection)
+          end)
+        end,
+        desc = "select buff",
+      },
+      {
+        "<leader>fd",
+        function()
+          vim.ui.select(require("buffed").debuffs(), { prompt = "select debuff" }, function(selection)
+            vim.cmd.edit(selection)
+          end)
+        end,
+        desc = "select debuff",
+      },
+    },
   },
 }
