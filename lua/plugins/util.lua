@@ -1,32 +1,5 @@
 return {
   {
-    -- Enables jj and jk commands to exit insert mode
-    "max397574/better-escape.nvim",
-    config = function()
-      require("better_escape").setup()
-    end,
-    event = "InsertEnter",
-    mappings = {
-      i = {
-        j = {
-          j = function()
-            if vim.bo.filetype == "lazygit" then
-              return "<c-v>j<c-v>k"
-            end
-            return "<esc>"
-          end,
-          k = function()
-            if vim.bo.filetype == "lazygit" then
-              return "<c-v>j<c-v>k"
-            end
-            return "<esc>"
-          end,
-        },
-      },
-      t = false,
-    },
-  },
-  {
     "chrishrb/gx.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "Browse" },
