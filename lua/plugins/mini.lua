@@ -1,7 +1,7 @@
 return {
   { "echasnovski/mini.ai", version = false, event = "BufReadPre", opts = { n_lines = 500 } },
   { "echasnovski/mini.align", version = false, event = "BufReadPre", opts = {} },
-  { "echasnovski/mini.bracketed", version = false, event = "BufReadPre" },
+  { "echasnovski/mini.bracketed", version = false, event = "BufReadPre", opts = {} },
   {
     "echasnovski/mini.cursorword",
     version = false,
@@ -25,6 +25,17 @@ return {
         end,
       })
     end,
+  },
+  {
+    "echasnovski/mini.diff",
+    version = false,
+    lazy = true,
+    opts = {
+      view = {
+        style = "sign",
+        signs = { add = "┃", change = "┃", delete = "_" },
+      },
+    },
   },
   {
     "echasnovski/mini.files",
@@ -338,4 +349,5 @@ return {
     opts = { mappings = { toggle = "<leader>cm" } },
   },
   { "echasnovski/mini.surround", event = "BufReadPre", version = false, opts = {} },
+  { "echasnovski/mini.doc", version = false, lazy = true, opts = {}, ft = "lua" },
 }
