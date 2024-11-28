@@ -9,7 +9,6 @@ return {
         styles = {
           transparency = true,
         },
-        extend_background_behind_borders = false,
         highlight_groups = {
           MatchParen = { fg = "love", bg = "love", blend = 25 },
           StatuslineTextMain = { fg = "text" },
@@ -54,19 +53,6 @@ return {
           DiagnosticUnderlineInfo = { bg = "foam", blend = 20 },
           DiagnosticUnderlineOk = { bg = "leaf", blend = 20 },
           DiagnosticUnderlineWarn = { bg = "gold", blend = 20 },
-          DashboardDesc = { fg = "iris" },
-          DashboardFiles = { fg = "iris" },
-          DashboardFooter = { fg = "muted", italic = true },
-          DashboardHeader = { fg = "pine" },
-          DashboardIcon = { fg = "subtle" },
-          DashboardKey = { fg = "gold" },
-          DashboardMruIcon = { link = "DashboardIcon" },
-          DashboardMruTitle = { fg = "iris" },
-          DashboardProjectIcon = { link = "DashboardIcon" },
-          DashboardProjectTitle = { fg = "foam" },
-          DashboardShortcut = { fg = "gold" },
-          DashboardShortcutIcon = { link = "DashboardIcon" },
-          BafaModified = { fg = "gold" },
         },
       }
       vim.cmd "colorscheme rose-pine"
