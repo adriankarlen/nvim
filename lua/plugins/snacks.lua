@@ -25,6 +25,7 @@ return {
               { icon = " ", key = "f", desc = "find file", action = ":lua Snacks.dashboard.pick('files')" },
               { icon = " ", key = "w", desc = "find text", action = ":lua Snacks.dashboard.pick('live_grep')" },
               { icon = " ", key = "r", desc = "recent files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+              { icon = " ", key = "e", desc = "explorer", action = ":lua require('mini.files').open()" },
               { icon = " ", key = "g", desc = "browse git", action = ":lua Snacks.lazygit()" },
               { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy" },
               { icon = "󱌣 ", key = "m", desc = "mason", action = ":Mason" },
@@ -66,6 +67,9 @@ return {
             border = "single",
             wo = { wrap = true, winblend = 0 }, -- Wrap notifications
           },
+          lazygit = {
+            border = "single",
+          },
         },
       }
       opts.styles["notification.history"] = {
@@ -79,7 +83,7 @@ return {
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "blame line" },
     { "<leader>gl", function() Snacks.lazygit() end, desc = "lazygit" },
     { "<leader>cR", function() Snacks.rename() end, desc = "rename file" },
-    { "<leader>fn", function() Snacks.notifier.show_history({ border = "single" }) end, desc = "notification history" },
+    { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "notification history" },
     { "<leader><leader>", function() Snacks.terminal() end, desc = "terminal" },
       -- stylua: ignore end
     },
