@@ -222,7 +222,7 @@ local function get_branch()
   if is_truncated(40) then
     return ""
   end
-  local branch = vim.b.gitsigns_head or ""
+  local branch = vim.b.minigit_summary_string or ""
   local hl_main = "%#StatuslineTextMain#"
   local hl_accent = "%#StatuslineTextAccent#"
   if branch == "" then

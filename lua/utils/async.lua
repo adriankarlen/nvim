@@ -2,7 +2,7 @@ local M = {}
 
 ---When typing "await" add "async" to the function declaration if the function
 ---isn't async already.
-function M.add_async()
+function M.add()
   -- This function should be executed when the user types "t" in insert mode,
   -- but "t" is not inserted because it's the trigger.
   vim.api.nvim_feedkeys("t", "n", true)

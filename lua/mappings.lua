@@ -1,5 +1,9 @@
 -- ─[ mappings ]───────────────────────────────────────────────────────
 local map = vim.keymap
+local api = vim.api
+local ui = vim.ui
+local cmd = vim.cmd
+local fn = vim.fn
 
 -- go to beginning and end
 map.set("i", "<C-6>", "<esc>^i", { desc = "go to beginning of line" })
@@ -69,10 +73,24 @@ map.set("i", "GG", "<esc>bgUiwea", { desc = "make word uppercase" })
 
 -- remove carriage returns
 map.set("n", "<leader>sx", function()
-  local current_line = vim.fn.line "."
-  vim.cmd "%s/\r$//"
-  vim.fn.cursor(current_line, 0)
+  local current_line = fn.line "."
+  cmd "%s/\r$//"
+  fn.cursor(current_line, 0)
 end, { desc = "delete carriage returns" })
 
 -- sort bindings
 map.set("x", "<leader>cS", "<cmd>'<,'>sort<cr>")
+
+-- select buffer
+map.set("n", "<leader><tab>", function()
+  local buffers = vim.tbl_filter(function(bufnr)
+    return fn.buflisted(bufnr) == 1 and bufnr ~= api.nvim_get_current_buf()
+  end, api.nvim_list_bufs())
+  local named = vim.tbl_map(function(bufnr)
+    local path = fn.bufname(bufnr)
+    return fn.fnamemodify(path, ":~:.:h") .. "/" .. fn.fnamemodify(path, ":t")
+  end, buffers)
+  ui.select(named, { prompt = "select buffer" }, function(selection)
+    vim.cmd.edit(selection)
+  end)
+end, { desc = "buffers" })

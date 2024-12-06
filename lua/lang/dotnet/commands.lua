@@ -1,5 +1,9 @@
 local M = {}
 
+local error = function(msg)
+  vim.notify(msg, 4)
+end
+
 local get_all_csproj = function()
   local scandir = require "plenary.scandir"
   local result = {}
@@ -32,23 +36,23 @@ local execute = function(cmd)
   local all_csproj = get_all_csproj()
   local terminal_opts = {
     win = {
-      position = "bottom"
-    }
+      position = "bottom",
+    },
   }
   if vim.g.dotnet_utils.last_used_csproj == nil then
     vim.ui.select(all_csproj, {
-      prompt = "Select a project:",
+      prompt = "select project",
       format_item = function(item)
-        local icon, _, _ = require("mini.icons").get("file", vim.fs.basename(item))
-        -- TODO: add hl group
-        return icon .. " " .. item
+        local csproj = vim.fs.basename(item)
+        local icon, _, _ = require("mini.icons").get("file", csproj)
+        local without_extenstion = vim.fn.fnamemodify(csproj, ":r2")
+        return icon .. " " .. without_extenstion
       end,
     }, function(choice)
       if not check_csproj(choice) then
-        error "Invalid csproj path"
+        error "invalid csproj path"
       end
       vim.g.dotnet_utils.last_used_csproj = choice
-      vim.g.dotnet_utils.watch_is_running = true
 
       Snacks.terminal.toggle(cmd .. choice, terminal_opts)
     end)
@@ -68,7 +72,6 @@ end
 M.setup = function()
   vim.g.dotnet_utils = {
     last_used_csproj = nil,
-    watch_is_running = false,
   }
   -- stylua: ignore start 
   vim.keymap.set("n", "<leader>nw", function () M.watch() end, { desc = "watch project", noremap = true })

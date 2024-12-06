@@ -24,6 +24,7 @@ return {
         markdown = { "prettier" },
         mdx = { "prettier" },
         graphql = { "prettier" },
+        go = { "gofmt"},
         cs = { "csharpier" },
         xml = { "xmlformat" },
         svg = { "xmlformat" },

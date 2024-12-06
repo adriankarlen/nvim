@@ -28,10 +28,13 @@ return {
         },
       }
     end,
+    keys = {
+      { "<leader>nl", "<cmd>Roslyn restart<cr>", desc = "restart roslyn lsp" },
+    },
   },
   {
     "GustavEikaas/easy-dotnet.nvim",
-    dependencies = { "nvim-lua/plenary.nvim"  },
+    dependencies = { "nvim-lua/plenary.nvim" },
     ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
     lazy = true,
     cmd = "Dotnet",

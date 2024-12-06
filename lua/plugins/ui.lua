@@ -87,12 +87,11 @@ return {
   {
     "ibhagwan/fzf-lua",
     keys = {
-        -- stylua: ignore start
-        { "<leader>ff", function() require("fzf-lua").files() end, desc = "find files" },
-        { "<leader>fw", function() require("fzf-lua").live_grep() end, desc = "live grep" },
-        { "<leader>fw", function() require("fzf-lua").grep_visual() end, mode = "x", desc = "grep selection" },
-        { "<leader>fo", function() require("fzf-lua").oldfiles() end, desc = "old files" },
-        { "<leader><tab>", function() require("fzf-lua").buffers() end, desc = "buffers" },
+      -- stylua: ignore start
+      { "<leader>ff", function() require("fzf-lua").files() end, desc = "find files" },
+      { "<leader>fw", function() require("fzf-lua").live_grep() end, desc = "live grep" },
+      { "<leader>fw", function() require("fzf-lua").grep_visual() end, mode = "x", desc = "grep selection" },
+      { "<leader>fo", function() require("fzf-lua").oldfiles() end, desc = "old files" },
       -- stylua: ignore end
     },
     opts = {
@@ -210,13 +209,32 @@ return {
   {
     "adriankarlen/buffed.nvim",
     event = "BufReadPost",
+    dir = "c:/users/adka01/source/repos/personal/buffed.nvim",
     dependencies = { "echasnovski/mini.icons" },
-    opts = {},
+    opts = {
+      filters = {
+        modified = {
+          icon = "",
+          hl = "DiagnosticWarn",
+          fun = function(bufnr)
+            return vim.fn.getbufvar(bufnr, "&mod") == 1
+          end,
+        },
+        with_error = {
+          icon = "󰈸",
+          hl = "DiagnosticError",
+          fun = function(bufnr)
+            local diagnostic = vim.diagnostic.get(bufnr, { severity = { min = "ERROR" } })
+            return #diagnostic > 0
+          end,
+        },
+      },
+    },
     keys = {
       {
         "<leader>fb",
         function()
-          vim.ui.select(require("buffed").buffs(), { prompt = "select buff" }, function(selection)
+          vim.ui.select(require("buffed").get("modified"), { prompt = "select modifed" }, function(selection)
             vim.cmd.edit(selection)
           end)
         end,
@@ -225,7 +243,7 @@ return {
       {
         "<leader>fd",
         function()
-          vim.ui.select(require("buffed").debuffs(), { prompt = "select debuff" }, function(selection)
+          vim.ui.select(require("buffed").get("with_error"), { prompt = "select with error" }, function(selection)
             vim.cmd.edit(selection)
           end)
         end,

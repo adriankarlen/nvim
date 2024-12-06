@@ -4,8 +4,8 @@ return {
   lazy = false,
   dependencies = {
     { "williamboman/mason.nvim", config = true },
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    { "williamboman/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
   },
   config = function()
     local mason = require "mason"
@@ -15,6 +15,7 @@ return {
     local servers = {
       cssls = {},
       eslint = {},
+      gopls = {},
       html = {},
       jsonls = {},
       lemminx = {},
@@ -72,16 +73,14 @@ return {
   end,
   keys = {
     -- stylua: ignore start
-    { "gD", function() vim.lsp.buf.declaration()end, desc = "lsp declaration" },
-    { "gd", function() vim.lsp.buf.definition()end, desc = "lsp definition" },
-    { "K", function() vim.lsp.buf.hover()end, desc = "lsp hover" },
-    { "gi", function() vim.lsp.buf.implementation()end, desc = "lsp implementation" },
-    { "gK", function() vim.lsp.buf.signature_help()end, desc = "lsp signature help" },
-    { "gy", function() vim.lsp.buf.type_definition()end, desc = "lsp type definition" },
-    { "gr", function() vim.lsp.buf.references()end, desc = "lsp references" },
     { "[d", function() vim.lsp.diagnostic.goto_prev()end, desc = "lsp goto prev diagnostic" },
     { "]d", function() vim.lsp.diagnostic.goto_next()end, desc = "lsp goto next diagnostic" },
-    {"<leader>ti", function() vim.lsp.inlay_hint.enable() end, desc = "inlay hint"},
+    { "gD", "<cmd>Trouble lsp_declarations<cr>", desc = "lsp declaration" },
+    { "gd", "<cmd>Trouble lsp_definitions<cr>", desc = "lsp definition" },
+    { "gi", "<cmd>Trouble lsp_implementations<cr>", desc = "lsp implementation" },
+    { "gk", function() vim.lsp.buf.hover()end, desc = "lsp hover" },
+    { "gr", "<cmd>Trouble lsp_references<cr>", desc = "lsp references" },
+    { "gy", "<cmd>Trouble lsp_type_definitions<cr>", desc = "lsp type definition" },
     -- stylua: ignore start
   },
 }

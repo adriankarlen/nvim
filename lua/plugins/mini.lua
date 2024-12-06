@@ -2,6 +2,12 @@ return {
   { "echasnovski/mini.ai", version = false, event = "BufReadPre", opts = { n_lines = 500 } },
   { "echasnovski/mini.align", version = false, event = "BufReadPre", opts = {} },
   { "echasnovski/mini.bracketed", version = false, event = "BufReadPre", opts = {} },
+  { "echasnovski/mini-git", lazy = true, version = false, main = "mini.git", opts = {} },
+  { "echasnovski/mini.operators", version = false, opts = {
+    replace = {
+      prefix = "gR"
+    }
+  } },
   {
     "echasnovski/mini.cursorword",
     version = false,
@@ -264,7 +270,7 @@ return {
         end,
       })
 
-      vim.api.nvim_create_autocmd("User", {
+      autocmd("User", {
         pattern = "MiniFilesBufferCreate",
         callback = function(args)
           local buf_id = args.data.buf_id
@@ -273,7 +279,7 @@ return {
         end,
       })
 
-      vim.api.nvim_create_autocmd("User", {
+      autocmd("User", {
         pattern = "MiniFilesWindowUpdate",
         callback = function(args)
           local config = vim.api.nvim_win_get_config(args.data.win_id)
@@ -282,7 +288,7 @@ return {
         end,
       })
 
-      vim.api.nvim_create_autocmd("User", {
+      autocmd("User", {
         pattern = "MiniFilesActionRename",
         callback = function(event)
           Snacks.rename.on_rename_file(event.data.from, event.data.to)

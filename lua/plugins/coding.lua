@@ -29,4 +29,20 @@ return {
     },
   },
   { "folke/ts-comments.nvim", event = "BufReadPre", opts = {} },
+  {
+    "antonk52/npm_scripts.nvim",
+    lazy = true,
+    opts = {
+      select_script_prompt = "select script",
+      run_script = function(opts)
+        local cmd = opts.package_manager .. " run " .. opts.name
+        Snacks.terminal.toggle(cmd, { win = { position = "bottom", interactive = true } })
+      end,
+    },
+    keys = {
+      -- stylua: ignore start
+      { "<leader>jr", function() require("npm_scripts").run_script() end, desc = "run npm script" },
+      -- stylua: ignore end
+    },
+  },
 }

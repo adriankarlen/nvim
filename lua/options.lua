@@ -11,9 +11,6 @@ g.maplocalleader = ","
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
--- tabline
-opt.showtabline = 2
-
 -- split
 opt.splitkeep = "screen"
 
@@ -29,11 +26,11 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 
--- numbers
-o.number = true
-o.numberwidth = 2
-o.ruler = false
-o.rnu = true
+ -- numbers
+ o.number = true
+ o.numberwidth = 2
+ o.ruler = false
+ o.rnu = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"
@@ -43,10 +40,6 @@ opt.splitright = true
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
-
--- show tab and trailing characters
-opt.list = true
-opt.listchars = { trail = "·" }
 
 -- diagnostic configurations
 vim.diagnostic.config {
