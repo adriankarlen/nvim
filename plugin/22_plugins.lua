@@ -8,10 +8,7 @@ now(function()
   end
   Config.on_packchanged("nvim-treesitter", { "update" }, ts_update, ":TSUpdate")
 
-  add {
-    gh "nvim-treesitter/nvim-treesitter",
-    gh "nvim-treesitter/nvim-treesitter-textobjects",
-  }
+  add { gh "nvim-treesitter/nvim-treesitter", gh "nvim-treesitter/nvim-treesitter-textobjects" }
 
   local languages = {
     "bash",
@@ -39,7 +36,6 @@ now(function()
     "regex",
     "powershell",
     "svelte",
-    "tmux",
     "toml",
     "tsx",
     "typescript",
@@ -84,23 +80,56 @@ now_if_args(function()
     "gopls",
     "html",
     "marksman",
+    "oxfmt",
     "oxlint",
     "roslyn_ls",
     "svelte",
+    "tailwindcss",
     "taplo",
-    "tsc",
     "vtsls",
+    "tsc",
     "yamlls",
   }
 
   vim.lsp.inline_completion.enable()
 end)
 
-now_if_args(function()
+-- ─[ lazy load ]────────────────────────────────────────────────────
+
+later(function()
   add { gh "rafamadriz/friendly-snippets" }
 end)
 
--- ─[ lazy load ]────────────────────────────────────────────────────
+later(function()
+  add { gh "stevearc/conform.nvim" }
+
+  ---@diagnostic disable-next-line: param-type-mismatch
+  require("conform").setup {
+    default_format_opts = {
+      lsp_format = "fallback",
+      async = true,
+      timeout_ms = 1000,
+    },
+    format_on_save = function(bufnr)
+      if vim.bo[bufnr].buftype ~= "" then
+        return
+      end
+      return {}
+    end,
+    formatters_by_ft = {
+      go = { "gofmt" },
+      javascript = { "oxfmt" },
+      javascriptreact = { "oxfmt" },
+      json = { "oxfmt" },
+      lua = { "stylua" },
+      sh = { "shfmt" },
+      svelte = { "oxfmt" },
+      typescript = { "oxfmt" },
+      typescriptreact = { "oxfmt" },
+      zsh = { "shfmt" },
+    },
+  }
+end)
 
 later(function()
   add { gh "dmmulroy/ts-error-translator.nvim" }

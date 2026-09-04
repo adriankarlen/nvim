@@ -65,6 +65,7 @@ local xmap_leader = function(suffix, rhs, desc)
 end
 
 -- a is for 'AI'
+nmap_leader("ac", "<Cmd>!tmux split-window -h -l 25\\% -c '\\#{pane_current_path}' claude<CR>", "claude")
 nmap_leader("ao", "<Cmd>!tmux split-window -h -l 25\\% -c '\\#{pane_current_path}' opencode<CR>", "opencode")
 nmap_leader("as", "<Cmd>!tmux split-window -h -l 25\\% -c '\\#{pane_current_path}' storecode --yolo<CR>", "storecode")
 nmap_leader("ap", "<Cmd>!tmux split-window -h -l 25\\% -c '\\#{pane_current_path}' pi<CR>", "pi")
@@ -124,7 +125,7 @@ xmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "show at selection")
 -- l is for 'Language'
 nmap_leader("la", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "actions")
 nmap_leader("ld", "<Cmd>lua vim.diagnostic.open_float()<CR>", "diagnostic popup")
-nmap_leader("lf", "<Cmd>lua Config.format()<CR>", "format")
+nmap_leader("lf", "<Cmd>lua require('conform').format()<CR>", "format")
 nmap_leader("li", "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation")
 nmap_leader("lh", "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover")
 nmap_leader("ll", "<Cmd>lua vim.lsp.codelens.run()<CR>", "lens")
@@ -134,7 +135,7 @@ nmap_leader("ls", "<Cmd>lua vim.lsp.buf.definition()<CR>", "source definition")
 nmap_leader("lt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "type definition")
 nmap_leader("lc", "<Cmd>lua Config.tsc()<CR>", "typecheck project")
 
-xmap_leader("lf", "<Cmd>lua Config.format()<CR>", "format selection")
+xmap_leader("lf", "<Cmd>lua require('conform').format()<CR>", "format selection")
 
 -- m is for 'Map'
 nmap_leader("mf", "<Cmd>lua MiniMap.toggle_focus()<CR>", "focus (toggle)")
