@@ -375,6 +375,13 @@ later(function()
 end)
 
 later(function()
+  local statuscolumn = require "mini.statuscolumn"
+  statuscolumn.setup {
+    content = statuscolumn.gen_content.main { { format = "s=l=", sep = " " }, { win = "inactive", sep = " " } },
+  }
+end)
+
+later(function()
   require("mini.surround").setup()
 end)
 
