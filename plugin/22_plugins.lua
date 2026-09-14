@@ -80,7 +80,6 @@ now_if_args(function()
     "gopls",
     "html",
     "marksman",
-    "oxfmt",
     "oxlint",
     "roslyn_ls",
     "svelte",
@@ -116,16 +115,27 @@ later(function()
       end
       return {}
     end,
+    formatters = {
+      oxfmt = {
+        require_cwd = true,
+      },
+      biome = {
+        require_cwd = true,
+      },
+      ["biome-organize-imports"] = {
+        require_cwd = true,
+      },
+    },
     formatters_by_ft = {
       go = { "gofmt" },
-      javascript = { "oxfmt" },
-      javascriptreact = { "oxfmt" },
-      json = { "oxfmt" },
+      javascript = { "biome", "biome-organize-imports", "oxfmt" },
+      javascriptreact = { "biome", "biome-organize-imports", "oxfmt" },
+      json = { "biome", "biome-organize-imports", "oxfmt" },
       lua = { "stylua" },
       sh = { "shfmt" },
-      svelte = { "oxfmt" },
-      typescript = { "oxfmt" },
-      typescriptreact = { "oxfmt" },
+      svelte = { "biome", "biome-organize-imports", "oxfmt" },
+      typescript = { "biome", "biome-organize-imports", "oxfmt" },
+      typescriptreact = { "biome", "biome-organize-imports", "oxfmt" },
       zsh = { "shfmt" },
     },
   }
