@@ -1,5 +1,6 @@
 local add = vim.pack.add
-local gh, now, now_if_args, later = Config.gh, Config.now, Config.now_if_args, Config.later
+local gh, now, now_if_args, later, on_filetype =
+  Config.gh, Config.now, Config.now_if_args, Config.later, Config.on_filetype
 
 -- ─[ load at startup ]────────────────────────────────────────────────────
 now(function()
@@ -142,15 +143,16 @@ later(function()
 end)
 
 later(function()
+  add { gh "mrjones2014/smart-splits.nvim" }
+end)
+
+-- ─[ on filetype ]──────────────────────────────────────────────────
+on_filetype("typescript,typescriptreact,svelte", function()
   add { gh "dmmulroy/ts-error-translator.nvim" }
   require("ts-error-translator").setup()
 end)
 
-later(function()
-  add { gh "mrjones2014/smart-splits.nvim" }
-end)
-
-later(function()
+on_filetype("typescript,typescriptreact,svelte", function()
   add { gh "windwp/nvim-ts-autotag" }
   require("nvim-ts-autotag").setup()
 end)
