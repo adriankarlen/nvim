@@ -117,7 +117,6 @@ xmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "show at selection")
 
 -- l is for 'Language'
 nmap_leader("la", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "actions")
-nmap_leader("ld", "<Cmd>lua vim.diagnostic.open_float()<CR>", "diagnostic popup")
 nmap_leader("lf", "<Cmd>lua require('conform').format()<CR>", "format")
 nmap_leader("li", "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation")
 nmap_leader("lh", "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover")
