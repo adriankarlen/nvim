@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 local add = vim.pack.add
 local gh, now = Config.gh, Config.now
 
@@ -6,6 +7,7 @@ now(function()
   ---@diagnostic disable-next-line: missing-fields, param-type-mismatch
   require("rose-pine").setup {
     highlight_groups = {
+      Comment = { fg = "muted" },
       MiniStarterHeader = { fg = "love" },
       MiniInputPrompt = { bg = "surface" },
     },
