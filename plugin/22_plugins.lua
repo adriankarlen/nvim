@@ -120,7 +120,7 @@ later(function()
         require_cwd = true,
         condition = function(_, ctx)
           for dir in vim.fs.parents(ctx.filename) do
-            if vim.uv.fs_stat(dir .. "/node_modules/.bin/oxfmt") then
+            if vim.uv.fs_stat(dir .. "/node_modules/.bin/oxfmt") or vim.uv.fs_stat(dir .. "/node_modules/.bin/vp") then
               return true
             end
           end
