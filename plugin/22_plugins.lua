@@ -150,7 +150,12 @@ later(function()
 end)
 
 later(function()
-  add { gh "mrjones2014/smart-splits.nvim" }
+  add { gh "mrjones2014/smart-splits.nvim", gh "adriankarlen/smart-splits-herdr-backend" }
+  ---@diagnostic disable-next-line: missing-fields
+  require("smart-splits").setup {
+    ---@diagnostic disable-next-line: missing-fields
+    mux = { backend = "smart-splits-backend-herdr" },
+  }
 end)
 
 -- ─[ on filetype ]──────────────────────────────────────────────────

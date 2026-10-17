@@ -32,6 +32,10 @@
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim"
     },
+    "smart-splits-herdr-backend": {
+      "rev": "ebbd9b54f379895a1c7475cb58ae80a553123855",
+      "src": "https://github.com/adriankarlen/smart-splits-herdr-backend"
+    },
     "smart-splits.nvim": {
       "rev": "316bda5960ad34c1739ea999b8f62f291940ee51",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
