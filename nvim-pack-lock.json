@@ -9,7 +9,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "mini.nvim": {
-      "rev": "ec1d7d896630296da4636d4fdf8a6656eb626b08",
+      "rev": "e4e61006afcf6b399924e64b43c1168fca7b4301",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-lspconfig": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "ca581c3436fc2b236847f5b739ebc263739e5ca6",
+      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
@@ -32,13 +32,13 @@
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim"
     },
-    "smart-splits-herdr-backend": {
-      "rev": "ebbd9b54f379895a1c7475cb58ae80a553123855",
-      "src": "https://github.com/adriankarlen/smart-splits-herdr-backend"
+    "smart-splits-backend-herdr": {
+      "rev": "da1e50ae7bec7a7c2781aaf5a531eff350bdab20",
+      "src": "https://github.com/adriankarlen/smart-splits-backend-herdr"
     },
     "smart-splits.nvim": {
-      "rev": "316bda5960ad34c1739ea999b8f62f291940ee51",
-      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+      "rev": "3629711db18279843618fda2e908700dcdc4b040",
+      "src": "https://github.com/smart-splits-nvim/smart-splits.nvim"
     },
     "ts-error-translator.nvim": {
       "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
