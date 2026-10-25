@@ -9,15 +9,15 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "mini.nvim": {
-      "rev": "e4e61006afcf6b399924e64b43c1168fca7b4301",
+      "rev": "4084a97fb06593e7f3855a9c5c63f1b87ae225e3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
+      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/adriankarlen/smart-splits-backend-herdr"
     },
     "smart-splits.nvim": {
-      "rev": "3629711db18279843618fda2e908700dcdc4b040",
+      "rev": "dd40c3a03ef71bcdf77fb4b14668cc1320293f48",
       "src": "https://github.com/smart-splits-nvim/smart-splits.nvim"
     },
     "ts-error-translator.nvim": {
