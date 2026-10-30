@@ -150,11 +150,17 @@ later(function()
 end)
 
 later(function()
-  add { gh "smart-splits-nvim/smart-splits.nvim", gh "adriankarlen/smart-splits-backend-herdr" }
+  add {
+    gh "smart-splits-nvim/smart-splits.nvim",
+    gh "adriankarlen/smart-splits-backend-herdr",
+    gh "rawnly/smart-splits-backend-rex",
+  }
   ---@diagnostic disable-next-line: missing-fields
   require("smart-splits").setup {
+    -- The first backend that detects wins. herdr goes first: run inside a Rex
+    -- pane, it is the inner multiplexer, and nvim sees both HERDR_* and REX_*.
     ---@diagnostic disable-next-line: missing-fields
-    mux = { backend = "smart-splits-backend-herdr" },
+    mux = { backend = { "smart-splits-backend-herdr", "smart-splits-backend-rex" } },
   }
 end)
 

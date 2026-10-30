@@ -36,6 +36,10 @@
       "rev": "da1e50ae7bec7a7c2781aaf5a531eff350bdab20",
       "src": "https://github.com/adriankarlen/smart-splits-backend-herdr"
     },
+    "smart-splits-backend-rex": {
+      "rev": "d15615e5c2deb237535884a921b0401dc2603533",
+      "src": "https://github.com/rawnly/smart-splits-backend-rex"
+    },
     "smart-splits.nvim": {
       "rev": "dd40c3a03ef71bcdf77fb4b14668cc1320293f48",
       "src": "https://github.com/smart-splits-nvim/smart-splits.nvim"
